@@ -212,12 +212,8 @@
     body{max-width:1280px;padding:24px 28px 60px}
     /* 主藏图面板：左参数 右预览（仅激活时网格） */
     #paneEmbed.active{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;align-items:start}
-    #paneEmbed.active .drop-row,
-    #paneEmbed.active .opt,
-    #paneEmbed.active .hint,
-    #paneEmbed.active .btn-primary,
-    #paneEmbed.active .btn-ghost{grid-column:1}
-    #paneEmbed.active .result{grid-column:2;grid-row:1/span 6;position:sticky;top:22px}
+    #paneEmbed.active > *{grid-column:1}
+    #paneEmbed.active .result{grid-column:2;grid-row:1/span 20;position:sticky;top:22px}
     /* 取图面板：功能在右，结果列表在左（仅激活时网格） */
     #paneExtract.active{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;align-items:start}
     #paneExtract.active .result{grid-column:1;grid-row:1/span 4;position:sticky;top:22px}
@@ -234,6 +230,32 @@
     .glt-app .glt-drop .label{font-size:18px}
     .mrg-app .mrg-drop .t{font-size:16px}
   }
+  /* ===== 多小图隐藏工具分支（mmg_） ===== */
+  .mmg-app{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:12px;padding:14px;line-height:1.5;font-size:14px}
+  .mmg-tabs{display:flex;gap:8px;margin-bottom:10px}
+  .mmg-tab{padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:var(--card2);color:var(--muted);cursor:pointer;font-size:14px}
+  .mmg-tab.active{background:var(--accent);color:#14233c;border-color:transparent;font-weight:600}
+  .mmg-drop{border:1.5px dashed var(--border);border-radius:12px;background:var(--card2);padding:22px 14px;text-align:center;cursor:pointer;flex:1;min-width:0}
+  .mmg-drop .t{font-size:14px;font-weight:600}
+  .mmg-drop .s{font-size:12px;color:var(--muted);margin-top:4px}
+  .mmg-btn{padding:9px 16px;border-radius:8px;border:0;cursor:pointer;font-size:14px;text-decoration:none}
+  .mmg-btn-primary{background:var(--accent);color:#14233c;font-weight:600}
+  .mmg-btn-ghost{background:var(--card2);color:var(--text);border:1px solid var(--border)}
+  .mmg-btn:disabled{opacity:.5;cursor:not-allowed}
+  .mmg-hint{font-size:13px;color:var(--muted);min-height:18px}
+  .mmg-hint.err{color:var(--err)}
+  .mmg-hint.ok{color:var(--ok)}
+  .mmg-secret-thumb{width:56px;height:56px;object-fit:cover;border-radius:4px;display:block}
+  .extract-gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:6px 2px;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
+  .extract-gallery::-webkit-scrollbar{display:none}
+  .eg-slide{flex:0 0 100%;scroll-snap-align:center;text-align:center;min-width:0}
+  .eg-slide img{max-width:100%;max-height:60vh;border-radius:8px;margin:0 auto;display:block;cursor:zoom-in;object-fit:contain}
+  .eg-nav{font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
+  .eg-wrap{position:relative}
+  .eg-arrow{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:22px;cursor:pointer;z-index:3;line-height:1;display:flex;align-items:center;justify-content:center;padding:0}
+  .eg-arrow:active{background:rgba(0,0,0,.7)}
+  .eg-left{left:6px}
+  .eg-right{right:6px}
 </style>
 </head>
 <body>
@@ -292,39 +314,68 @@ function themeBtnClick(){
 
 <!-- ============ 藏图 ============ -->
 <div id="paneEmbed" class="pane active">
-  <div class="drop-row">
-    <div class="drop" id="dropCover" onclick="pick('cover')">
-      <div class="label">① 选表图</div>
-      <div class="sub">点这里选，或直接把图片拖进来</div>
+  <div style="display:flex;gap:10px">
+    <div class="mmg-drop" id="mmgDropCover" onclick="mmgPick('cover',true)" style="flex:1">
+      <div class="t">① 选表图</div><div class="s">点这里选，或拖入</div>
     </div>
-    <div class="drop" id="dropSecret" onclick="pick('secret')">
-      <div class="label">② 选原图</div>
-      <div class="sub">点这里选，或直接把图片拖进来</div>
+    <div class="mmg-drop" id="mmgDropSecrets" onclick="mmgPick('secrets',true)" style="flex:1">
+      <div class="t">② 选里图（多张）</div><div class="s">可一次多选，也可再点这里追加</div>
     </div>
   </div>
+  <div id="mmgSecretList" style="margin-top:8px"></div>
+
+  <details style="margin-top:10px">
+    <summary style="cursor:pointer;font-size:13px;color:var(--muted)">里图格式（影响需要多大的表图）</summary>
+    <div class="opt" style="margin-top:6px">
+      <div class="row">
+        <button id="mmgQSlim" class="active" onclick="mmgSetQuality('slim')">省空间 JPEG</button>
+        <button id="mmgQLossless" onclick="mmgSetQuality('lossless')">无损 PNG</button>
+      </div>
+      <div class="note" id="mmgQualityNote">JPEG：体积小 5～10 倍，表图不用很大；还原图肉眼几乎无差。</div>
+    </div>
+  </details>
 
   <div class="opt">
-    <div class="t">原图画质（影响需要多大的表图）</div>
-    <div class="row">
-      <button id="qSlim" class="active" onclick="setQuality('slim')">省空间 JPEG</button>
-      <button id="qLossless" onclick="setQuality('lossless')">无损 PNG</button>
+    <div class="t">表图分辨率（放大可增加容量）</div>
+    <div class="row" style="flex-wrap:wrap;gap:6px;align-items:center">
+      <button id="mmgS1" class="active" onclick="mmgSetScale(1)">原始</button>
+      <button id="mmgS2" onclick="mmgSetScale(2)">2×</button>
+      <button id="mmgS3" onclick="mmgSetScale(3)">3×</button>
+      <button id="mmgS5" onclick="mmgSetScale(5)">5×</button>
+      <input id="mmgScaleInput" type="number" min="1" step="0.5" placeholder="自定义倍率" value="1" style="width:92px;padding:6px 8px;border-radius:6px;border:1px solid var(--border);background:var(--card2);color:var(--text)">
+      <button id="mmgScaleApply" onclick="mmgApplyScaleInput()">设为倍率</button>
     </div>
-    <div class="note" id="qualityNote">JPEG：体积小 5～10 倍，表图不用很大；还原图肉眼几乎无差。</div>
+    <div class="note" id="mmgScaleNote">原始最清晰；放大后成品尺寸变大，可用容量按面积成倍增加，里图可保持更大。</div>
   </div>
 
-  <div class="hint" id="embedHint"></div>
-  <button class="btn btn-primary" id="btnEmbed" disabled onclick="doEmbed()">生成成品</button>
-  <button class="btn btn-ghost" onclick="resetEmbed()">清空重选</button>
+  <div class="hint" id="mmgHint" style="margin-top:8px">选好表图和多张原图后点下方生成；多张会自动缩成小图拼入一张表图</div>
+  <button type="button" class="mmg-btn mmg-btn-primary" id="mmgEmbedBtn" style="margin-top:10px" disabled>生成成品</button>
 
-  <div class="result" id="embedResult">
+  <div class="result" id="mmgResult" style="display:none;margin-top:12px">
     <div class="box">
-      <img id="embedPreview" alt="成品预览">
-      <div class="cap">这就是成品，外观和表图一模一样</div>
+      <img id="mmgPreview" alt="成品预览" style="max-width:100%;border-radius:8px;display:block">
+      <div class="cap">这就是成品，外观和表图一模一样，内含多张小图</div>
     </div>
     <div class="save-tip">如果下面按钮点了没反应，就<b>长按上面这张图</b>，选「保存图片 / 存储到相册」</div>
-    <a class="btn btn-primary" id="embedDownload" download="成品.png">保存成品 PNG（优先长按保存）</a>
-    <button class="btn btn-ghost" onclick="testReveal()">显形测试（立刻验证能不能取出原图）</button>
+    <a class="mmg-btn mmg-btn-primary" id="mmgDownload" href="#" download="成品.png" style="display:inline-block">保存成品 PNG（优先长按保存）</a>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px">
+      <button type="button" class="mmg-btn" id="glowBtn" onclick="glowToggle()">表图光棱化</button>
+      <label style="font-size:12px;display:flex;align-items:center;gap:6px">效果
+        <select id="glowMode" style="padding:6px 8px;border-radius:6px;border:1px solid var(--border);background:var(--card2);color:var(--text)">
+          <option value="dot">网点纹理</option>
+          <option value="scan">横向扫描线</option>
+          <option value="grid">细密网格</option>
+          <option value="pattern">花纹暗纹</option>
+        </select>
+      </label>
+      <label style="font-size:12px;display:flex;align-items:center;gap:6px">强度
+        <input type="range" id="glowAmt" min="0" max="100" value="45" style="width:110px">
+        <span id="glowAmtTxt" style="min-width:24px">45</span>
+      </label>
+      <span style="font-size:11px;color:var(--muted)">先选效果与强度，点「表图光棱化」应用，再点一次取消；每次只用一种，不叠加</span>
+    </div>
   </div>
+  <input type="file" id="mmgFile" accept="image/*" multiple hidden>
 </div>
 
 <!-- ============ 取图 ============ -->
@@ -671,7 +722,7 @@ function themeBtnClick(){
 
   <div class="mrg-wrap">
     <div class="mrg-out">
-      <canvas id="mrgOutputCanvas" width="1" height="1"></canvas>
+      <canvas id="mrgOutputCanvas" width="1" height="1" style="cursor:zoom-in" onclick="try{zoomOpen(this.toDataURL('image/png'))}catch(e){}"></canvas>
       <div class="mrg-lightbar"><button type="button" class="mrg-btn-lite" id="mrgToggleLight">开关灯：黑背景</button></div>
       <div class="mrg-hint" id="mrgHint">尚未选择图片</div>
       <button type="button" class="mrg-btn mrg-btn-primary" id="mrgSave" disabled>保存成品（PNG）</button>
@@ -679,6 +730,352 @@ function themeBtnClick(){
   </div>
 </section>
   </div>
+</details>
+  <script>
+/* ============ 多小图隐藏工具（前缀 mmg_，独立于主隐写） ============ */
+var mmgSt={cover:null,secrets:[],curPick:null,append:false,quality:'jpeg',scale:1};
+function mmgEl(id){ return document.getElementById(id); }
+function mmgSetMode(m){
+  if(mmgEl('mmgTabEmbed')) mmgEl('mmgTabEmbed').classList.add('active');
+  if(mmgEl('mmgPaneEmbed')) mmgEl('mmgPaneEmbed').style.display='block';
+}
+function mmgSetScale(s){
+  mmgSt.scale=s;
+  [['mmgS1',1],['mmgS2',2],['mmgS3',3],['mmgS5',5]].forEach(function(p){
+    var el=mmgEl(p[0]); if(el) el.classList.toggle('active',mmgSt.scale===p[1]);
+  });
+  var inp=mmgEl('mmgScaleInput'); if(inp) inp.value=s;
+  var note=mmgEl('mmgScaleNote');
+  if(note) note.textContent=(s===1)?'原始最清晰；放大后成品尺寸变大，可用容量按面积成倍增加，里图可保持更大。':'表图已放大 '+s+'×（尺寸约 '+(s*100)+'%），容量按面积增加，里图可保持更大；成品文件也会更大。';
+  if(mmgSt.secrets.length) mmgRenderSecrets();
+  mmgUpd();
+}
+function mmgApplyScaleInput(){
+  var inp=mmgEl('mmgScaleInput'); var v=parseFloat(inp&&inp.value);
+  if(isNaN(v)||!(v>=1)){ mmgHint('mmgHint','倍率需为 ≥1 的数字','err'); return; }
+  mmgSetScale(v);
+}
+function mmgSetQuality(mode){
+  mmgSt.quality=(mode==='lossless')?'png':'jpeg';
+  var slim=mmgEl('mmgQSlim'), loss=mmgEl('mmgQLossless'), note=mmgEl('mmgQualityNote');
+  if(slim) slim.classList.toggle('active',mmgSt.quality==='jpeg');
+  if(loss) loss.classList.toggle('active',mmgSt.quality==='png');
+  if(note) note.textContent=(mmgSt.quality==='jpeg')?'JPEG：体积小 5～10 倍，表图不用很大；还原图肉眼几乎无差。':'PNG：无损保真，体积更大，需要更大的表图。';
+}
+function mmgPick(t,append){ mmgSt.curPick=t; mmgSt.append=!!append; var f=mmgEl('mmgFile'); f.value=''; f.click(); }
+function mmgHint(id,text,type){ var e=mmgEl(id); e.textContent=text; e.className='mmg-hint'+(type?' '+type:''); }
+function mmgUpd(){ mmgEl('mmgEmbedBtn').disabled=!(mmgSt.cover&&mmgSt.secrets.length>0); }
+function mmgRenderDrop(id,img){
+  var e=mmgEl(id); e.classList.add('has-img');
+  e.innerHTML='<img src="'+img.src+'" alt="" style="max-width:100%;max-height:170px;border-radius:8px;display:block;margin:0 auto"><div class="t">已选：'+img.width+'×'+img.height+'</div>';
+}
+function mmgRenderSecrets(){
+  var box=mmgEl('mmgSecretList');
+  if(!mmgSt.secrets.length){ box.innerHTML=''; return; }
+  var h='<div style="font-size:13px;color:var(--muted)">已选 '+mmgSt.secrets.length+' 张，将自动缩小拼入：</div>';
+  var cap=mmgCapacityHint();
+  if(cap) h+='<div style="font-size:12px;margin-top:5px;line-height:1.4">'+cap+'</div>';
+  h+='<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">';
+  for(var i=0;i<mmgSt.secrets.length;i++){
+    h+='<div style="position:relative;width:56px;height:56px">'
+      +(mmgSt.secrets[i]._isVideo
+        ?'<div class="mmg-secret-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--card2);color:var(--text);font-size:11px;padding:4px;text-align:center;word-break:break-all">视频<br>'+(mmgSt.secrets[i]._name||'')+'</div>'
+        :'<img src="'+mmgSt.secrets[i].src+'" class="mmg-secret-thumb" alt="'+(i+1)+'">')
+      +'<button type="button" onclick="mmgDel('+i+')" title="删除这张" style="position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;border:0;background:#e06c5b;color:#fff;font-size:13px;line-height:20px;cursor:pointer;padding:0;text-align:center">×</button>'
+      +'</div>';
+  }
+  h+='</div>'; box.innerHTML=h;
+}
+function mmgDel(i){
+  mmgSt.secrets.splice(i,1);
+  mmgRenderSecrets();
+  mmgUpd();
+}
+function mmgCapacityHint(){
+  var cv=mmgSt.cover, cn=mmgSt.secrets.length;
+  if(!cv||!cn) return '';
+  if(cn===1 && isGifSecret(mmgSt.secrets[0])) return mmgSingleFileHint(cv,mmgSt.secrets[0],'GIF');
+  if(cn===1 && isWebpSecret(mmgSt.secrets[0])) return mmgSingleFileHint(cv,mmgSt.secrets[0],'WebP 动图');
+  if(cn===1 && isVideoSecret(mmgSt.secrets[0])) return mmgSingleFileHint(cv,mmgSt.secrets[0],'视频');
+  var cw=cv.naturalWidth||cv.width, ch=cv.naturalHeight||cv.height;
+  if(!cw||!ch) return '请先选好表图，才能实时估算容量';
+  var scale=mmgSt.scale||1;
+  cw=Math.round(cw*scale); ch=Math.round(ch*scale);
+  var availBytes=Math.floor(cw*ch*3*2/8)-12;
+  if(availBytes<=0) return '表图容量不足，请换更大的表图';
+  var kv=mmgSt.quality==='png'?0.6:0.25;
+  var sumRatio=0, maxH=0;
+  for(var i=0;i<cn;i++){
+    var s=mmgSt.secrets[i];
+    var iw=s.naturalWidth||s.width, ih=s.naturalHeight||s.height;
+    if(!iw||!ih) return '正在读取图片尺寸…';
+    sumRatio+=iw/ih; if(ih>maxH) maxH=ih;
+  }
+  var capS=Math.floor(Math.sqrt(availBytes/(sumRatio*kv)));
+  var S=Math.max(24,Math.min(maxH,capS));
+  // 需求占用 = 保持原高所需容量 / 表图容量（实时，可超100%，电量持续变化）
+  var need=(maxH*maxH*sumRatio)*kv;
+  var needPct=Math.round(need/availBytes*100);
+  // 电量填充：充足按占用动态；达上限/超限满格
+  var fh=Math.round(Math.min(1,need/availBytes)*18); if(fh<2&&need>0) fh=2;
+  // 颜色三档：充足=常绿 / 已达上限=橙色 / 严重超限看不清=红色
+  var col, txt;
+  if(capS>=maxH){ col='#5bd08a'; txt='<span style="color:var(--muted)">容量充足：'+cn+' 张保持原图高度（'+S+'px，占用 '+needPct+'%）</span>'; }
+  else if(S>=maxH*0.55){ col='#e8a34a'; txt='<span style="color:#e8a34a">已达容量上限：将自动缩小到约 '+S+'px（原图最高 '+maxH+'px，需求 '+needPct+'%）</span>'; }
+  else { col='#e06c5b'; txt='<span style="color:#e06c5b">容量严重不足：将缩小到约 '+S+'px，已明显模糊（原图最高 '+maxH+'px，需求 '+needPct+'%）</span>'; }
+  var batt='<svg width="16" height="26" viewBox="0 0 16 26" style="flex:none">'
+    +'<rect x="2" y="1.5" width="11" height="22" rx="2.5" fill="none" stroke="'+col+'" stroke-width="1.3"/>'
+    +'<rect x="5.4" y="0" width="4.2" height="2.2" rx="1" fill="'+col+'"/>'
+    +'<rect x="4" y="'+(22-fh)+'" width="7" height="'+fh+'" rx="1" fill="'+col+'" opacity="0.9"/>'
+    +'</svg>';
+  return '<span style="display:inline-flex;align-items:center;gap:7px">'+batt+txt+'</span>';
+}
+function mmgLoad(file){
+  if(file.type.indexOf('video/')===0){
+    var uv=URL.createObjectURL(file);
+    var vo={src:uv,_isVideo:true,_name:file.name,_size:file.size};
+    if(mmgSt.curPick==='secrets'){ mmgSt.secrets.push(vo); mmgRenderSecrets(); mmgUpd(); }
+    else { mmgHint('mmgHint','视频只能作为里图（②选里图）使用','err'); }
+    return;
+  }
+  var u=URL.createObjectURL(file); var img=new Image();
+  img.onload=function(){
+    if(mmgSt.curPick==='cover'){ mmgSt.cover=img; mmgRenderDrop('mmgDropCover',img); mmgUpd(); }
+    else if(mmgSt.curPick==='secrets'){ img._isGif=(file.type==='image/gif'||/\.gif$/i.test(file.name)); img._isWebp=(file.type==='image/webp'||/\.webp$/i.test(file.name)); img._size=file.size; mmgSt.secrets.push(img); mmgRenderSecrets(); mmgUpd(); }
+  };
+  img.onerror=function(){ mmgHint('mmgHint','不是有效的图片文件','err'); };
+  img.src=u;
+}
+mmgEl('mmgFile').addEventListener('change',function(){
+  var fs=this.files; if(!fs||!fs.length)return;
+  if(mmgSt.curPick==='secrets'&&!mmgSt.append){ mmgSt.secrets=[]; mmgEl('mmgSecretList').innerHTML=''; }
+  for(var i=0;i<fs.length;i++) mmgLoad(fs[i]);
+});
+function mmgBindDrop(id,t){
+  var e=mmgEl(id);
+  e.addEventListener('dragover',function(x){x.preventDefault();e.classList.add('drag-over');});
+  e.addEventListener('dragleave',function(){e.classList.remove('drag-over');});
+  e.addEventListener('drop',function(x){
+    x.preventDefault();e.classList.remove('drag-over');
+    var fs=x.dataTransfer&&x.dataTransfer.files; if(!fs||!fs.length)return;
+    if(t==='secrets'&&!mmgSt.append){ mmgSt.secrets=[]; mmgEl('mmgSecretList').innerHTML=''; }
+    mmgSt.curPick=t; for(var i=0;i<fs.length;i++) mmgLoad(fs[i]);
+  });
+}
+mmgBindDrop('mmgDropCover','cover');
+mmgBindDrop('mmgDropSecrets','secrets');
+function mmgBuildRow(imgs,S){
+  // 每张图统一高度 S，宽度按原图宽高比 => 保留比例、无缝、无白边、非方形
+  var ws=[],total=0;
+  for(var i=0;i<imgs.length;i++){ var img=imgs[i]; var iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height; var w=Math.max(16,Math.round(S*iw/ih)); ws.push(w); total+=w; }
+  var c=document.createElement('canvas'); c.width=total; c.height=S;
+  var ctx=c.getContext('2d'); var x=0;
+  for(var i=0;i<imgs.length;i++){ ctx.drawImage(imgs[i],x,0,ws[i],S); x+=ws[i]; }
+  return {canvas:c, ws:ws};
+}
+function mmgSliceMosaic(blob,meta){
+  return new Promise(function(res,rej){
+    var url=URL.createObjectURL(blob); var img=new Image();
+    img.onload=function(){
+      var outs=[],x=0,hh=meta.h;
+      for(var i=0;i<meta.n;i++){ var w=meta.ws[i];
+        var cv=document.createElement('canvas'); cv.width=w; cv.height=hh;
+        var cx=cv.getContext('2d'); cx.drawImage(img,x,0,w,hh,0,0,w,hh);
+        outs.push(cv.toDataURL('image/png')); x+=w;
+      }
+      URL.revokeObjectURL(url); res(outs);
+    };
+    img.onerror=function(){ URL.revokeObjectURL(url); rej(new Error('拼接图损坏')); };
+    img.src=url;
+  });
+}
+function isGifSecret(img){ return !!(img && (img._isGif || (img.src && img.src.indexOf('data:image/gif')===0))); }
+function isVideoSecret(sec){ return !!(sec && sec._isVideo); }
+function isWebpSecret(sec){ return !!(sec && sec._isWebp); }
+function mmgSingleFileHint(cv, sec, kind){
+  var sc=mmgSt.scale||1;
+  var cwg=cv.naturalWidth*sc, chg=cv.naturalHeight*sc;
+  var avail=Math.floor(cwg*chg*3*2/8)-9;
+  var need=sec&&sec._size?sec._size:0;
+  if(need&&need>avail){
+    var cw0=cv.naturalWidth||cv.width, ch0=cv.naturalHeight||cv.height;
+    var k=Math.ceil(Math.sqrt((need+9)*8/(cw0*ch0*6)));
+    if(k<sc)k=sc;
+    return '<span style="color:#e8a34a">'+kind+' 需 '+need+' 字节，当前 '+sc+'× 只容纳 '+avail+' 字节，请在倍率框放大到约 '+k+'× 或更大</span>';
+  }
+  return '<span style="color:var(--ok)">'+kind+' 将整份嵌入（'+(need?need+' 字节，当前 '+sc+'× 可装下，容量约 '+avail+' 字节':'容量以生成时校验为准')+'）；自定义倍率可再增大</span>';
+}
+async function mmgEmbedVideo(){
+  mmgHint('mmgHint','正在嵌入视频…','');
+  try{
+    var vsrc=mmgSt.secrets[0].src;
+    var vbuf=await fetch(vsrc).then(function(r){return r.arrayBuffer();});
+    var vBytes=new Uint8Array(vbuf);
+    var raw=drawToCanvas(mmgSt.cover); var cw0=raw.width,ch0=raw.height;
+    var scale=mmgSt.scale||1;
+    var reloaded=await new Promise(function(res){ raw.toBlob(function(b){var im=new Image();im.onload=function(){res(im);};im.src=URL.createObjectURL(b);},'image/png'); });
+    var canvas=document.createElement('canvas'); canvas.width=Math.max(1,Math.round(cw0*scale)); canvas.height=Math.max(1,Math.round(ch0*scale));
+    var ctx=canvas.getContext('2d'); ctx.drawImage(reloaded,0,0,canvas.width,canvas.height);
+    var cw=canvas.width,ch=canvas.height;
+    var data=ctx.getImageData(0,0,cw,ch); var px=data.data;
+    var capBits=cw*ch*3*2, availBytes=Math.floor(capBits/8)-9;
+    if(vBytes.length>availBytes){
+      mmgHint('mmgHint','视频太大（'+vBytes.length+' 字节），表图只能容纳 '+availBytes+' 字节（约 '+(availBytes/1048576).toFixed(1)+' MB）。请放大表图分辨率或换更大的表图、或压缩视频。','err');
+      return;
+    }
+    var flags=(1)|16; // bpc2 + 视频标记
+    var header=new Uint8Array(9); header.set(MAGIC,0); header[4]=flags;
+    header[5]=(vBytes.length>>>24)&0xFF; header[6]=(vBytes.length>>>16)&0xFF; header[7]=(vBytes.length>>>8)&0xFF; header[8]=vBytes.length&0xFF;
+    var payload=new Uint8Array(9+vBytes.length);
+    payload.set(header,0); payload.set(vBytes,9);
+    var bits=bytesToBits(payload,2); var bi=0;
+    for(var j=0;j<px.length;j+=4){ for(var c2=0;c2<3;c2++){ if(bi>=bits.length)break; var low=0; for(var k=0;k<2;k++){ if(bi<bits.length)low|=bits[bi++]<<k; } px[j+c2]=(px[j+c2]&(0xFF<<2))|low; } }
+    ctx.putImageData(data,0,0);
+    canvas.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ var url=fr.result; _rawResult=url; _rawImg=null; _glowApplied=false; var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化'; mmgEl('mmgPreview').src=url; mmgEl('mmgDownload').href=url; mmgEl('mmgResult').style.display='block'; mmgHint('mmgHint','完成！视频已整份嵌入，成品 '+cw+'×'+ch+'；用取图剥出可播放视频。','ok'); }; fr.readAsDataURL(blob); },'image/png');
+  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); }
+}
+async function mmgEmbedGif(){
+  mmgHint('mmgHint','正在嵌入动图…','');
+  try{
+    var gifSrc=mmgSt.secrets[0].src;
+    var gifBuf=await fetch(gifSrc).then(function(r){return r.arrayBuffer();});
+    var gifBytes=new Uint8Array(gifBuf);
+    var raw=drawToCanvas(mmgSt.cover); var cw0=raw.width,ch0=raw.height;
+    var scale=mmgSt.scale||1;
+    var reloaded=await new Promise(function(res){ raw.toBlob(function(b){var im=new Image();im.onload=function(){res(im);};im.src=URL.createObjectURL(b);},'image/png'); });
+    var canvas=document.createElement('canvas'); canvas.width=Math.max(1,Math.round(cw0*scale)); canvas.height=Math.max(1,Math.round(ch0*scale));
+    var ctx=canvas.getContext('2d'); ctx.drawImage(reloaded,0,0,canvas.width,canvas.height);
+    var cw=canvas.width,ch=canvas.height;
+    var data=ctx.getImageData(0,0,cw,ch); var px=data.data;
+    var capBits=cw*ch*3*2, availBytes=Math.floor(capBits/8)-9;
+    if(gifBytes.length>availBytes){
+      mmgHint('mmgHint','动图太大（'+gifBytes.length+' 字节），表图只能容纳 '+availBytes+' 字节。请在倍率框放大表图或换更大的表图。','err');
+      return;
+    }
+    var flags=(1)|8; // bpc2 + GIF 标记
+    var header=new Uint8Array(9);
+    header.set(MAGIC,0); header[4]=flags;
+    header[5]=(gifBytes.length>>>24)&0xFF; header[6]=(gifBytes.length>>>16)&0xFF; header[7]=(gifBytes.length>>>8)&0xFF; header[8]=gifBytes.length&0xFF;
+    var payload=new Uint8Array(9+gifBytes.length);
+    payload.set(header,0); payload.set(gifBytes,9);
+    var bits=bytesToBits(payload,2); var bi=0;
+    for(var j=0;j<px.length;j+=4){ for(var c2=0;c2<3;c2++){ if(bi>=bits.length)break; var low=0; for(var k=0;k<2;k++){ if(bi<bits.length)low|=bits[bi++]<<k; } px[j+c2]=(px[j+c2]&(0xFF<<2))|low; } }
+    ctx.putImageData(data,0,0);
+    canvas.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ var url=fr.result; _rawResult=url; _rawImg=null; _glowApplied=false; var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化'; mmgEl('mmgPreview').src=url; mmgEl('mmgDownload').href=url; mmgEl('mmgResult').style.display='block'; mmgHint('mmgHint','完成！动图已整份嵌入，成品 '+cw+'×'+ch+'；用取图剥出可还原成动画（GIF/WebP）。','ok'); }; fr.readAsDataURL(blob); },'image/png');
+  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); }
+}
+var _rawResult=null;
+var _rawImg=null;
+var _glowTimer=null;
+function glowAmtSync(){ var el=document.getElementById('glowAmt'),t=document.getElementById('glowAmtTxt'); if(el&&t) t.textContent=el.value; }
+var _glowApplied=false;
+function glowToggle(){
+  if(!_rawResult){ mmgHint('mmgHint','请先生成成品，再做光棱化。','err'); return; }
+  var b=document.getElementById('glowBtn');
+  if(b && b.dataset.on==='1'){
+    mmgEl('mmgPreview').src=_rawResult; mmgEl('mmgDownload').href=_rawResult;
+    b.dataset.on='0'; b.textContent='表图光棱化'; _glowApplied=false;
+    mmgHint('mmgHint','已取消光棱化，表图恢复原样。','ok');
+  } else {
+    applyGlow(); if(b){ b.dataset.on='1'; b.textContent='取消光棱化'; } _glowApplied=true;
+  }
+}
+if(document.getElementById('glowAmt')) document.getElementById('glowAmt').addEventListener('input',glowAmtSync);
+function applyGlow(){
+  _glowTimer=null;
+  if(!_rawResult){ mmgHint('mmgHint','请先生成成品，再做伪装效果。','err'); return; }
+  var amt=parseInt(mmgEl('glowAmt').value,10)||45;
+  var mode=mmgEl('glowMode').value;
+  if(_rawImg){ glowProcess(_rawImg,mode,amt); return; }
+  var img=new Image(); _rawImg=img;
+  img.onload=function(){ glowProcess(img,mode,amt); };
+  img.src=_rawResult;
+}
+function glowProcess(img,mode,amt){
+  var c=document.createElement('canvas');
+  c.width=img.naturalWidth; c.height=img.naturalHeight;
+  var ctx=c.getContext('2d');
+  ctx.drawImage(img,0,0);
+  var id=ctx.getImageData(0,0,c.width,c.height), d=id.data, w=c.width, h=c.height, n=d.length;
+  var strength=0.35+amt/100*0.6;   // 纹理压暗深浅 0.35~0.95
+  var stepDot=9, rDot=3.2, stepScan=6, lineH=2, stepGrid=7, lineW=1, stepPat=13, patW=4;
+  for(var y=0;y<h;y++){
+    for(var x=0;x<w;x++){
+      var on=false;
+      if(mode==='dot'){
+        var cx=(x%stepDot)-stepDot/2, cy=(y%stepDot)-stepDot/2;
+        if(cx*cx+cy*cy<=rDot*rDot) on=true;
+      } else if(mode==='scan'){
+        if(y%stepScan<lineH) on=true;
+      } else if(mode==='grid'){
+        if((x%stepGrid<lineW)||(y%stepGrid<lineW)) on=true;
+      } else if(mode==='pattern'){
+        var px=x%stepPat, py=y%stepPat, half=stepPat/2;
+        if(Math.abs(px-half)+Math.abs(py-half)<patW) on=true; // 菱形花纹暗纹
+      }
+      if(on){
+        var p=(y*w+x)*4;
+        for(var j=0;j<3;j++){ var o=d[p+j]; var v=o*strength; if(v<0)v=0; d[p+j]=(v&~3)|(o&3); }
+      }
+    }
+  }
+  ctx.putImageData(id,0,0);
+  var url=c.toDataURL('image/png');
+  mmgEl('mmgPreview').src=url;
+  mmgEl('mmgDownload').href=url;
+  mmgHint('mmgHint','已叠加纹理伪装（强度'+amt+'）：看着像藏了图；藏的数据不受影响，仍可正常剥出。','ok');
+}
+/* 伪装效果已改由 applyGlow 实时处理 */
+function glowTable(){ applyGlow(); }
+async function mmgEmbed(){
+  mmgHint('mmgHint','正在处理…','');
+  try{
+    if(mmgSt.secrets.length>1 && mmgSt.secrets.some(isVideoSecret)){ mmgHint('mmgHint','视频请单独一张一张藏（当前多张里有视频）','err'); return; }
+    if(mmgSt.secrets.length===1 && (isGifSecret(mmgSt.secrets[0])||isWebpSecret(mmgSt.secrets[0]))) return await mmgEmbedGif();
+    if(mmgSt.secrets.length===1 && isVideoSecret(mmgSt.secrets[0])) return await mmgEmbedVideo();
+    var bpc=2;
+    var raw=drawToCanvas(mmgSt.cover); var cw0=raw.width,ch0=raw.height;
+    var scale=mmgSt.scale||1;
+    var reloaded=await new Promise(function(res){ raw.toBlob(function(b){var im=new Image();im.onload=function(){res(im);};im.src=URL.createObjectURL(b);},'image/png'); });
+    var canvas=document.createElement('canvas'); canvas.width=Math.max(1,Math.round(cw0*scale)); canvas.height=Math.max(1,Math.round(ch0*scale));
+    var ctx=canvas.getContext('2d'); ctx.drawImage(reloaded,0,0,canvas.width,canvas.height);
+    var cw=canvas.width,ch=canvas.height;
+    var data=ctx.getImageData(0,0,cw,ch); var px=data.data;
+    var n=mmgSt.secrets.length;
+    var capBits=cw*ch*3*bpc, availBytes=Math.floor(capBits/8)-12;
+    var kv=mmgSt.quality==='png'?0.6:0.25;
+    // 里图按原图画质设定（JPEG省空间/PNG无损）；每张按原比例横排拼接（统一高度 S、宽按比例，无白边非方形）
+    var sumRatio=0; for(var k0=0;k0<n;k0++){ var s0=mmgSt.secrets[k0]; sumRatio+=(s0.naturalWidth||s0.width)/(s0.naturalHeight||s0.height); }
+    // 上限 = 原图最大高度（不放大超过原图，保持清晰）；去掉 2048 硬顶，实际由容量决定
+    var maxH=0; for(var k2=0;k2<n;k2++){ var s2=mmgSt.secrets[k2]; var hh=s2.naturalHeight||s2.height; if(hh>maxH) maxH=hh; }
+    var S=Math.max(24,Math.min(maxH,Math.floor(Math.sqrt(availBytes/(sumRatio*kv)))));
+    // 实际编码校验：超容量就逐步缩小，保证一定放得下
+    var secretBytes=null, mws=null;
+    for(var tries=0;tries<8;tries++){
+      var mb=mmgBuildRow(mmgSt.secrets,S);
+      var sb=await imgToBytes(mb.canvas,mmgSt.quality==='png'?'png':'jpeg');
+      if(sb.length<=availBytes){ secretBytes=sb; mws=mb.ws; break; }
+      S=Math.max(24,Math.floor(S*0.85));
+    }
+    if(!secretBytes){ mmgHint('mmgHint','容量不够：表图太小或图太多。换更大的表图/少放几张。','err'); return; }
+    var flags=(bpc===2?1:0)|4|(mmgSt.quality==='png'?0:2);
+    var hlen=12+2*n;
+    var header=new Uint8Array(hlen);
+    header.set(MAGIC,0); header[4]=flags;
+    header[5]=(secretBytes.length>>>24)&0xFF; header[6]=(secretBytes.length>>>16)&0xFF; header[7]=(secretBytes.length>>>8)&0xFF; header[8]=secretBytes.length&0xFF;
+    header[9]=(S>>>8)&0xFF; header[10]=S&0xFF; header[11]=n;
+    for(var w2=0;w2<n;w2++){ header[12+2*w2]=(mws[w2]>>>8)&0xFF; header[13+2*w2]=mws[w2]&0xFF; }
+    var payload=new Uint8Array(hlen+secretBytes.length);
+    payload.set(header,0); payload.set(secretBytes,hlen);
+    var bits=bytesToBits(payload,bpc); var bi=0;
+    for(var i=0;i<px.length;i+=4){ for(var c2=0;c2<3;c2++){ if(bi>=bits.length)break; var low=0; for(var k=0;k<bpc;k++){ if(bi<bits.length)low|=bits[bi++]<<k; } px[i+c2]=(px[i+c2]&(0xFF<<bpc))|low; } }
+    ctx.putImageData(data,0,0);
+    canvas.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ var url=fr.result; _rawResult=url; _rawImg=null; _glowApplied=false; var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化'; mmgEl('mmgPreview').src=url; mmgEl('mmgDownload').href=url; mmgEl('mmgResult').style.display='block'; mmgHint('mmgHint','完成！成品 '+cw+'×'+ch+'，内含 '+n+' 张小图（'+(mmgSt.quality==='png'?'PNG':'JPEG')+'·小图约 '+S+'px）。','ok'); }; fr.readAsDataURL(blob); },'image/png');
+  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); }
+}
+// 多小图还原统一走主取图页（主取图已识别多小图成品并自动切分）
+mmgEl('mmgEmbedBtn').addEventListener('click',mmgEmbed);
+  </script>
 </details>
 </div>
 
@@ -984,8 +1381,6 @@ function bindDrop(elId,target){
     for(const f of files){ loadFile(f,target); }
   });
 }
-bindDrop('dropCover','cover');
-bindDrop('dropSecret','secret');
 bindDrop('dropStego','stego');
 
 function renderDrop(id,img){
@@ -1142,13 +1537,31 @@ function extractFromBits(collect){
   }
   const flags=header[4];
   const useJpeg=(flags&2)===2;
+  const multi=(flags&4)===4;
+  const gifMode=(flags&8)===8;
+  const videoMode=(flags&16)===16;
+  let hlen=multi?12:HEADER_LEN;
+  if(multi){
+    if(header.length<12) header=bitsToBytes(bits.slice(0,12*8));
+    hlen=12+2*header[11];
+  }
+  if(header.length<hlen) header=bitsToBytes(bits.slice(0,hlen*8));
   const dataLen=(header[5]<<24>>>0)+(header[6]<<16)+(header[7]<<8)+header[8];
-  const needBits=(HEADER_LEN+dataLen)*8;
+  const needBits=(hlen+dataLen)*8;
   if(needBits>bits.length) return {error:'数据不完整，图被压缩或转成了 JPG'};
   const all=bitsToBytes(bits.slice(0,needBits));
-  const secretBytes=all.slice(HEADER_LEN);
-  const type=useJpeg?'image/jpeg':'image/png';
-  return {blob:new Blob([secretBytes],{type}), type, useJpeg};
+  const secretBytes=all.slice(hlen);
+  let type=videoMode?'video/mp4':(useJpeg?'image/jpeg':'image/png');
+  let isWebp=false;
+  if(gifMode&&secretBytes.length>=12 && secretBytes[0]===0x52&&secretBytes[1]===0x49&&secretBytes[2]===0x46&&secretBytes[3]===0x46 && secretBytes[8]===0x57&&secretBytes[9]===0x45&&secretBytes[10]===0x42&&secretBytes[11]===0x50){ type='image/webp'; isWebp=true; }
+  else if(gifMode) type='image/gif';
+  let meta=null;
+  if(multi){
+    const n=header[11], ws=[];
+    for(let i=0;i<n;i++) ws.push((header[12+2*i]<<8)|header[13+2*i]);
+    meta={n, h:(header[9]<<8)|header[10], ws};
+  }
+  return {blob:new Blob([secretBytes],{type}), type, useJpeg, isGif:gifMode&&!isWebp, isWebp:isWebp, isVideo:videoMode, meta: (gifMode||videoMode)?null:meta};
 }
 function blobToDataURL(blob){
   return new Promise((res,rej)=>{
@@ -1441,7 +1854,7 @@ function stgoFromPx(collect){
   const res=extractFromBits(collect);
   if(!res) return null;
   if(res.error) return {error:res.error};
-  return {blob:res.blob,type:res.type,useJpeg:res.useJpeg};
+  return {blob:res.blob,type:res.type,useJpeg:res.useJpeg,isGif:res.isGif,isWebp:res.isWebp,isVideo:res.isVideo,meta:res.meta};
 }
 function stgoCanvasSoft(img){
   return new Promise(resolve=>{
@@ -1455,7 +1868,9 @@ function stgoCanvasSoft(img){
       });
       if(!r) return resolve(null);
       if(r.error) return resolve({error:r.error});
-      blobToDataURL(r.blob).then(url=>resolve({url,type:r.type,useJpeg:r.useJpeg,kind:'主隐写'})).catch(()=>resolve(null));
+      if(r.meta) resolve({blob:r.blob,type:r.type,useJpeg:r.useJpeg,kind:'主隐写',meta:r.meta});
+      else if(r.isVideo){ var vu=URL.createObjectURL(r.blob); resolve({videoUrl:vu,type:r.type,useJpeg:r.useJpeg,isVideo:true,kind:'视频'}); }
+      else blobToDataURL(r.blob).then(url=>resolve({url,type:r.type,useJpeg:r.useJpeg,isGif:r.isGif,isWebp:r.isWebp,kind:r.isGif?'GIF':(r.isWebp?'WebP 动图':'主隐写')})).catch(()=>resolve(null));
     }catch(e){ resolve(null); }
   });
 }
@@ -1484,17 +1899,27 @@ function extractOne(item){
   const bytesPromise=(file && file.arrayBuffer) ? file.arrayBuffer() : Promise.resolve(imgToCanvasBytes(item.img));
   // PNG：直读字节解主隐写（STGO）
   return bytesPromise.then(buf=>{
-    return parsePngBytes(buf).then(parsed=>{
+    return Promise.resolve().then(()=>parsePngBytes(buf)).then(parsed=>{
       const W=parsed.W, H=parsed.H, channels=parsed.channels, px=parsed.px;
       const stgo=stgoFromPx(bpc=>collectBitsFromPx(px,channels,bpc));
       if(stgo){
         if(stgo.error) throw new Error(stgo.error);
-        return blobToDataURL(stgo.blob).then(url=>({url,type:stgo.type,useJpeg:stgo.useJpeg,kind:'主隐写'}));
+        if(stgo.meta) return mmgSliceMosaic(stgo.blob,stgo.meta)
+          .then(urls=>({urls,type:stgo.type,useJpeg:stgo.useJpeg,kind:'多小图'}));
+        if(stgo.isVideo){ var vu=URL.createObjectURL(stgo.blob); return {videoUrl:vu,type:'video/mp4',useJpeg:false,isVideo:true,kind:'视频'}; }
+        return blobToDataURL(stgo.blob).then(url=>({url,type:stgo.type,useJpeg:stgo.useJpeg,isGif:stgo.isGif,isWebp:stgo.isWebp,kind:stgo.isGif?'GIF':(stgo.isWebp?'WebP 动图':'主隐写')}));
       }
       throw new Error('没有藏东西，不是本工具的成品');
     }).catch(err=>{
       // 非标准 PNG 字节解析失败：退回 canvas 尝试 STGO
-      return stgoCanvasSoft(item.img).then(r=>{ if(r) return r; throw new Error('没有藏东西，不是本工具的成品'); });
+      return stgoCanvasSoft(item.img).then(r=>{
+        if(r){
+          if(r.meta) return mmgSliceMosaic(r.blob,r.meta)
+            .then(urls=>({urls,type:r.type,useJpeg:r.useJpeg,kind:'多小图'}));
+          return r;
+        }
+        throw new Error('没有藏东西，不是本工具的成品');
+      });
     });
   });
 }
@@ -1514,6 +1939,25 @@ function sendTo(i,kind){
     d.scrollIntoView({behavior:'smooth',block:'start'});
   }
 }
+function egScroll(el){
+  var nav=el.parentNode.nextElementSibling;
+  if(!nav||!nav.classList.contains('eg-nav')) return;
+  var total=el.children.length||1;
+  var i=Math.min(total-1,Math.max(0,Math.round(el.scrollLeft/el.clientWidth)));
+  el.dataset.idx=i;
+  nav.innerHTML='当前 '+(i+1)+' / '+total+' · 点箭头或左右滑动查看下一张';
+}
+function egGo(btn,dir){
+  var wrap=btn.parentNode, el=wrap.querySelector('.extract-gallery');
+  if(!el||!el.children.length) return;
+  var total=el.children.length;
+  var cur=parseInt(el.dataset.idx||'0',10);
+  if(isNaN(cur)) cur=0;
+  var next=Math.min(total-1,Math.max(0,cur+dir));
+  el.dataset.idx=next;
+  el.scrollLeft=next*el.clientWidth;
+  egScroll(el);
+}
 async function doExtract(){
   const list=stegoQueue.slice();
   window._extractItems=list;
@@ -1530,10 +1974,29 @@ async function doExtract(){
     try{
       const r=await extractOne(list[i]);
       ok++;
-      item.innerHTML='<img src="'+r.url+'" alt="还原'+(i+1)+'">'
-        +'<div class="cap">第 '+(i+1)+' 张 ✓ 已剥出'+(r.kind?'（'+r.kind+'）':'')+'</div>'
-        +'<div class="save-tip">长按图片保存</div>'
-        +'<a class="btn btn-primary" href="'+r.url+'" download="原图'+(i+1)+(r.useJpeg?'.jpg':'.png')+'">保存第'+(i+1)+'张</a>';
+      if(r.urls){
+        let h2='<div class="cap">第 '+(i+1)+' 张 ✓ 已剥出（多小图，共 '+r.urls.length+' 张）</div>';
+        h2+='<div class="eg-wrap"><div class="extract-gallery" onscroll="egScroll(this)">';
+        for(let gi=0;gi<r.urls.length;gi++){
+          h2+='<div class="eg-slide"><img src="'+r.urls[gi]+'" alt="小图'+(gi+1)+'" onclick="zoomOpen(this.src)">'
+            +'<div class="save-tip">长按图片保存</div>'
+            +'<a class="btn btn-primary" href="'+r.urls[gi]+'" download="小图'+(gi+1)+'.png">保存小图'+(gi+1)+'</a></div>';
+        }
+        h2+='</div>'
+          +'<button class="eg-arrow eg-left" onclick="egGo(this,-1)" aria-label="上一张">‹</button>'
+          +'<button class="eg-arrow eg-right" onclick="egGo(this,1)" aria-label="下一张">›</button></div>';
+        h2+='<div class="eg-nav">当前 1 / '+r.urls.length+' · 点箭头或左右滑动查看下一张</div>';
+        item.innerHTML=h2;
+      } else if(r.isVideo){
+        item.innerHTML='<video src="'+r.videoUrl+'" controls style="max-width:100%;max-height:60vh;border-radius:8px"></video>'
+          +'<div class="cap">第 '+(i+1)+' 张 ✓ 已剥出（视频）</div>'
+          +'<a class="btn btn-primary" href="'+r.videoUrl+'" download="原图'+(i+1)+'.mp4">保存视频'+(i+1)+'</a>';
+      } else {
+        item.innerHTML='<img src="'+r.url+'" alt="还原'+(i+1)+'" onclick="zoomOpen(this.src)" style="cursor:zoom-in">'
+          +'<div class="cap">第 '+(i+1)+' 张 ✓ 已剥出'+(r.kind?'（'+r.kind+'）':'')+'</div>'
+          +'<div class="save-tip">长按图片保存</div>'
+          +'<a class="btn btn-primary" href="'+r.url+'" download="原图'+(i+1)+(r.type==='image/gif'?'.gif':(r.type==='image/webp'?'.webp':(r.useJpeg?'.jpg':'.png')))+'">保存第'+(i+1)+'张</a>';
+      }
     }catch(err){
       fail++;
       item.innerHTML='<div class="cap" style="color:#e06c5b">第 '+(i+1)+' 张 ✗ '+err.message+'</div>';
@@ -1642,7 +2105,7 @@ function hxShow(u32,label){
   const c=document.createElement('canvas'); c.width=hxW; c.height=hxH;
   c.getContext('2d').putImageData(imgData,0,0);
   const url=c.toDataURL('image/png');
-  document.getElementById('hx_preview').innerHTML='<img src="'+url+'" alt=""><div class="cap">'+label+'</div>';
+  document.getElementById('hx_preview').innerHTML='<img src="'+url+'" alt="" style="cursor:zoom-in" onclick="zoomOpen(this.src)"><div class="cap">'+label+'</div>';
   document.getElementById('hx_result').style.display='block';
   document.getElementById('hx_dl').innerHTML='<a class="btn btn-primary" style="display:block;margin-top:10px" href="'+url+'" download="'+(label==='原图'?'original':'mixed')+'.png">下载结果 PNG</a>';
 }
@@ -2049,6 +2512,8 @@ function buildGltItem(item){
     +'<div class="glt-item-row"><label>阈值</label><input type="range" class="glt-item-thr" min="1" max="255" step="1" value="'+item.th+'"><input type="number" class="glt-item-thi" min="1" max="255" value="'+item.th+'"></div>'
     +'<div class="glt-item-actions"><button type="button" class="glt-btn glt-btn-ghost glt-item-save">保存</button><button type="button" class="glt-btn glt-btn-ghost glt-item-del">删除</button></div>';
   item.wrap=wrap; item.canvas=wrap.querySelector('.glt-item-canvas');
+  item.canvas.style.cursor='zoom-in';
+  item.canvas.addEventListener('click',function(){ try{ zoomOpen(item.canvas.toDataURL('image/png')); }catch(e){} });
   item.range=wrap.querySelector('.glt-item-thr'); item.num=wrap.querySelector('.glt-item-thi');
   item.range.addEventListener('input',function(){ item.num.value=item.range.value; item.th=parseInt(item.range.value,10); renderGltItem(item); });
   item.num.addEventListener('input',function(){ var v=parseInt(item.num.value,10); if(isNaN(v))return; if(v<1)v=1; if(v>255)v=255; item.range.value=v; item.num.value=v; item.th=v; renderGltItem(item); });
@@ -2114,5 +2579,34 @@ window.gltLoadStego=function(file){
 })();
 
 </script>
+<div id="zoomView" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:9999;overflow:hidden;touch-action:none">
+  <img id="zoomImg" alt="" style="position:absolute;top:0;left:0;transform-origin:0 0;user-select:none;-webkit-user-drag:none;max-width:none;width:auto;height:auto">
+  <div id="zoomClose" style="position:absolute;top:14px;right:18px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:22px;line-height:34px;text-align:center;cursor:pointer;z-index:10">×</div>
+  <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center;color:rgba(255,255,255,.7);font-size:13px;z-index:10">双指捏合缩放 · 单指拖动 · 滚轮缩放 · 双击复位</div>
+</div>
+<script>
+(function(){
+  var z=document.getElementById('zoomView'), img=document.getElementById('zoomImg');
+  var S={s:1,tx:0,ty:0,vw:0,vh:0,w:0,h:0,base:0,d0:0,fit:0};
+  function apply(){ var cx=S.vw/2+S.tx, cy=S.vh/2+S.ty; img.style.transform='translate('+(cx-S.w*S.s/2)+'px,'+(cy-S.h*S.s/2)+'px) scale('+S.s+')'; }
+  function fit(){ S.tx=0; S.ty=0; var f=Math.min(S.vw/S.w,S.vh/S.h); S.s=Math.min(f,1); S.fit=S.s; apply(); }
+  function open(src){ img.onload=function(){ S.w=img.naturalWidth; S.h=img.naturalHeight; fit(); }; img.src=src; if(img.complete&&img.naturalWidth){ S.w=img.naturalWidth; S.h=img.naturalHeight; fit(); } z.style.display='block'; document.body.style.overflow='hidden'; }
+  function close(){ z.style.display='none'; document.body.style.overflow=''; }
+  document.getElementById('zoomClose').onclick=close;
+  z.addEventListener('click',function(e){ if(e.target===z) close(); });
+  z.addEventListener('wheel',function(e){ e.preventDefault(); var f=e.deltaY<0?1.18:1/1.18; S.s=Math.max(0.2,Math.min(10,S.s*f)); apply(); },{passive:false});
+  var t0=null, d0=0, base=0;
+  z.addEventListener('touchstart',function(e){ e.preventDefault(); t0=e.touches; if(e.touches.length===2){ d0=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY); base=S.s; } },{passive:false});
+  z.addEventListener('touchmove',function(e){ e.preventDefault(); if(e.touches.length===2){ var d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY); S.s=Math.max(0.2,Math.min(10,base*(d/d0))); apply(); } else if(e.touches.length===1&&t0&&t0.length===1){ S.tx+=e.touches[0].clientX-t0[0].clientX; S.ty+=e.touches[0].clientY-t0[0].clientY; apply(); } t0=e.touches; },{passive:false});
+  z.addEventListener('touchend',function(e){ t0=e.touches; },{passive:false});
+  img.addEventListener('dblclick',fit);
+  var mDown=false,mX=0,mY=0;
+  z.addEventListener('mousedown',function(e){ if(S.s<=S.fit) return; if(e.target===z||e.target===img){ mDown=true; mX=e.clientX; mY=e.clientY; e.preventDefault(); } });
+  window.addEventListener('mousemove',function(e){ if(!mDown) return; S.tx+=e.clientX-mX; S.ty+=e.clientY-mY; mX=e.clientX; mY=e.clientY; apply(); });
+  window.addEventListener('mouseup',function(){ mDown=false; });
+  function up(){ S.vw=window.innerWidth; S.vh=window.innerHeight; }
+  window.addEventListener('resize',up); up();
+  window.zoomOpen=function(src){ if(S.vw!==window.innerWidth||S.vh!==window.innerHeight) up(); open(src); };
+})();</script>
 </body>
 </html>
