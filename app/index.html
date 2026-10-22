@@ -1,0 +1,2628 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作战实验室</title>
+<link rel="icon" href="data:image/png;base64,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">
+<style>
+  /* 隐藏平台自动注入的"豆包 AI生成"水印 */
+  [class*="ai-badge"],[class*="watermark"],[class*="generated-badge"],[class*="ai-generated"],
+  [class*="footer-badge"],[class*="brand-badge"],[data-badge="ai"]{ display:none !important; }
+
+  :root{
+    --bg:#0f1115; --card:#1a1e26; --card2:#212630; --border:#2a2f3a;
+    --text:#e8eaed; --muted:#8b909a; --accent:#d9a05b; --ok:#6fcf97; --err:#e57373;
+    --glt-bg:#0f1115; --glt-card:#1a1e26; --glt-card2:#212630; --glt-border:#2a2f3a;
+    --glt-text:#e8eaed; --glt-muted:#8b909a; --glt-accent:#d9a05b; --glt-ok:#6fcf97; --glt-err:#e57373;
+    --mrg-bg:#0f1115; --mrg-card:#1a1e26; --mrg-card2:#212630; --mrg-border:#2a2f3a;
+    --mrg-text:#e8eaed; --mrg-muted:#8b909a; --mrg-accent:#d9a05b; --mrg-err:#e57373; --mrg-ok:#6fcf97;
+  }
+  /* 皮肤切换（data-theme） */
+  /* 科技风：深蓝黑底 + 电光青（显式主题） */
+  :root[data-theme="tech"]{
+    --bg:#0a0f1c; --card:#141b2e; --card2:#1c2538; --border:#2a3650;
+    --text:#dbe4f5; --muted:#8290b2; --accent:#25d0e9; --ok:#2dd4a0; --err:#f87171;
+    --glt-bg:#0a0f1c; --glt-card:#141b2e; --glt-card2:#1c2538; --glt-border:#2a3650;
+    --glt-text:#dbe4f5; --glt-muted:#8290b2; --glt-accent:#25d0e9; --glt-ok:#2dd4a0; --glt-err:#f87171;
+    --mrg-bg:#0a0f1c; --mrg-card:#141b2e; --mrg-card2:#1c2538; --mrg-border:#2a3650;
+    --mrg-text:#dbe4f5; --mrg-muted:#8290b2; --mrg-accent:#25d0e9; --mrg-err:#f87171; --mrg-ok:#2dd4a0;
+  }
+  /* 亮色：清爽圆润（显式主题） */
+  :root[data-theme="light"]{
+    --bg:#eef2f7; --card:#ffffff; --card2:#f0f4f9; --border:#d5dde8;
+    --text:#22304a; --muted:#7d8aa4; --accent:#ff7a1a; --ok:#6fcf97; --err:#e57373;
+    --glt-bg:#eef2f7; --glt-card:#ffffff; --glt-card2:#f0f4f9; --glt-border:#d5dde8;
+    --glt-text:#22304a; --glt-muted:#7d8aa4; --glt-accent:#ff7a1a; --glt-ok:#2fa56c; --glt-err:#d9534f;
+    --mrg-bg:#eef2f7; --mrg-card:#ffffff; --mrg-card2:#f0f4f9; --mrg-border:#d5dde8;
+    --mrg-text:#22304a; --mrg-muted:#7d8aa4; --mrg-accent:#ff7a1a; --mrg-err:#d9534f; --mrg-ok:#2fa56c;
+  }
+  /* 青草风：浅绿白底 + 草绿 */
+  :root[data-theme="grass"]{
+    --bg:#eef7f0; --card:#ffffff; --card2:#f1f9f4; --border:#d2e7d8;
+    --text:#1f3d2e; --muted:#6e8b7a; --accent:#34b96a; --ok:#2fa56c; --err:#e05a5a;
+    --glt-bg:#eef7f0; --glt-card:#ffffff; --glt-card2:#f1f9f4; --glt-border:#d2e7d8;
+    --glt-text:#1f3d2e; --glt-muted:#6e8b7a; --glt-accent:#34b96a; --glt-ok:#2fa56c; --glt-err:#e05a5a;
+    --mrg-bg:#eef7f0; --mrg-card:#ffffff; --mrg-card2:#f1f9f4; --mrg-border:#d2e7d8;
+    --mrg-text:#1f3d2e; --mrg-muted:#6e8b7a; --mrg-accent:#34b96a; --mrg-err:#e05a5a; --mrg-ok:#2fa56c;
+  }
+  /* 经典黑金：还原最初 */
+  :root[data-theme="dark"]{
+    --bg:#0f1115; --card:#1a1e26; --card2:#212630; --border:#2a2f3a;
+    --text:#e8eaed; --muted:#8b909a; --accent:#d9a05b; --ok:#6fcf97; --err:#e57373;
+    --glt-bg:#0f1115; --glt-card:#1a1e26; --glt-card2:#212630; --glt-border:#2a2f3a;
+    --glt-text:#e8eaed; --glt-muted:#8b909a; --glt-accent:#d9a05b; --glt-ok:#6fcf97; --glt-err:#e57373;
+    --mrg-bg:#0f1115; --mrg-card:#1a1e26; --mrg-card2:#212630; --mrg-border:#2a2f3a;
+    --mrg-text:#e8eaed; --mrg-muted:#8b909a; --mrg-accent:#d9a05b; --mrg-err:#e57373; --mrg-ok:#6fcf97;
+  }
+  /* 薄荷风：浅薄荷白底 + 薄荷绿 */
+  :root[data-theme="mint"]{
+    --bg:#effafb; --card:#ffffff; --card2:#f1fbfc; --border:#cde9eb;
+    --text:#1d3a3c; --muted:#6f8f91; --accent:#2ec5b8; --ok:#2fa58f; --err:#e05a5a;
+    --glt-bg:#effafb; --glt-card:#ffffff; --glt-card2:#f1fbfc; --glt-border:#cde9eb;
+    --glt-text:#1d3a3c; --glt-muted:#6f8f91; --glt-accent:#2ec5b8; --glt-ok:#2fa58f; --glt-err:#e05a5a;
+    --mrg-bg:#effafb; --mrg-card:#ffffff; --mrg-card2:#f1fbfc; --mrg-border:#cde9eb;
+    --mrg-text:#1d3a3c; --mrg-muted:#6f8f91; --mrg-accent:#2ec5b8; --mrg-err:#e05a5a; --mrg-ok:#2fa58f;
+  }
+  /* 赛博朋克：深紫黑底 + 霓虹品红 */
+  :root[data-theme="cyberpunk"]{
+    --bg:#14091f; --card:#1e1030; --card2:#291a40; --border:#3b2757;
+    --text:#f0e7ff; --muted:#9c8cc0; --accent:#ff2bd6; --ok:#2df5d0; --err:#ff5f6d;
+    --glt-bg:#14091f; --glt-card:#1e1030; --glt-card2:#291a40; --glt-border:#3b2757;
+    --glt-text:#f0e7ff; --glt-muted:#9c8cc0; --glt-accent:#ff2bd6; --glt-ok:#2df5d0; --glt-err:#ff5f6d;
+    --mrg-bg:#14091f; --mrg-card:#1e1030; --mrg-card2:#291a40; --mrg-border:#3b2757;
+    --mrg-text:#f0e7ff; --mrg-muted:#9c8cc0; --mrg-accent:#ff2bd6; --mrg-err:#ff5f6d; --mrg-ok:#2df5d0;
+  }
+
+  /* ===== 皮肤风格层：每个主题不仅是换色，还换质感 ===== */
+  /* ---- 亮色 light：清爽圆润 ---- */
+  [data-theme="light"] html,[data-theme="light"] body{background:linear-gradient(180deg,#eef2f7 0%,#e1eaf4 100%)}
+  [data-theme="light"] header h1{background:linear-gradient(90deg,#22304a,#ff7a1a);-webkit-background-clip:text;background-clip:text;color:transparent}
+  [data-theme="light"] .tabs button.active,[data-theme="light"] .btn-primary,
+  [data-theme="light"] .glt-app .glt-tab.active,[data-theme="light"] .glt-app .glt-btn-primary,
+  [data-theme="light"] .mrg-app .mrg-btn-primary{background:linear-gradient(135deg,#ffa23d,#ff7a1a)}
+  [data-theme="light"] .drop,[data-theme="light"] .glt-app .glt-drop,[data-theme="light"] .mrg-app .mrg-drop{border-color:#c9d6e4;background:linear-gradient(180deg,#ffffff,#f5f9fd)}
+  [data-theme="light"] .opt,[data-theme="light"] .glt-app .glt-opt,[data-theme="light"] .glt-app .glt-box,[data-theme="light"] .glt-app .glt-item,[data-theme="light"] .mrg-app .mrg-wrap{box-shadow:0 4px 14px rgba(34,48,74,.08)}
+
+  /* ---- 科技 tech：深蓝 + 电光青辉光 ---- */
+  [data-theme="tech"] html,[data-theme="tech"] body{background:linear-gradient(180deg,#0a0f1c 0%,#132238 100%)}
+  [data-theme="tech"] header h1{background:linear-gradient(90deg,#dbe4f5,#25d0e9);-webkit-background-clip:text;background-clip:text;color:transparent}
+  [data-theme="tech"] .tabs button.active,[data-theme="tech"] .btn-primary,
+  [data-theme="tech"] .glt-app .glt-tab.active,[data-theme="tech"] .glt-app .glt-btn-primary,
+  [data-theme="tech"] .mrg-app .mrg-btn-primary{background:linear-gradient(135deg,#3de1ff,#1aa9d9)}
+  [data-theme="tech"] .drop,[data-theme="tech"] .glt-app .glt-drop,[data-theme="tech"] .mrg-app .mrg-drop{border-color:rgba(37,208,233,.5);background:linear-gradient(180deg,#141b2e,#0f1730)}
+  [data-theme="tech"] .opt,[data-theme="tech"] .glt-app .glt-opt,[data-theme="tech"] .glt-app .glt-box,[data-theme="tech"] .glt-app .glt-item,[data-theme="tech"] .mrg-app .mrg-wrap{border-color:rgba(37,208,233,.25);box-shadow:0 4px 18px rgba(0,0,0,.4)}
+
+  /* ---- 青草 grass：自然清新 ---- */
+  [data-theme="grass"] html,[data-theme="grass"] body{background:linear-gradient(180deg,#eef7f0 0%,#ddefe4 100%)}
+  [data-theme="grass"] header h1{background:linear-gradient(90deg,#1f3d2e,#34b96a);-webkit-background-clip:text;background-clip:text;color:transparent}
+  [data-theme="grass"] .tabs button.active,[data-theme="grass"] .btn-primary,
+  [data-theme="grass"] .glt-app .glt-tab.active,[data-theme="grass"] .glt-app .glt-btn-primary,
+  [data-theme="grass"] .mrg-app .mrg-btn-primary{background:linear-gradient(135deg,#45cf7c,#2aa86a)}
+  [data-theme="grass"] .drop,[data-theme="grass"] .glt-app .glt-drop,[data-theme="grass"] .mrg-app .mrg-drop{border-color:#bfe0cc;background:linear-gradient(180deg,#ffffff,#f0f9f3)}
+  [data-theme="grass"] .opt,[data-theme="grass"] .glt-app .glt-opt,[data-theme="grass"] .glt-app .glt-box,[data-theme="grass"] .glt-app .glt-item,[data-theme="grass"] .mrg-app .mrg-wrap{box-shadow:0 4px 14px rgba(31,61,46,.08)}
+
+  /* ---- 黑金 dark：复古典雅 ---- */
+  [data-theme="dark"] html,[data-theme="dark"] body{background:linear-gradient(180deg,#0f1115 0%,#1a1d25 100%)}
+  [data-theme="dark"] header h1{background:linear-gradient(90deg,#e8eaed,#d9a05b);-webkit-background-clip:text;background-clip:text;color:transparent}
+  [data-theme="dark"] .tabs button.active,[data-theme="dark"] .btn-primary,
+  [data-theme="dark"] .glt-app .glt-tab.active,[data-theme="dark"] .glt-app .glt-btn-primary,
+  [data-theme="dark"] .mrg-app .mrg-btn-primary{background:linear-gradient(135deg,#f0bd6e,#c98a3a)}
+  [data-theme="dark"] .drop,[data-theme="dark"] .glt-app .glt-drop,[data-theme="dark"] .mrg-app .mrg-drop{border-color:rgba(217,160,91,.45);background:linear-gradient(180deg,#1a1e26,#12151b)}
+  [data-theme="dark"] .opt,[data-theme="dark"] .glt-app .glt-opt,[data-theme="dark"] .glt-app .glt-box,[data-theme="dark"] .glt-app .glt-item,[data-theme="dark"] .mrg-app .mrg-wrap{border-color:rgba(217,160,91,.28);box-shadow:0 4px 18px rgba(0,0,0,.4)}
+
+  /* ---- 薄荷 mint：清新通透 ---- */
+  [data-theme="mint"] html,[data-theme="mint"] body{background:linear-gradient(180deg,#effafb 0%,#dff3f5 100%)}
+  [data-theme="mint"] header h1{background:linear-gradient(90deg,#1d3a3c,#2ec5b8);-webkit-background-clip:text;background-clip:text;color:transparent}
+  [data-theme="mint"] .tabs button.active,[data-theme="mint"] .btn-primary,
+  [data-theme="mint"] .glt-app .glt-tab.active,[data-theme="mint"] .glt-app .glt-btn-primary,
+  [data-theme="mint"] .mrg-app .mrg-btn-primary{background:linear-gradient(135deg,#45d6ca,#21a99c)}
+  [data-theme="mint"] .drop,[data-theme="mint"] .glt-app .glt-drop,[data-theme="mint"] .mrg-app .mrg-drop{border-color:#b8e0e2;background:linear-gradient(180deg,#ffffff,#f0fcfd)}
+  [data-theme="mint"] .opt,[data-theme="mint"] .glt-app .glt-opt,[data-theme="mint"] .glt-app .glt-box,[data-theme="mint"] .glt-app .glt-item,[data-theme="mint"] .mrg-app .mrg-wrap{box-shadow:0 4px 14px rgba(29,58,60,.08)}
+
+  /* ---- 赛博朋克 cyberpunk：紫黑霓虹 ---- */
+  [data-theme="cyberpunk"] html,[data-theme="cyberpunk"] body{background:linear-gradient(180deg,#14091f 0%,#271239 100%)}
+  [data-theme="cyberpunk"] header h1{background:linear-gradient(90deg,#f0e7ff,#ff2bd6);-webkit-background-clip:text;background-clip:text;color:transparent}
+  [data-theme="cyberpunk"] .tabs button.active,[data-theme="cyberpunk"] .btn-primary,
+  [data-theme="cyberpunk"] .glt-app .glt-tab.active,[data-theme="cyberpunk"] .glt-app .glt-btn-primary,
+  [data-theme="cyberpunk"] .mrg-app .mrg-btn-primary{background:linear-gradient(135deg,#ff5de0,#c91aab)}
+  [data-theme="cyberpunk"] .drop,[data-theme="cyberpunk"] .glt-app .glt-drop,[data-theme="cyberpunk"] .mrg-app .mrg-drop{border-color:rgba(255,43,214,.5);background:linear-gradient(180deg,#1e1030,#160b22)}
+  [data-theme="cyberpunk"] .opt,[data-theme="cyberpunk"] .glt-app .glt-opt,[data-theme="cyberpunk"] .glt-app .glt-box,[data-theme="cyberpunk"] .glt-app .glt-item,[data-theme="cyberpunk"] .mrg-app .mrg-wrap{border-color:rgba(255,43,214,.4);box-shadow:0 4px 18px rgba(0,0,0,.45)}
+
+  /* 左上角圆球换肤按钮（无字） */
+  .theme-toggle{position:fixed;top:10px;left:10px;z-index:9999;width:30px;height:30px;
+    border-radius:50%;border:0;background:var(--accent);color:#14233c;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    box-shadow:none;transition:filter .15s}
+  .theme-toggle svg{width:16px;height:16px}
+  .theme-toggle:hover{filter:brightness(1.12)}
+  .theme-panel{position:fixed;top:60px;left:12px;z-index:9998;background:var(--card);
+    border:1px solid var(--border);border-radius:14px;padding:8px;box-shadow:0 6px 20px rgba(0,0,0,.18);
+    display:flex;flex-direction:column;gap:4px;min-width:138px}
+  .theme-panel .tp-item{display:flex;align-items:center;gap:10px;background:transparent;border:0;
+    color:var(--text);font-size:14px;font-weight:600;cursor:pointer;padding:8px 10px;border-radius:9px;
+    font-family:inherit;text-align:left}
+  .theme-panel .tp-item:hover{background:var(--card2)}
+  .theme-panel .tp-item i{width:18px;height:18px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.15)}
+  .theme-panel .tp-item.active{color:var(--accent)}
+  .theme-panel[hidden]{display:none}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    font-size:15px;line-height:1.5}
+  body{max-width:520px;margin:0 auto;padding:18px 16px 48px}
+  header{padding:8px 0 16px;text-align:center}
+  header h1{font-size:20px;font-weight:700;letter-spacing:.5px}
+  header p{color:var(--muted);font-size:13px;margin-top:4px}
+
+  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;
+    background:var(--card);border:1px solid var(--border);border-radius:12px;padding:4px;margin-bottom:18px}
+  .tabs button{border:0;background:transparent;color:var(--muted);
+    font-size:15px;padding:11px 0;border-radius:9px;cursor:pointer;font-weight:600}
+  .tabs button.active{background:var(--accent);color:#22304a}
+  .pane{display:none}
+  .pane.active{display:block}
+
+  .drop{border:1.5px dashed var(--border);border-radius:12px;background:var(--card);
+    padding:16px;text-align:center;cursor:pointer;margin-bottom:12px;transition:border-color .15s,background .15s}
+  .drop-row{display:flex;gap:10px;align-items:stretch}
+  .drop-row .drop{flex:1;min-width:0;margin-bottom:0}
+  .drop.drag-over{border-color:var(--accent);background:var(--card2)}
+  .drop.has-img{border-style:solid;border-color:var(--accent);padding:10px}
+  .drop .label{font-size:14px;font-weight:600}
+  .drop .sub{font-size:12px;color:var(--muted);margin-top:3px}
+  .drop img{max-width:100%;max-height:180px;border-radius:8px;display:block;margin:0 auto 8px}
+
+  /* 画质选择 */
+  .opt{background:var(--card);border:1px solid var(--border);border-radius:12px;
+    padding:12px 14px;margin-bottom:12px}
+  .opt .t{font-size:13px;font-weight:600;margin-bottom:8px}
+  .opt .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .opt button{border:1px solid var(--border);background:var(--card2);color:var(--muted);
+    border-radius:8px;padding:7px 4px;font-size:13px;cursor:pointer}
+  .opt button.active{background:rgba(255,122,26,.16);color:var(--accent);border-color:var(--accent);font-weight:700}
+  .opt .note{font-size:11px;color:var(--muted);margin-top:7px}
+
+  .hint{font-size:12px;color:var(--muted);margin:2px 2px 14px;min-height:18px}
+  .hint.err{color:var(--err)}
+  .hint.ok{color:var(--ok)}
+
+  .btn{display:block;width:100%;border:0;border-radius:12px;cursor:pointer;
+    font-size:16px;font-weight:700;padding:14px 0;margin-top:6px;text-align:center;text-decoration:none}
+  .btn-primary{background:var(--accent);color:#22304a}
+  .btn-primary:disabled{background:var(--card2);color:var(--muted)}
+  .btn-ghost{background:var(--card);color:var(--text);border:1px solid var(--border)}
+
+  .result{margin-top:18px;display:none}
+  .result.show{display:block}
+  .result .box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:10px}
+  .result img{max-width:100%;border-radius:8px;display:block;margin:0 auto}
+  .result .cap{font-size:12px;color:var(--muted);margin-top:8px;text-align:center}
+  .save-tip{font-size:12px;color:var(--accent);background:rgba(255,122,26,.1);
+    border:1px solid rgba(217,160,91,.35);border-radius:9px;
+    padding:9px 11px;margin-bottom:10px;line-height:1.5}
+
+  details{margin-top:22px;background:var(--card);border:1px solid var(--border);
+    border-radius:12px;padding:12px 14px;font-size:13px;color:var(--muted)}
+  details summary{cursor:pointer;color:var(--text);font-weight:600;font-size:14px}
+  details ul{margin:10px 0 0 18px}
+  details li{margin-bottom:6px}
+  /* ===== 桌面端：主面板两栏 + 三个工具整宽（≥960px） ===== */
+  @media (min-width:960px){
+    body{max-width:1280px;padding:24px 28px 60px}
+    /* 主藏图面板：左参数 右预览（仅激活时网格） */
+    #paneEmbed.active{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;align-items:start}
+    #paneEmbed.active > *{grid-column:1}
+    #paneEmbed.active .result{grid-column:2;grid-row:1/span 20;position:sticky;top:22px}
+    /* 取图面板：功能在右，结果列表在左（仅激活时网格） */
+    #paneExtract.active{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;align-items:start}
+    #paneExtract.active .result{grid-column:1;grid-row:1/span 4;position:sticky;top:22px}
+    #paneExtract.active .drop,
+    #paneExtract.active .hint,
+    #paneExtract.active .btn-primary{grid-column:2}
+    /* 三个工具：整宽纵向，电脑端舒展 */
+    .tools-row{display:block;margin-top:8px}
+    .tools-row details{width:100%;margin-top:12px}
+    .glt-app,.mrg-app{max-width:none}
+    /* 工具内部控件放大利用宽度 */
+    .glt-app .glt-drop-row .glt-drop{padding:36px 20px}
+    .mrg-app .mrg-drop-row .mrg-drop{padding:36px 20px}
+    .glt-app .glt-drop .label{font-size:18px}
+    .mrg-app .mrg-drop .t{font-size:16px}
+  }
+  /* ===== 多小图隐藏工具分支（mmg_） ===== */
+  .mmg-app{background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:12px;padding:14px;line-height:1.5;font-size:14px}
+  .mmg-tabs{display:flex;gap:8px;margin-bottom:10px}
+  .mmg-tab{padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:var(--card2);color:var(--muted);cursor:pointer;font-size:14px}
+  .mmg-tab.active{background:var(--accent);color:#14233c;border-color:transparent;font-weight:600}
+  .mmg-drop{border:1.5px dashed var(--border);border-radius:12px;background:var(--card2);padding:22px 14px;text-align:center;cursor:pointer;flex:1;min-width:0}
+  .mmg-drop .t{font-size:14px;font-weight:600}
+  .mmg-drop .s{font-size:12px;color:var(--muted);margin-top:4px}
+  .mmg-btn{padding:9px 16px;border-radius:8px;border:0;cursor:pointer;font-size:14px;text-decoration:none}
+  .mmg-btn-primary{background:var(--accent);color:#14233c;font-weight:600}
+  .mmg-btn-ghost{background:var(--card2);color:var(--text);border:1px solid var(--border)}
+  .mmg-btn:disabled{opacity:.5;cursor:not-allowed}
+  .mmg-hint{font-size:13px;color:var(--muted);min-height:18px}
+  .mmg-hint.err{color:var(--err)}
+  .mmg-hint.ok{color:var(--ok)}
+  .mmg-secret-thumb{width:56px;height:56px;object-fit:cover;border-radius:4px;display:block}
+  .extract-gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;padding:6px 2px;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
+  .extract-gallery::-webkit-scrollbar{display:none}
+  .eg-slide{flex:0 0 100%;scroll-snap-align:center;text-align:center;min-width:0}
+  .eg-slide img{max-width:100%;max-height:60vh;border-radius:8px;margin:0 auto;display:block;cursor:zoom-in;object-fit:contain}
+  .eg-nav{font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
+  .eg-wrap{position:relative}
+  .eg-arrow{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.45);color:#fff;font-size:22px;cursor:pointer;z-index:3;line-height:1;display:flex;align-items:center;justify-content:center;padding:0}
+  .eg-arrow:active{background:rgba(0,0,0,.7)}
+  .eg-left{left:6px}
+  .eg-right{right:6px}
+</style>
+  <meta name="theme-color" content="#0f1115">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon192.png">
+</head>
+<body>
+<button type="button" class="theme-toggle" id="themeToggle" onclick="themeBtnClick()" aria-label="切换皮肤">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 1 9-9c0 1.7-1.3 3-3 3h-1.5c-1 0-1.8.8-1.8 1.8 0 .7.4 1.3 1 1.6.6.3 1 .9 1 1.6"/><circle cx="7.5" cy="11" r=".6" fill="currentColor"/><circle cx="10.5" cy="7.5" r=".6" fill="currentColor"/><circle cx="14.5" cy="7.5" r=".6" fill="currentColor"/><circle cx="17" cy="11" r=".6" fill="currentColor"/></svg>
+</button>
+<div class="theme-panel" id="themePanel" hidden>
+  <button type="button" class="tp-item" data-t="light"><i style="background:#ff7a1a"></i>亮色</button>
+  <button type="button" class="tp-item" data-t="tech"><i style="background:#25d0e9"></i>科技</button>
+  <button type="button" class="tp-item" data-t="grass"><i style="background:#34b96a"></i>青草</button>
+  <button type="button" class="tp-item" data-t="dark"><i style="background:#d9a05b"></i>黑金</button>
+  <button type="button" class="tp-item" data-t="mint"><i style="background:#2ec5b8"></i>薄荷</button>
+  <button type="button" class="tp-item" data-t="cyberpunk"><i style="background:#ff2bd6"></i>赛博朋克</button>
+</div>
+<script>
+function setTheme(t){
+  var r=document.documentElement;
+  r.dataset.theme=t||'light';
+  var items=document.querySelectorAll('.theme-panel .tp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].classList.toggle('active', items[i].getAttribute('data-t')===t);
+  }
+}
+function themeBtnClick(){
+  var p=document.getElementById('themePanel');
+  if(p) p.hidden=!p.hidden;
+}
+(function(){
+  var items=document.querySelectorAll('.theme-panel .tp-item');
+  for(var i=0;i<items.length;i++){
+    items[i].addEventListener('click',function(){
+      setTheme(this.getAttribute('data-t'));
+      document.getElementById('themePanel').hidden=true;
+    });
+  }
+  document.addEventListener('click',function(e){
+    var p=document.getElementById('themePanel'), b=document.getElementById('themeToggle');
+    if(!p||p.hidden) return;
+    if(b&&b.contains(e.target)) return;
+    if(p.contains(e.target)) return;
+    p.hidden=true;
+  });
+  setTheme((document.documentElement.dataset.theme||'dark'));
+})();
+</script>
+
+<header>
+  <h1>作战实验室</h1>
+  <p>把原图藏进表图里，只有本工具能还原。</p>
+</header>
+
+<div class="tabs">
+  <button id="tabEmbed" class="active" onclick="setMode('embed')">藏图</button>
+  <button id="tabExtract" onclick="setMode('extract')">取图</button>
+</div>
+
+<!-- ============ 藏图 ============ -->
+<div id="paneEmbed" class="pane active">
+  <div style="display:flex;gap:10px">
+    <div class="mmg-drop" id="mmgDropCover" onclick="mmgPick('cover',true)" style="flex:1">
+      <div class="t">① 选表图</div><div class="s">点这里选，或拖入</div>
+    </div>
+    <div class="mmg-drop" id="mmgDropSecrets" onclick="mmgPick('secrets',true)" style="flex:1">
+      <div class="t">② 选里图（多张）</div><div class="s">可一次多选，也可再点这里追加</div>
+    </div>
+  </div>
+  <div id="mmgSecretList" style="margin-top:8px"></div>
+
+  <details style="margin-top:10px">
+    <summary style="cursor:pointer;font-size:13px;color:var(--muted)">里图格式（影响需要多大的表图）</summary>
+    <div class="opt" style="margin-top:6px">
+      <div class="row">
+        <button id="mmgQSlim" class="active" onclick="mmgSetQuality('slim')">省空间 JPEG</button>
+        <button id="mmgQLossless" onclick="mmgSetQuality('lossless')">无损 PNG</button>
+      </div>
+      <div class="note" id="mmgQualityNote">JPEG：体积小 5～10 倍，表图不用很大；还原图肉眼几乎无差。</div>
+    </div>
+  </details>
+
+  <div class="opt">
+    <div class="t">表图分辨率（放大可增加容量）</div>
+    <div class="row" style="flex-wrap:wrap;gap:6px;align-items:center">
+      <button id="mmgS1" class="active" onclick="mmgSetScale(1)">原始</button>
+      <button id="mmgS2" onclick="mmgSetScale(2)">2×</button>
+      <button id="mmgS3" onclick="mmgSetScale(3)">3×</button>
+      <button id="mmgS5" onclick="mmgSetScale(5)">5×</button>
+      <input id="mmgScaleInput" type="number" min="1" step="0.5" placeholder="自定义倍率" value="1" style="width:92px;padding:6px 8px;border-radius:6px;border:1px solid var(--border);background:var(--card2);color:var(--text)">
+      <button id="mmgScaleApply" onclick="mmgApplyScaleInput()">设为倍率</button>
+    </div>
+    <div class="note" id="mmgScaleNote">原始最清晰；放大后成品尺寸变大，可用容量按面积成倍增加，里图可保持更大。</div>
+  </div>
+
+  <div class="hint" id="mmgHint" style="margin-top:8px">选好表图和多张原图后点下方生成；多张会自动缩成小图拼入一张表图</div>
+  <button type="button" class="mmg-btn mmg-btn-primary" id="mmgEmbedBtn" style="margin-top:10px" disabled>生成成品</button>
+
+  <div class="result" id="mmgResult" style="display:none;margin-top:12px">
+    <div class="box">
+      <img id="mmgPreview" alt="成品预览" style="max-width:100%;border-radius:8px;display:block">
+      <div class="cap">这就是成品，外观和表图一模一样，内含多张小图</div>
+    </div>
+    <div class="save-tip">如果下面按钮点了没反应，就<b>长按上面这张图</b>，选「保存图片 / 存储到相册」</div>
+    <a class="mmg-btn mmg-btn-primary" id="mmgDownload" href="#" download="成品.png" style="display:inline-block">保存成品 PNG（优先长按保存）</a>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px">
+      <button type="button" class="mmg-btn" id="glowBtn" onclick="glowToggle()">表图光棱化</button>
+      <label style="font-size:12px;display:flex;align-items:center;gap:6px">效果
+        <select id="glowMode" style="padding:6px 8px;border-radius:6px;border:1px solid var(--border);background:var(--card2);color:var(--text)">
+          <option value="dot">网点纹理</option>
+          <option value="scan">横向扫描线</option>
+          <option value="grid">细密网格</option>
+          <option value="pattern">花纹暗纹</option>
+        </select>
+      </label>
+      <label style="font-size:12px;display:flex;align-items:center;gap:6px">强度
+        <input type="range" id="glowAmt" min="0" max="100" value="45" style="width:110px">
+        <span id="glowAmtTxt" style="min-width:24px">45</span>
+      </label>
+      <span style="font-size:11px;color:var(--muted)">先选效果与强度，点「表图光棱化」应用，再点一次取消；每次只用一种，不叠加</span>
+    </div>
+  </div>
+  <input type="file" id="mmgFile" accept="image/*" multiple hidden>
+</div>
+
+<!-- ============ 取图 ============ -->
+<div id="paneExtract" class="pane">
+  <div class="drop" id="dropStego" onclick="pick('stego')">
+    <div class="label">选成品图（主隐写，可一次多选）</div>
+    <div class="sub">点这里选，或直接把 PNG 拖进来；自动识别主隐写成品并逐个剥出</div>
+  </div>
+  <div class="hint" id="extractHint"></div>
+  <button class="btn btn-primary" id="btnExtract" disabled onclick="doExtract()">批量剥出原图</button>
+
+  <div class="result" id="extractResult">
+    <div id="extractList"></div>
+  </div>
+</div>
+
+
+<div class="tools-row">
+<details id="hx-app" style="margin-top:12px">
+  <summary>混淆图制作解密工具</summary>
+  <div style="margin-top:14px">
+    <div class="drop" id="hx_drop" onclick="document.getElementById('hx_file').click()">
+      <div class="label">选图（混淆/解混淆用）</div>
+      <div class="sub">点这里选，或拖进来，或 Ctrl+V 粘贴截图</div>
+    </div>
+    <input type="file" id="hx_file" accept="image/*" hidden>
+    <div class="hint" id="hx_status" style="margin-top:8px">尚未选择图片</div>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+      <button class="btn btn-primary" style="flex:1" onclick="hxConfuse()">混淆 →</button>
+      <button class="btn btn-ghost" style="flex:1" onclick="hxDeconfuse()">解混淆 ←</button>
+      <button class="btn btn-ghost" style="flex:1" onclick="hxRestore()">还原</button>
+    </div>
+    <div class="sub" style="margin-top:8px">混淆＝打乱像素成"像素粥"；解混淆＝逆回一步；还原＝回到最初原图。</div>
+    <div class="result" id="hx_result" style="display:none">
+      <div class="box" id="hx_preview"></div>
+      <div id="hx_dl"></div>
+    </div>
+  </div>
+</details>
+
+
+<style id="glt-style">
+
+/* =====================================================================
+   光棱坦克 · 精简版  样式（所有选择器带 glt- 前缀，避免污染宿主页面）
+   色板与「作战实验室」保持一致：深色背景 / 金色强调
+   ===================================================================== */
+#glt-app,.glt-app{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+.glt-app *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+.glt-app .glt-drop-row{display:flex;gap:10px;align-items:stretch}
+.glt-app .glt-drop-row .glt-drop{flex:1;min-width:0;margin-bottom:0}
+.glt-app{
+  background:var(--glt-bg);color:var(--glt-text);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  font-size:15px;line-height:1.5;
+  max-width:520px;margin:0 auto;padding:16px 14px 40px;
+}
+.glt-app .glt-hd{padding:4px 0 14px}
+.glt-app .glt-title{font-size:20px;font-weight:700;letter-spacing:.5px}
+.glt-app .glt-sub{color:var(--glt-muted);font-size:13px;margin-top:4px}
+
+/* 标签页 */
+.glt-app .glt-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;
+  background:var(--glt-card);border:1px solid var(--glt-border);border-radius:12px;padding:4px;margin-bottom:14px}
+.glt-app .glt-tab{border:0;background:transparent;color:var(--glt-muted);
+  font-size:15px;padding:11px 0;border-radius:9px;cursor:pointer;font-weight:600;font-family:inherit}
+.glt-app .glt-tab.active{background:var(--glt-accent);color:#22304a}
+.glt-app .glt-pane{display:none}
+.glt-app .glt-pane.active{display:block}
+
+/* 选图框 */
+.glt-app .glt-drop{border:1.5px dashed var(--glt-border);border-radius:12px;background:var(--glt-card);
+  padding:16px;text-align:center;cursor:pointer;margin-bottom:12px;transition:border-color .15s,background .15s}
+.glt-app .glt-drop.drag-over{border-color:var(--glt-accent);background:var(--glt-card2)}
+.glt-app .glt-drop.has-img{border-style:solid;border-color:var(--glt-accent);padding:10px}
+.glt-app .glt-drop .label{font-size:14px;font-weight:600}
+.glt-app .glt-drop .sub{font-size:12px;color:var(--glt-muted);margin-top:3px}
+.glt-app .glt-drop img{max-width:100%;max-height:170px;border-radius:8px;display:block;margin:0 auto 8px}
+
+/* 选项卡 */
+.glt-app .glt-opt{background:var(--glt-card);border:1px solid var(--glt-border);border-radius:12px;
+  padding:12px 14px;margin-bottom:12px}
+.glt-app .glt-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:9px 0}
+.glt-app .glt-row label{font-size:13px;font-weight:600;flex:none;color:var(--glt-text)}
+.glt-app .glt-row input[type="range"]{flex:1;accent-color:var(--glt-accent)}
+.glt-app .glt-row input[type="number"]{width:64px;background:var(--glt-card2);color:var(--glt-text);
+  border:1px solid var(--glt-border);border-radius:8px;padding:5px 6px;font-size:14px;text-align:center}
+.glt-app .glt-row select{flex:1;background:var(--glt-card2);color:var(--glt-text);
+  border:1px solid var(--glt-border);border-radius:8px;padding:7px 8px;font-size:14px;font-family:inherit}
+.glt-app .glt-chk{display:flex;align-items:center;gap:8px;margin:9px 0;cursor:pointer;font-size:13px;font-weight:600}
+.glt-app .glt-chk input{accent-color:var(--glt-accent);width:17px;height:17px}
+.glt-app .glt-note{font-size:11px;color:var(--glt-muted);margin-top:6px}
+
+/* 提示与按钮 */
+.glt-app .glt-hint{font-size:12px;color:var(--glt-muted);margin:2px 2px 12px;min-height:18px}
+.glt-app .glt-hint.err{color:var(--glt-err)}
+.glt-app .glt-hint.ok{color:var(--glt-ok)}
+.glt-app .glt-btn{display:block;width:100%;border:0;border-radius:12px;cursor:pointer;
+  font-size:16px;font-weight:700;padding:14px 0;margin-top:6px;font-family:inherit}
+.glt-app .glt-btn-primary{background:var(--glt-accent);color:#22304a}
+.glt-app .glt-btn-primary:disabled{background:var(--glt-card2);color:var(--glt-muted)}
+.glt-app .glt-btn-ghost{background:var(--glt-card);color:var(--glt-text);border:1px solid var(--glt-border)}
+
+/* 结果 */
+.glt-app .glt-result{margin-top:18px;display:none}
+.glt-app .glt-result.show{display:block}
+.glt-app .glt-box{background:var(--glt-card);border:1px solid var(--glt-border);border-radius:12px;padding:12px 10px}
+.glt-app .glt-box img{max-width:100%;border-radius:8px;display:block;margin:0 auto}
+.glt-app .glt-cap{font-size:12px;color:var(--glt-muted);margin-top:8px;text-align:center}
+.glt-app .glt-save-tip{font-size:12px;color:var(--glt-accent);background:rgba(255,122,26,.1);
+  border:1px solid rgba(217,160,91,.35);border-radius:9px;padding:9px 11px;margin:10px 0;line-height:1.5}
+
+/* 多张显形条目 */
+.glt-app .glt-item{background:var(--glt-card);border:1px solid var(--glt-border);border-radius:12px;padding:12px 10px;margin-top:12px}
+.glt-app .glt-item canvas{max-width:100%;height:auto;display:block;margin:0 auto;border-radius:8px}
+.glt-app .glt-item-row{display:flex;align-items:center;gap:8px;margin:8px 0}
+.glt-app .glt-item-row label{font-size:13px;font-weight:600;flex:none}
+.glt-app .glt-item-row input[type="range"]{flex:1;accent-color:var(--glt-accent)}
+.glt-app .glt-item-row input[type="number"]{width:64px;background:var(--glt-card2);color:var(--glt-text);border:1px solid var(--glt-border);border-radius:8px;padding:5px 6px;font-size:14px;text-align:center}
+.glt-app .glt-item-actions{display:flex;gap:8px;margin-top:8px}
+.glt-app .glt-item-actions .glt-btn{width:auto;flex:1;font-size:14px;padding:10px 0}
+
+</style>
+
+<!-- ============ 光棱图制作解密工具（光棱坦克算法，独立前缀 glt_，不与上文冲突） ============ -->
+<details id="glt-app-details" style="margin-top:12px">
+  <summary>光棱图制作解密工具</summary>
+  <div style="margin-top:14px">
+<section id="glt-app" class="glt-app">
+  <div class="glt-tabs">
+    <button type="button" id="gltTabEmbed" class="glt-tab active" data-glttab="gltPaneEmbed">藏图</button>
+    <button type="button" id="gltTabExtract" class="glt-tab" data-glttab="gltPaneExtract">显形</button>
+  </div>
+
+  <!-- ===== 藏图 ===== -->
+  <div id="gltPaneEmbed" class="glt-pane active">
+    <div class="glt-drop-row">
+      <div class="glt-drop" id="gltDropCover">
+        <div class="label">① 表图</div>
+        <div class="sub">点这里选，或直接把图片拖进来</div>
+      </div>
+      <div class="glt-drop" id="gltDropInner">
+        <div class="label">② 里图</div>
+        <div class="sub">点这里选，或直接把图片拖进来</div>
+      </div>
+    </div>
+
+    <div class="glt-opt">
+      <div class="glt-row">
+        <label>采样方式</label>
+        <select id="gltMethod">
+          <option value="chess">棋盘</option>
+          <option value="gap_2">隔二取一</option>
+          <option value="gap_3">隔三取一</option>
+          <option value="gap_5">隔五取一</option>
+          <option value="col_1">按列</option>
+          <option value="row_1">按行</option>
+          <option value="col_2">隔二列取一</option>
+          <option value="row_2">隔二行取一</option>
+          <option value="chess_2" selected>疏棋盘（四分一）</option>
+          <option value="diag">斜向条纹</option>
+          <option value="block_22">2×2 取角</option>
+          <option value="block_33">3×3 取心（隐藏最佳）</option>
+          <option value="gap_7">隔七取一（稀疏）</option>
+          <option value="random">伪随机散点（抗JPEG）</option>
+        </select>
+      </div>
+      <div class="glt-row">
+        <label>输出格式</label>
+        <select id="gltFormat">
+          <option value="png">PNG（参数随图，自动显形）</option>
+          <option value="jpeg">JPEG（体积小，参数入注释）</option>
+        </select>
+      </div>
+      <div class="glt-row">
+        <label>里图阈值</label>
+        <input type="range" id="gltInnerThR" min="0" max="128" step="1" value="24">
+        <input type="number" id="gltInnerThI" min="0" max="128" value="24">
+      </div>
+      <div class="glt-row">
+        <label>表图阈值</label>
+        <input type="range" id="gltCoverThR" min="0" max="128" step="1" value="32">
+        <input type="number" id="gltCoverThI" min="0" max="128" value="32">
+      </div>
+    </div>
+
+    <div class="glt-result" id="gltEmbedResult">
+      <div class="glt-box">
+        <canvas id="gltEmbedCanvas" style="display:block;max-width:100%;height:auto;margin:0 auto;border-radius:8px"></canvas>
+        <div class="glt-hint" id="gltEmbedHint"></div>
+        <div class="glt-cap">这就是成品，外观和表图基本一致（参数变化实时更新）</div>
+      </div>
+      <div class="glt-save-tip">如果下方按钮没反应，就长按上面这张图选「保存图片」。</div>
+      <button type="button" class="glt-btn glt-btn-primary" id="gltSaveEmbed" style="margin-top:10px">保存成品</button>
+      <button type="button" class="glt-btn glt-btn-ghost" id="gltTestReveal" style="margin-top:10px">显形测试（立刻验证能否取出里图）</button>
+    </div>
+  </div>
+
+  <!-- ===== 显形 ===== -->
+  <div id="gltPaneExtract" class="glt-pane">
+    <div class="glt-drop" id="gltDropStego">
+      <div class="label">选成品图（PNG 会尝试自动读取参数）</div>
+      <div class="sub">点这里选，或直接把 PNG 拖进来</div>
+    </div>
+    <button type="button" class="glt-btn glt-btn-ghost" id="gltAddMore">再添加一张（手机可多次添加）</button>
+
+    <div class="glt-opt">
+      <label class="glt-chk"><input type="checkbox" id="gltAutoRead" checked>自动读取参数（PNG 成品）</label>
+      <label class="glt-chk"><input type="checkbox" id="gltDecReverse">反转</label>
+      <div class="glt-row">
+        <label>背景填充</label>
+        <select id="gltFill">
+          <option value="luavg">插值（默认）</option>
+          <option value="laavg">左+上平均</option>
+          <option value="blur3">3×3 平滑</option>
+          <option value="lcopy">复制左边</option>
+          <option value="ucopy">复制上边</option>
+          <option value="trans">透明（背景留空）</option>
+          <option value="black">黑色</option>
+          <option value="white">白色</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="glt-hint" id="gltExtractHint"></div>
+    <div id="gltMultiList"></div>
+  </div>
+<input type="file" id="gltFile" accept="image/*" multiple hidden>
+</section>
+  </div>
+</details>
+<!-- ============ 幻影图制作工具（幻影坦克算法，独立前缀 mrg_，不与上文冲突） ============ -->
+<style id="mrg-style">
+.mrg-app{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+.mrg-app *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+.mrg-app .mrg-drop-row{display:flex;gap:10px;align-items:stretch}
+.mrg-app .mrg-drop-cell{flex:1;min-width:0}
+.mrg-app .mrg-drop-cell .mrg-drop{margin-bottom:0}
+.mrg-app [hidden]{display:none!important}
+.mrg-app{background:var(--mrg-bg);color:var(--mrg-text);font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.5;max-width:520px;margin:0 auto;padding:14px 2px 20px}
+.mrg-app .mrg-hd{margin-bottom:2px}
+.mrg-app .mrg-title{font-size:19px;font-weight:700;letter-spacing:.5px;color:var(--mrg-accent)}
+.mrg-app .mrg-sub{color:var(--mrg-muted);font-size:13px;margin-top:3px}
+.mrg-app .mrg-wrap{background:var(--mrg-card);border:1px solid var(--mrg-border);border-radius:14px;padding:14px;margin-top:14px}
+.mrg-app .mrg-label{font-size:14px;font-weight:600;margin-bottom:10px}
+.mrg-app .mrg-drop{border:1.5px dashed var(--mrg-border);border-radius:12px;background:var(--mrg-card2);padding:14px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;margin-bottom:12px}
+.mrg-app .mrg-drop.drag-over{border-color:var(--mrg-accent);background:#ffe1c4}
+.mrg-app .mrg-drop.has-img{border-style:solid;border-color:var(--mrg-accent)}
+.mrg-app .mrg-drop .t{font-size:14px;font-weight:600}
+.mrg-app .mrg-drop .d{font-size:12px;color:var(--mrg-muted);margin-top:3px}
+.mrg-app .mrg-drop img{max-width:100%;max-height:260px;border-radius:8px;display:block;margin:8px auto 0}
+.mrg-app .mrg-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:9px 0}
+.mrg-app .mrg-row label{font-size:13px;font-weight:600;flex:none;color:var(--mrg-text)}
+.mrg-app .mrg-row input[type="range"]{flex:1;accent-color:var(--mrg-accent)}
+.mrg-app .mrg-row input[type="number"]{width:72px;background:var(--mrg-card2);color:var(--mrg-text);border:1px solid var(--mrg-border);border-radius:8px;padding:5px 6px;font-size:14px}
+.mrg-app .mrg-row input[type="number"]:disabled{opacity:.4}
+.mrg-app .mrg-note{font-size:11px;color:var(--mrg-muted);margin-top:4px}
+.mrg-app .mrg-chk{display:flex;align-items:center;gap:8px;margin:9px 0;cursor:pointer;font-size:13px;font-weight:600}
+.mrg-app .mrg-chk input{accent-color:var(--mrg-accent);width:17px;height:17px}
+.mrg-app .mrg-hr{border:0;border-top:1px solid var(--mrg-border);margin:12px 0}
+.mrg-app .mrg-adv{margin-top:12px;background:var(--mrg-card2);border:1px solid var(--mrg-border);border-radius:10px;padding:10px 12px}
+.mrg-app .mrg-adv summary{font-size:13px;font-weight:600;color:var(--mrg-muted);cursor:pointer}
+.mrg-app .mrg-adv[open] summary{margin-bottom:6px}
+.mrg-app .mrg-out{margin-top:14px}
+.mrg-app .mrg-out .t{font-size:13px;font-weight:600;margin-bottom:8px}
+.mrg-app .mrg-out canvas{width:100%;height:auto;display:block;margin:0 auto;border:1px solid var(--mrg-border);border-radius:8px;background:#000;transition:background .15s}
+.mrg-app .mrg-lightbar{display:flex;align-items:center;justify-content:center;margin:10px 0 6px}
+.mrg-app .mrg-btn-lite{border:1px solid var(--mrg-border);background:var(--mrg-card2);color:var(--mrg-text);border-radius:8px;padding:6px 14px;font-size:13px;cursor:pointer;transition:border-color .15s,color .15s}
+.mrg-app .mrg-btn-lite:hover{border-color:var(--mrg-accent);color:var(--mrg-accent)}
+.mrg-app .mrg-hint{font-size:12px;color:var(--mrg-muted);margin:4px 2px;min-height:18px}
+.mrg-app .mrg-hint.err{color:var(--mrg-err)}
+.mrg-app .mrg-hint.ok{color:var(--mrg-ok)}
+.mrg-app .mrg-btn{display:block;width:100%;border:0;border-radius:12px;cursor:pointer;font-size:16px;font-weight:700;padding:13px 0;margin-top:10px;text-align:center;text-decoration:none}
+.mrg-app .mrg-btn-primary{background:var(--mrg-accent);color:#22304a}
+.mrg-app .mrg-btn-primary:disabled{background:var(--mrg-card2);color:var(--mrg-muted)}
+</style>
+
+<details id="mrg-app-details" style="margin-top:12px">
+  <summary>幻影图制作工具</summary>
+  <div style="margin-top:14px">
+<section id="mrg-app" class="mrg-app">
+  <div class="mrg-wrap">
+    <div class="mrg-drop-row">
+      <div class="mrg-drop-cell">
+        <div class="mrg-label">① 选表图（白背景显示）</div>
+        <div class="mrg-drop" id="mrgDropCover">
+          <div class="t">点这里选表图，或拖入 / 粘贴</div>
+          <img id="mrgCoverPrev" alt="表图预览" hidden>
+        </div>
+        <input type="file" id="mrgCoverFile" accept="image/*" hidden>
+      </div>
+      <div class="mrg-drop-cell">
+        <div class="mrg-label">② 选里图（黑背景显示）</div>
+        <div class="mrg-drop" id="mrgDropInner">
+          <div class="t">点这里选里图，或拖入 / 粘贴</div>
+          <img id="mrgInnerPrev" alt="里图预览" hidden>
+        </div>
+        <input type="file" id="mrgInnerFile" accept="image/*" hidden>
+      </div>
+    </div>
+  </div>
+
+  <div class="mrg-wrap">
+    <div class="mrg-row">
+      <label>输出尺寸（长宽较大值）</label>
+      <input type="number" id="mrgMaxSize" min="0" max="4096" value="0">
+    </div>
+
+    <label class="mrg-chk"><input type="checkbox" id="mrgColored" checked>全彩输出（关掉则黑白）</label>
+
+    <div class="mrg-hr"></div>
+
+    <details class="mrg-adv">
+      <summary>高级参数（去色 / 混合权重）</summary>
+      <div class="mrg-row">
+        <label>里图去色</label>
+        <input type="range" id="mrgDesatIR" min="0" max="1" step="0.02" value="0">
+        <input type="number" id="mrgDesatII" min="0" max="1" step="0.02" value="0">
+      </div>
+      <div class="mrg-row">
+        <label>表图去色</label>
+        <input type="range" id="mrgDesatCR" min="0" max="1" step="0.02" value="0">
+        <input type="number" id="mrgDesatCI" min="0" max="1" step="0.02" value="0">
+      </div>
+      <div class="mrg-row">
+        <label>里图混合权重</label>
+        <input type="range" id="mrgWeightR" min="0" max="1" step="0.02" value="0.7">
+        <input type="number" id="mrgWeightI" min="0" max="1" step="0.02" value="0.7">
+      </div>
+    </details>
+
+    <div class="mrg-row">
+      <label>里图色阶</label>
+      <input type="range" id="mrgScaleIR" min="0" max="1" step="0.02" value="0.3">
+      <input type="number" id="mrgScaleII" min="0" max="1" step="0.02" value="0.3">
+    </div>
+
+    <div class="mrg-row">
+      <label>表图色阶</label>
+      <input type="range" id="mrgScaleCR" min="0" max="1" step="0.02" value="0.8">
+      <input type="number" id="mrgScaleCI" min="0" max="1" step="0.02" value="0.8">
+    </div>
+  </div>
+
+  <div class="mrg-wrap">
+    <div class="mrg-out">
+      <canvas id="mrgOutputCanvas" width="1" height="1" style="cursor:zoom-in" onclick="try{zoomOpen(this.toDataURL('image/png'))}catch(e){}"></canvas>
+      <div class="mrg-lightbar"><button type="button" class="mrg-btn-lite" id="mrgToggleLight">开关灯：黑背景</button></div>
+      <div class="mrg-hint" id="mrgHint">尚未选择图片</div>
+      <button type="button" class="mrg-btn mrg-btn-primary" id="mrgSave" disabled>保存成品（PNG）</button>
+    </div>
+  </div>
+</section>
+  </div>
+</details>
+  <script>
+/* ============ 多小图隐藏工具（前缀 mmg_，独立于主隐写） ============ */
+var mmgSt={cover:null,secrets:[],curPick:null,append:false,quality:'jpeg',scale:1};
+function mmgEl(id){ return document.getElementById(id); }
+function mmgSetMode(m){
+  if(mmgEl('mmgTabEmbed')) mmgEl('mmgTabEmbed').classList.add('active');
+  if(mmgEl('mmgPaneEmbed')) mmgEl('mmgPaneEmbed').style.display='block';
+}
+function mmgSetScale(s){
+  mmgSt.scale=s;
+  [['mmgS1',1],['mmgS2',2],['mmgS3',3],['mmgS5',5]].forEach(function(p){
+    var el=mmgEl(p[0]); if(el) el.classList.toggle('active',mmgSt.scale===p[1]);
+  });
+  var inp=mmgEl('mmgScaleInput'); if(inp) inp.value=s;
+  var note=mmgEl('mmgScaleNote');
+  if(note) note.textContent=(s===1)?'原始最清晰；放大后成品尺寸变大，可用容量按面积成倍增加，里图可保持更大。':'表图已放大 '+s+'×（尺寸约 '+(s*100)+'%），容量按面积增加，里图可保持更大；成品文件也会更大。';
+  if(mmgSt.secrets.length) mmgRenderSecrets();
+  mmgUpd();
+}
+function mmgApplyScaleInput(){
+  var inp=mmgEl('mmgScaleInput'); var v=parseFloat(inp&&inp.value);
+  if(isNaN(v)||!(v>=1)){ mmgHint('mmgHint','倍率需为 ≥1 的数字','err'); return; }
+  mmgSetScale(v);
+}
+function mmgSetQuality(mode){
+  mmgSt.quality=(mode==='lossless')?'png':'jpeg';
+  var slim=mmgEl('mmgQSlim'), loss=mmgEl('mmgQLossless'), note=mmgEl('mmgQualityNote');
+  if(slim) slim.classList.toggle('active',mmgSt.quality==='jpeg');
+  if(loss) loss.classList.toggle('active',mmgSt.quality==='png');
+  if(note) note.textContent=(mmgSt.quality==='jpeg')?'JPEG：体积小 5～10 倍，表图不用很大；还原图肉眼几乎无差。':'PNG：无损保真，体积更大，需要更大的表图。';
+}
+function mmgPick(t,append){ mmgSt.curPick=t; mmgSt.append=!!append; var f=mmgEl('mmgFile'); f.value=''; f.click(); }
+function mmgHint(id,text,type){ var e=mmgEl(id); e.textContent=text; e.className='mmg-hint'+(type?' '+type:''); }
+function mmgUpd(){ mmgEl('mmgEmbedBtn').disabled=!(mmgSt.cover&&mmgSt.secrets.length>0); }
+function mmgRenderDrop(id,img){
+  var e=mmgEl(id); e.classList.add('has-img');
+  e.innerHTML='<img src="'+img.src+'" alt="" style="max-width:100%;max-height:170px;border-radius:8px;display:block;margin:0 auto"><div class="t">已选：'+img.width+'×'+img.height+'</div>';
+}
+function mmgRenderSecrets(){
+  var box=mmgEl('mmgSecretList');
+  if(!mmgSt.secrets.length){ box.innerHTML=''; return; }
+  var h='<div style="font-size:13px;color:var(--muted)">已选 '+mmgSt.secrets.length+' 张，将自动缩小拼入：</div>';
+  var cap=mmgCapacityHint();
+  if(cap) h+='<div style="font-size:12px;margin-top:5px;line-height:1.4">'+cap+'</div>';
+  h+='<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">';
+  for(var i=0;i<mmgSt.secrets.length;i++){
+    h+='<div style="position:relative;width:56px;height:56px">'
+      +(mmgSt.secrets[i]._isVideo
+        ?'<div class="mmg-secret-thumb" style="display:flex;align-items:center;justify-content:center;background:var(--card2);color:var(--text);font-size:11px;padding:4px;text-align:center;word-break:break-all">视频<br>'+(mmgSt.secrets[i]._name||'')+'</div>'
+        :'<img src="'+mmgSt.secrets[i].src+'" class="mmg-secret-thumb" alt="'+(i+1)+'">')
+      +'<button type="button" onclick="mmgDel('+i+')" title="删除这张" style="position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;border:0;background:#e06c5b;color:#fff;font-size:13px;line-height:20px;cursor:pointer;padding:0;text-align:center">×</button>'
+      +'</div>';
+  }
+  h+='</div>'; box.innerHTML=h;
+}
+function mmgDel(i){
+  mmgSt.secrets.splice(i,1);
+  mmgRenderSecrets();
+  mmgUpd();
+}
+function mmgCapacityHint(){
+  var cv=mmgSt.cover, cn=mmgSt.secrets.length;
+  if(!cv||!cn) return '';
+  if(cn===1 && isGifSecret(mmgSt.secrets[0])) return mmgSingleFileHint(cv,mmgSt.secrets[0],'GIF');
+  if(cn===1 && isWebpSecret(mmgSt.secrets[0])) return mmgSingleFileHint(cv,mmgSt.secrets[0],'WebP 动图');
+  if(cn===1 && isVideoSecret(mmgSt.secrets[0])) return mmgSingleFileHint(cv,mmgSt.secrets[0],'视频');
+  var cw=cv.naturalWidth||cv.width, ch=cv.naturalHeight||cv.height;
+  if(!cw||!ch) return '请先选好表图，才能实时估算容量';
+  var scale=mmgSt.scale||1;
+  cw=Math.round(cw*scale); ch=Math.round(ch*scale);
+  var availBytes=Math.floor(cw*ch*3*2/8)-12;
+  if(availBytes<=0) return '表图容量不足，请换更大的表图';
+  var kv=mmgSt.quality==='png'?0.6:0.25;
+  var sumRatio=0, maxH=0;
+  for(var i=0;i<cn;i++){
+    var s=mmgSt.secrets[i];
+    var iw=s.naturalWidth||s.width, ih=s.naturalHeight||s.height;
+    if(!iw||!ih) return '正在读取图片尺寸…';
+    sumRatio+=iw/ih; if(ih>maxH) maxH=ih;
+  }
+  var capS=Math.floor(Math.sqrt(availBytes/(sumRatio*kv)));
+  var S=Math.max(24,Math.min(maxH,capS));
+  // 需求占用 = 保持原高所需容量 / 表图容量（实时，可超100%，电量持续变化）
+  var need=(maxH*maxH*sumRatio)*kv;
+  var needPct=Math.round(need/availBytes*100);
+  // 电量填充：充足按占用动态；达上限/超限满格
+  var fh=Math.round(Math.min(1,need/availBytes)*18); if(fh<2&&need>0) fh=2;
+  // 颜色三档：充足=常绿 / 已达上限=橙色 / 严重超限看不清=红色
+  var col, txt;
+  if(capS>=maxH){ col='#5bd08a'; txt='<span style="color:var(--muted)">容量充足：'+cn+' 张保持原图高度（'+S+'px，占用 '+needPct+'%）</span>'; }
+  else if(S>=maxH*0.55){ col='#e8a34a'; txt='<span style="color:#e8a34a">已达容量上限：将自动缩小到约 '+S+'px（原图最高 '+maxH+'px，需求 '+needPct+'%）</span>'; }
+  else { col='#e06c5b'; txt='<span style="color:#e06c5b">容量严重不足：将缩小到约 '+S+'px，已明显模糊（原图最高 '+maxH+'px，需求 '+needPct+'%）</span>'; }
+  var batt='<svg width="16" height="26" viewBox="0 0 16 26" style="flex:none">'
+    +'<rect x="2" y="1.5" width="11" height="22" rx="2.5" fill="none" stroke="'+col+'" stroke-width="1.3"/>'
+    +'<rect x="5.4" y="0" width="4.2" height="2.2" rx="1" fill="'+col+'"/>'
+    +'<rect x="4" y="'+(22-fh)+'" width="7" height="'+fh+'" rx="1" fill="'+col+'" opacity="0.9"/>'
+    +'</svg>';
+  return '<span style="display:inline-flex;align-items:center;gap:7px">'+batt+txt+'</span>';
+}
+function mmgLoad(file){
+  if(file.type.indexOf('video/')===0){
+    var uv=URL.createObjectURL(file);
+    var vo={src:uv,_isVideo:true,_name:file.name,_size:file.size};
+    if(mmgSt.curPick==='secrets'){ mmgSt.secrets.push(vo); mmgRenderSecrets(); mmgUpd(); }
+    else { mmgHint('mmgHint','视频只能作为里图（②选里图）使用','err'); }
+    return;
+  }
+  var u=URL.createObjectURL(file); var img=new Image();
+  img.onload=function(){
+    if(mmgSt.curPick==='cover'){ mmgSt.cover=img; mmgRenderDrop('mmgDropCover',img); mmgUpd(); }
+    else if(mmgSt.curPick==='secrets'){ img._isGif=(file.type==='image/gif'||/\.gif$/i.test(file.name)); img._isWebp=(file.type==='image/webp'||/\.webp$/i.test(file.name)); img._size=file.size; mmgSt.secrets.push(img); mmgRenderSecrets(); mmgUpd(); }
+  };
+  img.onerror=function(){ mmgHint('mmgHint','不是有效的图片文件','err'); };
+  img.src=u;
+}
+mmgEl('mmgFile').addEventListener('change',function(){
+  var fs=this.files; if(!fs||!fs.length)return;
+  if(mmgSt.curPick==='secrets'&&!mmgSt.append){ mmgSt.secrets=[]; mmgEl('mmgSecretList').innerHTML=''; }
+  for(var i=0;i<fs.length;i++) mmgLoad(fs[i]);
+});
+function mmgBindDrop(id,t){
+  var e=mmgEl(id);
+  e.addEventListener('dragover',function(x){x.preventDefault();e.classList.add('drag-over');});
+  e.addEventListener('dragleave',function(){e.classList.remove('drag-over');});
+  e.addEventListener('drop',function(x){
+    x.preventDefault();e.classList.remove('drag-over');
+    var fs=x.dataTransfer&&x.dataTransfer.files; if(!fs||!fs.length)return;
+    if(t==='secrets'&&!mmgSt.append){ mmgSt.secrets=[]; mmgEl('mmgSecretList').innerHTML=''; }
+    mmgSt.curPick=t; for(var i=0;i<fs.length;i++) mmgLoad(fs[i]);
+  });
+}
+mmgBindDrop('mmgDropCover','cover');
+mmgBindDrop('mmgDropSecrets','secrets');
+function mmgBuildRow(imgs,S){
+  // 每张图统一高度 S，宽度按原图宽高比 => 保留比例、无缝、无白边、非方形
+  var ws=[],total=0;
+  for(var i=0;i<imgs.length;i++){ var img=imgs[i]; var iw=img.naturalWidth||img.width,ih=img.naturalHeight||img.height; var w=Math.max(16,Math.round(S*iw/ih)); ws.push(w); total+=w; }
+  var c=document.createElement('canvas'); c.width=total; c.height=S;
+  var ctx=c.getContext('2d'); var x=0;
+  for(var i=0;i<imgs.length;i++){ ctx.drawImage(imgs[i],x,0,ws[i],S); x+=ws[i]; }
+  return {canvas:c, ws:ws};
+}
+function mmgSliceMosaic(blob,meta){
+  return new Promise(function(res,rej){
+    var url=URL.createObjectURL(blob); var img=new Image();
+    img.onload=function(){
+      var outs=[],x=0,hh=meta.h;
+      for(var i=0;i<meta.n;i++){ var w=meta.ws[i];
+        var cv=document.createElement('canvas'); cv.width=w; cv.height=hh;
+        var cx=cv.getContext('2d'); cx.drawImage(img,x,0,w,hh,0,0,w,hh);
+        outs.push(cv.toDataURL('image/png')); x+=w;
+      }
+      URL.revokeObjectURL(url); res(outs);
+    };
+    img.onerror=function(){ URL.revokeObjectURL(url); rej(new Error('拼接图损坏')); };
+    img.src=url;
+  });
+}
+function isGifSecret(img){ return !!(img && (img._isGif || (img.src && img.src.indexOf('data:image/gif')===0))); }
+function isVideoSecret(sec){ return !!(sec && sec._isVideo); }
+function isWebpSecret(sec){ return !!(sec && sec._isWebp); }
+function mmgSingleFileHint(cv, sec, kind){
+  var sc=mmgSt.scale||1;
+  var cwg=cv.naturalWidth*sc, chg=cv.naturalHeight*sc;
+  var avail=Math.floor(cwg*chg*3*2/8)-9;
+  var need=sec&&sec._size?sec._size:0;
+  if(need&&need>avail){
+    var cw0=cv.naturalWidth||cv.width, ch0=cv.naturalHeight||cv.height;
+    var k=Math.ceil(Math.sqrt((need+9)*8/(cw0*ch0*6)));
+    if(k<sc)k=sc;
+    return '<span style="color:#e8a34a">'+kind+' 需 '+need+' 字节，当前 '+sc+'× 只容纳 '+avail+' 字节，请在倍率框放大到约 '+k+'× 或更大</span>';
+  }
+  return '<span style="color:var(--ok)">'+kind+' 将整份嵌入（'+(need?need+' 字节，当前 '+sc+'× 可装下，容量约 '+avail+' 字节':'容量以生成时校验为准')+'）；自定义倍率可再增大</span>';
+}
+async function mmgEmbedVideo(){
+  mmgHint('mmgHint','正在嵌入视频…','');
+  try{
+    var vsrc=mmgSt.secrets[0].src;
+    var vbuf=await fetch(vsrc).then(function(r){return r.arrayBuffer();});
+    var vBytes=new Uint8Array(vbuf);
+    var raw=drawToCanvas(mmgSt.cover); var cw0=raw.width,ch0=raw.height;
+    var scale=mmgSt.scale||1;
+    var reloaded=await new Promise(function(res){ raw.toBlob(function(b){var im=new Image();im.onload=function(){res(im);};im.src=URL.createObjectURL(b);},'image/png'); });
+    var canvas=document.createElement('canvas'); canvas.width=Math.max(1,Math.round(cw0*scale)); canvas.height=Math.max(1,Math.round(ch0*scale));
+    var ctx=canvas.getContext('2d'); ctx.drawImage(reloaded,0,0,canvas.width,canvas.height);
+    var cw=canvas.width,ch=canvas.height;
+    var data=ctx.getImageData(0,0,cw,ch); var px=data.data;
+    var capBits=cw*ch*3*2, availBytes=Math.floor(capBits/8)-9;
+    if(vBytes.length>availBytes){
+      mmgHint('mmgHint','视频太大（'+vBytes.length+' 字节），表图只能容纳 '+availBytes+' 字节（约 '+(availBytes/1048576).toFixed(1)+' MB）。请放大表图分辨率或换更大的表图、或压缩视频。','err');
+      return;
+    }
+    var flags=(1)|16; // bpc2 + 视频标记
+    var header=new Uint8Array(9); header.set(MAGIC,0); header[4]=flags;
+    header[5]=(vBytes.length>>>24)&0xFF; header[6]=(vBytes.length>>>16)&0xFF; header[7]=(vBytes.length>>>8)&0xFF; header[8]=vBytes.length&0xFF;
+    var payload=new Uint8Array(9+vBytes.length);
+    payload.set(header,0); payload.set(vBytes,9);
+    var bits=bytesToBits(payload,2); var bi=0;
+    for(var j=0;j<px.length;j+=4){ for(var c2=0;c2<3;c2++){ if(bi>=bits.length)break; var low=0; for(var k=0;k<2;k++){ if(bi<bits.length)low|=bits[bi++]<<k; } px[j+c2]=(px[j+c2]&(0xFF<<2))|low; } }
+    ctx.putImageData(data,0,0);
+    canvas.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ var url=fr.result; _rawResult=url; _rawImg=null; _glowApplied=false; var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化'; mmgEl('mmgPreview').src=url; mmgEl('mmgDownload').href=url; mmgEl('mmgResult').style.display='block'; mmgHint('mmgHint','完成！视频已整份嵌入，成品 '+cw+'×'+ch+'；用取图剥出可播放视频。','ok'); }; fr.readAsDataURL(blob); },'image/png');
+  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); }
+}
+async function mmgEmbedGif(){
+  mmgHint('mmgHint','正在嵌入动图…','');
+  try{
+    var gifSrc=mmgSt.secrets[0].src;
+    var gifBuf=await fetch(gifSrc).then(function(r){return r.arrayBuffer();});
+    var gifBytes=new Uint8Array(gifBuf);
+    var raw=drawToCanvas(mmgSt.cover); var cw0=raw.width,ch0=raw.height;
+    var scale=mmgSt.scale||1;
+    var reloaded=await new Promise(function(res){ raw.toBlob(function(b){var im=new Image();im.onload=function(){res(im);};im.src=URL.createObjectURL(b);},'image/png'); });
+    var canvas=document.createElement('canvas'); canvas.width=Math.max(1,Math.round(cw0*scale)); canvas.height=Math.max(1,Math.round(ch0*scale));
+    var ctx=canvas.getContext('2d'); ctx.drawImage(reloaded,0,0,canvas.width,canvas.height);
+    var cw=canvas.width,ch=canvas.height;
+    var data=ctx.getImageData(0,0,cw,ch); var px=data.data;
+    var capBits=cw*ch*3*2, availBytes=Math.floor(capBits/8)-9;
+    if(gifBytes.length>availBytes){
+      mmgHint('mmgHint','动图太大（'+gifBytes.length+' 字节），表图只能容纳 '+availBytes+' 字节。请在倍率框放大表图或换更大的表图。','err');
+      return;
+    }
+    var flags=(1)|8; // bpc2 + GIF 标记
+    var header=new Uint8Array(9);
+    header.set(MAGIC,0); header[4]=flags;
+    header[5]=(gifBytes.length>>>24)&0xFF; header[6]=(gifBytes.length>>>16)&0xFF; header[7]=(gifBytes.length>>>8)&0xFF; header[8]=gifBytes.length&0xFF;
+    var payload=new Uint8Array(9+gifBytes.length);
+    payload.set(header,0); payload.set(gifBytes,9);
+    var bits=bytesToBits(payload,2); var bi=0;
+    for(var j=0;j<px.length;j+=4){ for(var c2=0;c2<3;c2++){ if(bi>=bits.length)break; var low=0; for(var k=0;k<2;k++){ if(bi<bits.length)low|=bits[bi++]<<k; } px[j+c2]=(px[j+c2]&(0xFF<<2))|low; } }
+    ctx.putImageData(data,0,0);
+    canvas.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ var url=fr.result; _rawResult=url; _rawImg=null; _glowApplied=false; var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化'; mmgEl('mmgPreview').src=url; mmgEl('mmgDownload').href=url; mmgEl('mmgResult').style.display='block'; mmgHint('mmgHint','完成！动图已整份嵌入，成品 '+cw+'×'+ch+'；用取图剥出可还原成动画（GIF/WebP）。','ok'); }; fr.readAsDataURL(blob); },'image/png');
+  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); }
+}
+var _rawResult=null;
+var _rawImg=null;
+var _glowTimer=null;
+function glowAmtSync(){ var el=document.getElementById('glowAmt'),t=document.getElementById('glowAmtTxt'); if(el&&t) t.textContent=el.value; }
+var _glowApplied=false;
+function glowToggle(){
+  if(!_rawResult){ mmgHint('mmgHint','请先生成成品，再做光棱化。','err'); return; }
+  var b=document.getElementById('glowBtn');
+  if(b && b.dataset.on==='1'){
+    mmgEl('mmgPreview').src=_rawResult; mmgEl('mmgDownload').href=_rawResult;
+    b.dataset.on='0'; b.textContent='表图光棱化'; _glowApplied=false;
+    mmgHint('mmgHint','已取消光棱化，表图恢复原样。','ok');
+  } else {
+    applyGlow(); if(b){ b.dataset.on='1'; b.textContent='取消光棱化'; } _glowApplied=true;
+  }
+}
+if(document.getElementById('glowAmt')) document.getElementById('glowAmt').addEventListener('input',glowAmtSync);
+function applyGlow(){
+  _glowTimer=null;
+  if(!_rawResult){ mmgHint('mmgHint','请先生成成品，再做伪装效果。','err'); return; }
+  var amt=parseInt(mmgEl('glowAmt').value,10)||45;
+  var mode=mmgEl('glowMode').value;
+  if(_rawImg){ glowProcess(_rawImg,mode,amt); return; }
+  var img=new Image(); _rawImg=img;
+  img.onload=function(){ glowProcess(img,mode,amt); };
+  img.src=_rawResult;
+}
+function glowProcess(img,mode,amt){
+  var c=document.createElement('canvas');
+  c.width=img.naturalWidth; c.height=img.naturalHeight;
+  var ctx=c.getContext('2d');
+  ctx.drawImage(img,0,0);
+  var id=ctx.getImageData(0,0,c.width,c.height), d=id.data, w=c.width, h=c.height, n=d.length;
+  var strength=0.35+amt/100*0.6;   // 纹理压暗深浅 0.35~0.95
+  var stepDot=9, rDot=3.2, stepScan=6, lineH=2, stepGrid=7, lineW=1, stepPat=13, patW=4;
+  for(var y=0;y<h;y++){
+    for(var x=0;x<w;x++){
+      var on=false;
+      if(mode==='dot'){
+        var cx=(x%stepDot)-stepDot/2, cy=(y%stepDot)-stepDot/2;
+        if(cx*cx+cy*cy<=rDot*rDot) on=true;
+      } else if(mode==='scan'){
+        if(y%stepScan<lineH) on=true;
+      } else if(mode==='grid'){
+        if((x%stepGrid<lineW)||(y%stepGrid<lineW)) on=true;
+      } else if(mode==='pattern'){
+        var px=x%stepPat, py=y%stepPat, half=stepPat/2;
+        if(Math.abs(px-half)+Math.abs(py-half)<patW) on=true; // 菱形花纹暗纹
+      }
+      if(on){
+        var p=(y*w+x)*4;
+        for(var j=0;j<3;j++){ var o=d[p+j]; var v=o*strength; if(v<0)v=0; d[p+j]=(v&~3)|(o&3); }
+      }
+    }
+  }
+  ctx.putImageData(id,0,0);
+  var url=c.toDataURL('image/png');
+  mmgEl('mmgPreview').src=url;
+  mmgEl('mmgDownload').href=url;
+  mmgHint('mmgHint','已叠加纹理伪装（强度'+amt+'）：看着像藏了图；藏的数据不受影响，仍可正常剥出。','ok');
+}
+/* 伪装效果已改由 applyGlow 实时处理 */
+function glowTable(){ applyGlow(); }
+async function mmgEmbed(){
+  mmgHint('mmgHint','正在处理…','');
+  try{
+    if(mmgSt.secrets.length>1 && mmgSt.secrets.some(isVideoSecret)){ mmgHint('mmgHint','视频请单独一张一张藏（当前多张里有视频）','err'); return; }
+    if(mmgSt.secrets.length===1 && (isGifSecret(mmgSt.secrets[0])||isWebpSecret(mmgSt.secrets[0]))) return await mmgEmbedGif();
+    if(mmgSt.secrets.length===1 && isVideoSecret(mmgSt.secrets[0])) return await mmgEmbedVideo();
+    var bpc=2;
+    var raw=drawToCanvas(mmgSt.cover); var cw0=raw.width,ch0=raw.height;
+    var scale=mmgSt.scale||1;
+    var reloaded=await new Promise(function(res){ raw.toBlob(function(b){var im=new Image();im.onload=function(){res(im);};im.src=URL.createObjectURL(b);},'image/png'); });
+    var canvas=document.createElement('canvas'); canvas.width=Math.max(1,Math.round(cw0*scale)); canvas.height=Math.max(1,Math.round(ch0*scale));
+    var ctx=canvas.getContext('2d'); ctx.drawImage(reloaded,0,0,canvas.width,canvas.height);
+    var cw=canvas.width,ch=canvas.height;
+    var data=ctx.getImageData(0,0,cw,ch); var px=data.data;
+    var n=mmgSt.secrets.length;
+    var capBits=cw*ch*3*bpc, availBytes=Math.floor(capBits/8)-12;
+    var kv=mmgSt.quality==='png'?0.6:0.25;
+    // 里图按原图画质设定（JPEG省空间/PNG无损）；每张按原比例横排拼接（统一高度 S、宽按比例，无白边非方形）
+    var sumRatio=0; for(var k0=0;k0<n;k0++){ var s0=mmgSt.secrets[k0]; sumRatio+=(s0.naturalWidth||s0.width)/(s0.naturalHeight||s0.height); }
+    // 上限 = 原图最大高度（不放大超过原图，保持清晰）；去掉 2048 硬顶，实际由容量决定
+    var maxH=0; for(var k2=0;k2<n;k2++){ var s2=mmgSt.secrets[k2]; var hh=s2.naturalHeight||s2.height; if(hh>maxH) maxH=hh; }
+    var S=Math.max(24,Math.min(maxH,Math.floor(Math.sqrt(availBytes/(sumRatio*kv)))));
+    // 实际编码校验：超容量就逐步缩小，保证一定放得下
+    var secretBytes=null, mws=null;
+    for(var tries=0;tries<8;tries++){
+      var mb=mmgBuildRow(mmgSt.secrets,S);
+      var sb=await imgToBytes(mb.canvas,mmgSt.quality==='png'?'png':'jpeg');
+      if(sb.length<=availBytes){ secretBytes=sb; mws=mb.ws; break; }
+      S=Math.max(24,Math.floor(S*0.85));
+    }
+    if(!secretBytes){ mmgHint('mmgHint','容量不够：表图太小或图太多。换更大的表图/少放几张。','err'); return; }
+    var flags=(bpc===2?1:0)|4|(mmgSt.quality==='png'?0:2);
+    var hlen=12+2*n;
+    var header=new Uint8Array(hlen);
+    header.set(MAGIC,0); header[4]=flags;
+    header[5]=(secretBytes.length>>>24)&0xFF; header[6]=(secretBytes.length>>>16)&0xFF; header[7]=(secretBytes.length>>>8)&0xFF; header[8]=secretBytes.length&0xFF;
+    header[9]=(S>>>8)&0xFF; header[10]=S&0xFF; header[11]=n;
+    for(var w2=0;w2<n;w2++){ header[12+2*w2]=(mws[w2]>>>8)&0xFF; header[13+2*w2]=mws[w2]&0xFF; }
+    var payload=new Uint8Array(hlen+secretBytes.length);
+    payload.set(header,0); payload.set(secretBytes,hlen);
+    var bits=bytesToBits(payload,bpc); var bi=0;
+    for(var i=0;i<px.length;i+=4){ for(var c2=0;c2<3;c2++){ if(bi>=bits.length)break; var low=0; for(var k=0;k<bpc;k++){ if(bi<bits.length)low|=bits[bi++]<<k; } px[i+c2]=(px[i+c2]&(0xFF<<bpc))|low; } }
+    ctx.putImageData(data,0,0);
+    canvas.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ var url=fr.result; _rawResult=url; _rawImg=null; _glowApplied=false; var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化'; mmgEl('mmgPreview').src=url; mmgEl('mmgDownload').href=url; mmgEl('mmgResult').style.display='block'; mmgHint('mmgHint','完成！成品 '+cw+'×'+ch+'，内含 '+n+' 张小图（'+(mmgSt.quality==='png'?'PNG':'JPEG')+'·小图约 '+S+'px）。','ok'); }; fr.readAsDataURL(blob); },'image/png');
+  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); }
+}
+// 多小图还原统一走主取图页（主取图已识别多小图成品并自动切分）
+mmgEl('mmgEmbedBtn').addEventListener('click',mmgEmbed);
+  </script>
+</details>
+</div>
+
+<script>
+(function(){
+'use strict';
+/* =====================================================================
+   幻影图制作工具（幻影坦克算法，前缀 mrg_，IIFE 隔离）
+   算法忠实还原原版(Mirage_Colored)：alpha 反推 + 混合权重
+   ===================================================================== */
+var root=document.getElementById('mrg-app');
+if(!root) return;
+
+var state={ inner:null, cover:null, innerData:null, coverData:null,
+  innerGray:null, coverGray:null, W:0, H:0,
+  scale_i:0.3, scale_c:0.8, desat_i:0, desat_c:0, weight_i:0.7,
+  colored:true, max_size:1200, outData:null };
+var mrgMaxTouched=false; // 用户是否手动改过输出尺寸
+function el(id){ return document.getElementById(id); }
+function grayOf(imgData){
+  var d=imgData.data, n=d.length>>2, g=new Uint8ClampedArray(n);
+  for(var i=0;i<n;i++) g[i]=0.299*d[i*4]+0.587*d[i*4+1]+0.114*d[i*4+2];
+  return g;
+}
+
+/* ---------- 选图 ---------- */
+var curPick='inner';
+function pick(t){ curPick=t; var f=t==='inner'?el('mrgInnerFile'):el('mrgCoverFile'); f.value=''; f.click(); }
+function bindDrop(dropId,t){
+  var d=el(dropId);
+  d.addEventListener('click',function(){ pick(t); });
+  d.addEventListener('dragover',function(e){ e.preventDefault(); d.classList.add('drag-over'); });
+  d.addEventListener('dragleave',function(){ d.classList.remove('drag-over'); });
+  d.addEventListener('drop',function(e){
+    e.preventDefault(); d.classList.remove('drag-over');
+    var f=e.dataTransfer&&e.dataTransfer.files&&e.dataTransfer.files[0];
+    if(f) loadImg(f,t);
+  });
+}
+bindDrop('mrgDropInner','inner');
+bindDrop('mrgDropCover','cover');
+el('mrgInnerFile').addEventListener('change',function(){ var f=this.files&&this.files[0]; if(f) loadImg(f,'inner'); });
+el('mrgCoverFile').addEventListener('change',function(){ var f=this.files&&this.files[0]; if(f) loadImg(f,'cover'); });
+/* 粘贴：仅当本分支展开时才接管，避免与主取图页粘贴冲突 */
+var mrgDet=document.getElementById('mrg-app-details');
+document.addEventListener('paste',function(e){
+  if(mrgDet && !mrgDet.open) return;
+  var items=(e.clipboardData||{}).items; if(!items) return;
+  for(var i=0;i<items.length;i++){
+    if(items[i].type&&items[i].type.indexOf('image')===0){
+      loadImg(items[i].getAsFile(), (e.clientX||0) < (window.innerWidth/2) ? 'inner' : 'cover');
+      return;
+    }
+  }
+});
+
+function loadImg(file,t){
+  if(!file) return;
+  var fr=new FileReader();
+  fr.onload=function(){
+    var img=new Image();
+    img.onload=function(){
+      if(t==='inner') setInner(img); else setCover(img);
+      if(state.inner && state.cover) requestRender();
+    };
+    img.onerror=function(){ setHint('图片读取失败','err'); };
+    img.src=fr.result;
+  };
+  fr.onerror=function(){ setHint('图片读取失败','err'); };
+  fr.readAsDataURL(file);
+}
+
+/* ---------- 里图：按 max_size 缩放 ---------- */
+function setInner(img){
+  if(!mrgMaxTouched){ state.max_size=Math.max(img.width,img.height); el('mrgMaxSize').value=state.max_size; }
+  var W=0,H=0;
+  if(state.max_size>0 && (img.width>img.height)){
+    W=state.max_size; H=Math.max(1,Math.ceil(img.height*state.max_size/img.width));
+  } else if(state.max_size>0){
+    H=state.max_size; W=Math.max(1,Math.ceil(img.width*state.max_size/img.height));
+  } else { W=img.width; H=img.height; }
+  var c=document.createElement('canvas'); c.width=W; c.height=H;
+  c.getContext('2d').drawImage(img,0,0,W,H);
+  state.inner=img; state.innerData=c.getContext('2d').getImageData(0,0,W,H);
+  state.innerGray=grayOf(state.innerData); state.W=W; state.H=H;
+  el('mrgInnerPrev').src=c.toDataURL(); el('mrgInnerPrev').hidden=false;
+  el('mrgDropInner').classList.add('has-img');
+  if(state.cover) setCoverToW();
+}
+/* ---------- 表图：居中裁切到里图尺寸 ---------- */
+function setCoverToW(){
+  var c=document.createElement('canvas'); c.width=state.W; c.height=state.H;
+  var cx=c.getContext('2d');
+  var iw=state.cover.naturalWidth||state.cover.width, ih=state.cover.naturalHeight||state.cover.height;
+  var a=iw/ih, ta=state.W/state.H, sx=0,sy=0,sw=iw,sh=ih;
+  if(a>ta){ sw=ih*ta; sx=(iw-sw)/2; } else { sh=iw/ta; sy=(ih-sh)/2; }
+  cx.drawImage(state.cover,sx,sy,sw,sh,0,0,state.W,state.H);
+  state.coverData=cx.getImageData(0,0,state.W,state.H);
+  state.coverGray=grayOf(state.coverData);
+  el('mrgCoverPrev').src=c.toDataURL(); el('mrgCoverPrev').hidden=false;
+  el('mrgDropCover').classList.add('has-img');
+}
+function setCover(img){
+  state.cover=img;
+  if(state.inner) setCoverToW();
+  else {
+    var c=document.createElement('canvas'); c.width=img.width; c.height=img.height;
+    c.getContext('2d').drawImage(img,0,0);
+    state.coverData=c.getContext('2d').getImageData(0,0,img.width,img.height);
+    state.coverGray=grayOf(state.coverData); state.W=img.width; state.H=img.height;
+    el('mrgCoverPrev').src=c.toDataURL(); el('mrgCoverPrev').hidden=false;
+    el('mrgDropCover').classList.add('has-img');
+  }
+}
+
+/* ---------- 渲染 ---------- */
+function renderNow(){
+  if(!state.innerData||!state.coverData) return;
+  var W=state.W,H=state.H, innerD=state.innerData.data, coverD=state.coverData.data;
+  var innerG=state.innerGray, coverG=state.coverGray;
+  var si=state.scale_i, sc=state.scale_c, di=state.desat_i, dc=state.desat_c, wi=state.weight_i;
+  var out=new Uint8ClampedArray(innerD.length);
+  if(state.colored){
+    for(var i=0;i<innerD.length;i+=4){
+      var gi=innerG[i>>2]*si;
+      var gc=255-(255-coverG[i>>2])*sc;
+      var a=Math.min(Math.max((255+gi-gc)/255,0),1);
+      var ir=innerD[i]*si*(1-di)+gi*di;
+      var ig=innerD[i+1]*si*(1-di)+gi*di;
+      var ib=innerD[i+2]*si*(1-di)+gi*di;
+      var cr=(255-(255-coverD[i])*sc)*(1-dc)+gc*dc;
+      var cg=(255-(255-coverD[i+1])*sc)*(1-dc)+gc*dc;
+      var cb=(255-(255-coverD[i+2])*sc)*(1-dc)+gc*dc;
+      var m=255*a;
+      out[i]  = ((ir-m+255-cr)*wi + m-255+cr)/a;
+      out[i+1]= ((ig-m+255-cg)*wi + m-255+cg)/a;
+      out[i+2]= ((ib-m+255-cb)*wi + m-255+cb)/a;
+      out[i+3]= m;
+    }
+  } else {
+    for(var j=0;j<innerG.length;j++){
+      var y=innerG[j]*si;
+      var sum=255+y-(255-(255-coverG[j])*sc);
+      var b=255*y/sum;
+      out[j<<2]=b; out[(j<<2)+1]=b; out[(j<<2)+2]=b; out[(j<<2)+3]=sum;
+    }
+  }
+  state.outData=out;
+  var oc=el('mrgOutputCanvas'); oc.width=W; oc.height=H;
+  oc.getContext('2d').putImageData(new ImageData(out,W,H),0,0);
+  el('mrgSave').disabled=false;
+  setHint('已生成 '+W+'×'+H+' 成品','ok');
+}
+var last=0,timer=null;
+function requestRender(){
+  var now=Date.now();
+  if(now-last>=90){ last=now; renderNow(); }
+  else { clearTimeout(timer); timer=setTimeout(function(){ last=Date.now(); renderNow(); },90); }
+}
+function setHint(msg,cls){ var h=el('mrgHint'); h.textContent=msg; h.className='mrg-hint'+(cls?(' '+cls):''); }
+
+/* ---------- 参数联动 ---------- */
+function linkPair(rangeId,inputId,prop){
+  var r=el(rangeId), i=el(inputId);
+  r.addEventListener('input',function(){ i.value=r.value; state[prop]=parseFloat(r.value); if(state.inner&&state.cover) requestRender(); });
+  i.addEventListener('input',function(){
+    var v=parseFloat(i.value); if(isNaN(v)) return;
+    v=Math.min(Math.max(v,0),1); r.value=v; i.value=v; state[prop]=v;
+    if(state.inner&&state.cover) requestRender();
+  });
+}
+linkPair('mrgScaleIR','mrgScaleII','scale_i');
+linkPair('mrgScaleCR','mrgScaleCI','scale_c');
+linkPair('mrgDesatIR','mrgDesatII','desat_i');
+linkPair('mrgDesatCR','mrgDesatCI','desat_c');
+linkPair('mrgWeightR','mrgWeightI','weight_i');
+el('mrgColored').addEventListener('change',function(){ state.colored=this.checked; if(state.inner&&state.cover) requestRender(); });
+el('mrgMaxSize').addEventListener('input',function(){
+  mrgMaxTouched=true;
+  var v=parseInt(this.value,10); if(isNaN(v)) return;
+  v=Math.min(Math.max(v,0),4096); this.value=v;
+  state.max_size=v;
+  if(state.inner){ state.innerData=null; setInner(state.inner); }
+  if(state.inner&&state.cover) requestRender();
+});
+
+/* ---------- 开关灯（输出画布黑/白背景切换） ---------- */
+var mrgLightDark=true; // true=黑背景
+function setLight(dark){
+  mrgLightDark=dark;
+  el('mrgOutputCanvas').style.background=dark?'#000':'#fff';
+  el('mrgToggleLight').textContent=dark?'开关灯：黑背景（看里图）':'开关灯：白背景（看表图）';
+}
+el('mrgToggleLight').addEventListener('click',function(){ setLight(!mrgLightDark); });
+setLight(true);
+
+/* ---------- 保存 ---------- */
+el('mrgSave').addEventListener('click',function(){
+  try{
+    var a=document.createElement('a');
+    a.href=el('mrgOutputCanvas').toDataURL('image/png');
+    a.download='幻影图成品.png';
+    document.body.appendChild(a); a.click(); setTimeout(function(){ document.body.removeChild(a); },100);
+  }catch(err){ setHint('保存失败：'+err.message,'err'); }
+});
+})();
+</script>
+<div id="download-area" style="display:none">
+  <button class="btn btn-ghost" style="margin-top:12px;padding:6px 14px;font-size:12px" onclick="downloadSelf()">下载本工具（保存这个 HTML 到本地）</button>
+</div>
+
+<input type="file" id="fileInput" accept="image/*" multiple hidden>
+
+<script>
+// 头部: [0..3]=magic  [4]=flags  [5..8]=payload长度(uint32)  [9..]=payload
+// flags bit0: 每通道位数 (0=1bit, 1=2bit)
+// flags bit1: 原图格式 (0=PNG, 1=JPEG)
+const MAGIC=[0x53,0x54,0x47,0x4F];
+const HEADER_LEN=9;
+
+let mode='embed';
+let coverImg=null, secretImg=null, stegoImg=null;
+let stegoQueue=[]; // 批量取图队列
+let currentPickTarget=null;
+
+// 环境检测：万能阅读器等简陋渲染器不支持 canvas/data URL，直接弹提示
+(function envCheck(){
+  let ok=true, reason='';
+  try{
+    const c=document.createElement('canvas');
+    c.width=10; c.height=10;
+    const ctx=c.getContext('2d');
+    ctx.fillRect(0,0,10,10);
+    const d=ctx.getImageData(0,0,10,10);
+    if(!d || d.data.length<4) ok=false, reason='canvas 不可用';
+  }catch(e){ ok=false; reason=e.message; }
+  if(!ok){
+    document.body.innerHTML='<div style="padding:40px 24px;text-align:center;font-family:sans-serif;color:#fff;background:#0f1115;min-height:100vh;display:flex;flex-direction:column;justify-content:center">'
+      +'<div style="font-size:22px;font-weight:700;margin-bottom:16px;">请用浏览器打开本文件</div>'
+      +'<div style="font-size:15px;color:#aaa;line-height:1.7">你当前用的是「万能阅读器」之类的文档查看器，它不会运行页面脚本，这个工具用不了。</div>'
+      +'<div style="font-size:15px;color:#d9a05b;line-height:1.7;margin-top:16px">请返回文件列表，长按这个文件 →「打开方式」→ 选择「浏览器」（Chrome / 系统浏览器）再打开。</div>'
+      +'</div>';
+  }
+})();
+
+function setMode(m){
+  mode=m;
+  document.getElementById('tabEmbed').classList.toggle('active',m==='embed');
+  document.getElementById('tabExtract').classList.toggle('active',m==='extract');
+  document.getElementById('paneEmbed').classList.toggle('active',m==='embed');
+  document.getElementById('paneExtract').classList.toggle('active',m==='extract');
+  // 下载区只在取图页显示
+  document.getElementById('download-area').style.display=(m==='extract')?'':'none';
+}
+let quality='slim'; // slim=JPEG省空间, lossless=PNG无损
+function setQuality(q){
+  quality=q;
+  document.getElementById('qSlim').classList.toggle('active',q==='slim');
+  document.getElementById('qLossless').classList.toggle('active',q==='lossless');
+  document.getElementById('qualityNote').textContent = q==='slim'
+    ? 'JPEG：体积小 5～10 倍，表图不用很大；还原图肉眼几乎无差。'
+    : 'PNG：原图逐像素无损，但体积大，需要明显更大的表图。';
+}
+
+function pick(t){ currentPickTarget=t; const fi=document.getElementById('fileInput'); fi.value=''; fi.click(); }
+
+// 统一加载一张图片文件（点选 / 拖放都走这里）
+function loadFile(file, target){
+  const url=URL.createObjectURL(file);
+  const img=new Image();
+  img.onload=()=>{
+    if(target==='cover'){ coverImg=img; renderDrop('dropCover',img); updateEmbedBtn(); }
+    else if(target==='secret'){ secretImg=img; renderDrop('dropSecret',img); updateEmbedBtn(); }
+    else if(target==='stego'){
+      stegoQueue.push({img, file});
+      stegoImg=img; // 兼容单张逻辑
+      renderDrop('dropStego',img);
+      document.getElementById('btnExtract').disabled=false;
+      setHint('extractHint','已选 '+stegoQueue.length+' 张成品图，点「批量剥出原图」','ok');
+    }
+  };
+  img.onerror=()=>setHint(target==='stego'?'extractHint':'embedHint','这不是有效的图片文件','err');
+  img.src=url;
+}
+document.getElementById('fileInput').addEventListener('change',e=>{
+  const files=e.target.files;
+  if(!files || !files.length) return;
+  // 取图模式下清空之前的队列，重新选
+  if(currentPickTarget==='stego'){ stegoQueue=[]; document.getElementById('extractList').innerHTML=''; }
+  for(const f of files){ loadFile(f,currentPickTarget); }
+});
+
+// 给每个选图框绑拖放
+function bindDrop(elId,target){
+  const el=document.getElementById(elId);
+  el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('drag-over');});
+  el.addEventListener('dragleave',()=>el.classList.remove('drag-over'));
+  el.addEventListener('drop',e=>{
+    e.preventDefault();el.classList.remove('drag-over');
+    const files=e.dataTransfer && e.dataTransfer.files;
+    if(!files || !files.length) return;
+    if(target==='stego'){ stegoQueue=[]; document.getElementById('extractList').innerHTML=''; }
+    for(const f of files){ loadFile(f,target); }
+  });
+}
+bindDrop('dropStego','stego');
+
+function renderDrop(id,img){
+  const el=document.getElementById(id);
+  el.classList.add('has-img');
+  el.innerHTML='<img src="'+img.src+'" alt=""><div class="label">已选：'+img.width+' × '+img.height+'</div>';
+}
+function setHint(id,text,type){
+  const el=document.getElementById(id);
+  el.textContent=text; el.className='hint'+(type?' '+type:'');
+}
+function updateEmbedBtn(){ document.getElementById('btnEmbed').disabled=!(coverImg&&secretImg); }
+function resetEmbed(){
+  coverImg=null; secretImg=null;
+  [['dropCover','① 选表图','点这里选，或直接把图片拖进来'],
+   ['dropSecret','② 选原图','点这里选，或直接把图片拖进来']].forEach(([id,t,s])=>{
+    const el=document.getElementById(id); el.classList.remove('has-img');
+    el.innerHTML='<div class="label">'+t+'</div><div class="sub">'+s+'</div>';
+  });
+  setHint('embedHint','','');
+  document.getElementById('embedResult').classList.remove('show');
+  updateEmbedBtn();
+}
+
+function drawToCanvas(img){
+  const c=document.createElement('canvas'); c.width=img.width; c.height=img.height;
+  const ctx=c.getContext('2d');
+  ctx.fillStyle='#fff'; ctx.fillRect(0,0,img.width,img.height);
+  ctx.drawImage(img,0,0); return c;
+}
+function imgToBytes(img, fmt){
+  // fmt: 'jpeg' | 'png'
+  return new Promise(res=>{
+    const c=drawToCanvas(img);
+    const type = fmt==='jpeg' ? 'image/jpeg' : 'image/png';
+    const q = fmt==='jpeg' ? 0.85 : undefined;
+    c.toBlob(blob=>{
+      const fr=new FileReader();
+      fr.onload=()=>res(new Uint8Array(fr.result));
+      fr.readAsArrayBuffer(blob);
+    }, type, q);
+  });
+}
+function bytesToBits(bytes, bpc){
+  // bpc=1: 每字节8bit顺序排; bpc=2: 同样逐字节逐位
+  const bits=new Uint8Array(bytes.length*8);
+  for(let i=0;i<bytes.length;i++) for(let b=0;b<8;b++) bits[i*8+b]=(bytes[i]>>(7-b))&1;
+  return bits;
+}
+function bitsToBytes(bits){
+  const len=Math.floor(bits.length/8);
+  const out=new Uint8Array(len);
+  for(let i=0;i<len;i++){ let v=0; for(let b=0;b<8;b++) v=(v<<1)|bits[i*8+b]; out[i]=v; }
+  return out;
+}
+
+/* ============ 藏图 ============ */
+async function doEmbed(){
+  setHint('embedHint','正在处理…','');
+  try{
+    const bpc = 2;
+    const useJpeg = (quality==='slim');
+
+    // 关键：先让表图像素经历一次 PNG 往返，保证写入时用的像素
+    // 和取图时浏览器解码 PNG 后读到的像素一致（消除颜色管理/微差异）
+    const rawCanvas=drawToCanvas(coverImg);
+    const cw=rawCanvas.width, ch=rawCanvas.height;
+    const reloaded = await new Promise(res=>{
+      rawCanvas.toBlob(blob=>{
+        const img=new Image();
+        img.onload=()=>res(img);
+        img.src=URL.createObjectURL(blob);
+      },'image/png');
+    });
+    // 用往返后的图作为写入底图
+    const canvas=drawToCanvas(reloaded);
+    const ctx=canvas.getContext('2d');
+    const data=ctx.getImageData(0,0,cw,ch);
+    const px=data.data;
+
+    const secretBytes=await imgToBytes(secretImg, useJpeg?'jpeg':'png');
+
+    const flags=(bpc===2?1:0)|(useJpeg?2:0);
+    const header=new Uint8Array(HEADER_LEN);
+    header.set(MAGIC,0);
+    header[4]=flags;
+    header[5]=(secretBytes.length>>>24)&0xFF;
+    header[6]=(secretBytes.length>>>16)&0xFF;
+    header[7]=(secretBytes.length>>>8)&0xFF;
+    header[8]=secretBytes.length&0xFF;
+    const payload=new Uint8Array(HEADER_LEN+secretBytes.length);
+    payload.set(header,0); payload.set(secretBytes,HEADER_LEN);
+
+    const channelsPerPixel=3;
+    const capacityBits=cw*ch*channelsPerPixel*bpc;
+    const needBits=payload.length*8;
+    if(needBits>capacityBits){
+      const haveKB=(capacityBits/8/1024).toFixed(0), needKB=(needBits/8/1024).toFixed(0);
+      setHint('embedHint','容量不够：这张表图最多藏 '+haveKB+' KB，原图需要 '+needKB+' KB。换更大的表图，或把原图缩小。','err');
+      return;
+    }
+
+    const bits=bytesToBits(payload,bpc);
+    let bi=0;
+    for(let i=0;i<px.length;i+=4){
+      for(let ch2=0; ch2<3; ch2++){
+        if(bi>=bits.length) break;
+        let low=0;
+        for(let k=0;k<bpc;k++){ if(bi<bits.length) low|=bits[bi++]<<k; }
+        px[i+ch2]=(px[i+ch2]&(0xFF<<bpc))|low;
+      }
+    }
+    ctx.putImageData(data,0,0);
+
+    canvas.toBlob(blob=>{
+      const fr=new FileReader();
+      fr.onload=()=>{
+        const url=fr.result;
+        document.getElementById('embedPreview').src=url;
+        document.getElementById('embedDownload').href=url;
+        document.getElementById('embedResult').classList.add('show');
+        setHint('embedHint','完成！成品 '+cw+'×'+ch+'，长按图片即可保存。','ok');
+      };
+      fr.readAsDataURL(blob);
+    },'image/png');
+  }catch(err){ setHint('embedHint','出错了：'+err.message,'err'); }
+}
+
+/* ============ 显形测试：用刚生成的成品立刻跑一遍还原 ============ */
+function testReveal(){
+  const url=document.getElementById('embedPreview').src;
+  if(!url){ alert('还没有生成成品'); return; }
+  const img=new Image();
+  img.onload=()=>{
+    stegoImg=img;
+    stegoQueue=[{img}];
+    setMode('extract');
+    renderDrop('dropStego', img);
+    document.getElementById('btnExtract').disabled=false;
+    setHint('extractHint','正在测试还原…','');
+    doExtract();
+  };
+  img.onerror=()=>alert('测试失败：成品数据损坏');
+  img.src=url;
+}
+
+/* ============ 取图 ============ */
+function extractFromBits(collect){
+  const isMagic=h=>h[0]==MAGIC[0]&&h[1]==MAGIC[1]&&h[2]==MAGIC[2]&&h[3]==MAGIC[3];
+  let bpc=2, bits=collect(bpc), header=bitsToBytes(bits.slice(0,HEADER_LEN*8));
+  if(!isMagic(header)){
+    bpc=1; bits=collect(bpc); header=bitsToBytes(bits.slice(0,HEADER_LEN*8));
+    if(!isMagic(header)) return null; // 没有隐藏数据
+  }
+  const flags=header[4];
+  const useJpeg=(flags&2)===2;
+  const multi=(flags&4)===4;
+  const gifMode=(flags&8)===8;
+  const videoMode=(flags&16)===16;
+  let hlen=multi?12:HEADER_LEN;
+  if(multi){
+    if(header.length<12) header=bitsToBytes(bits.slice(0,12*8));
+    hlen=12+2*header[11];
+  }
+  if(header.length<hlen) header=bitsToBytes(bits.slice(0,hlen*8));
+  const dataLen=(header[5]<<24>>>0)+(header[6]<<16)+(header[7]<<8)+header[8];
+  const needBits=(hlen+dataLen)*8;
+  if(needBits>bits.length) return {error:'数据不完整，图被压缩或转成了 JPG'};
+  const all=bitsToBytes(bits.slice(0,needBits));
+  const secretBytes=all.slice(hlen);
+  let type=videoMode?'video/mp4':(useJpeg?'image/jpeg':'image/png');
+  let isWebp=false;
+  if(gifMode&&secretBytes.length>=12 && secretBytes[0]===0x52&&secretBytes[1]===0x49&&secretBytes[2]===0x46&&secretBytes[3]===0x46 && secretBytes[8]===0x57&&secretBytes[9]===0x45&&secretBytes[10]===0x42&&secretBytes[11]===0x50){ type='image/webp'; isWebp=true; }
+  else if(gifMode) type='image/gif';
+  let meta=null;
+  if(multi){
+    const n=header[11], ws=[];
+    for(let i=0;i<n;i++) ws.push((header[12+2*i]<<8)|header[13+2*i]);
+    meta={n, h:(header[9]<<8)|header[10], ws};
+  }
+  return {blob:new Blob([secretBytes],{type}), type, useJpeg, isGif:gifMode&&!isWebp, isWebp:isWebp, isVideo:videoMode, meta: (gifMode||videoMode)?null:meta};
+}
+function blobToDataURL(blob){
+  return new Promise((res,rej)=>{
+    const fr=new FileReader();
+    fr.onload=()=>res(fr.result);
+    fr.onerror=()=>rej(new Error('读取失败'));
+    fr.readAsDataURL(blob);
+  });
+}
+function concatU8(parts){
+  let n=0; for(const p of parts)n+=p.length;
+  const o=new Uint8Array(n); let k=0; for(const p of parts){o.set(p,k);k+=p.length;}
+  return o;
+}
+
+// 直接解析 PNG 文件字节，读出原始像素（绕过浏览器颜色管理，QQ 内置浏览器也能精确取图）
+// 返回 Promise<{W,H,channels,px}>；不是合法 8-bit PNG 则 reject
+function parsePngBytes(buf){
+  const b=new Uint8Array(buf);
+  const sig=[0x89,0x50,0x4E,0x47,0x0D,0x0A,0x1A,0x0A];
+  for(let i=0;i<8;i++) if(b[i]!==sig[i]) return Promise.reject(new Error('不是PNG文件'));
+  let off=8, W=0,H=0,bitDepth=0,colorType=0, idatParts=[];
+  while(off<b.length){
+    const len=(b[off]<<24)|(b[off+1]<<16)|(b[off+2]<<8)|b[off+3];
+    const type=String.fromCharCode(b[off+4],b[off+5],b[off+6],b[off+7]);
+    if(type==='IHDR'){
+      W=(b[off+8]<<24)|(b[off+9]<<16)|(b[off+10]<<8)|b[off+11];
+      H=(b[off+12]<<24)|(b[off+13]<<16)|(b[off+14]<<8)|b[off+15];
+      bitDepth=b[off+16]; colorType=b[off+17];
+    }else if(type==='IDAT'){
+      idatParts.push(b.subarray(off+8,off+8+len));
+    }else if(type==='IEND') break;
+    off+=12+len;
+  }
+  if(bitDepth!==8) return Promise.reject(new Error('仅支持8位PNG'));
+  const channels=colorType===6?4:(colorType===2?3:(colorType===0?1:0));
+  if(!channels) return Promise.reject(new Error('不支持的PNG颜色类型'));
+  const comp=concatU8(idatParts);
+  return inflateZlib(comp).then(raw=>{
+    const stride=W*channels;
+    const out=new Uint8Array(W*H*channels);
+    const prev=new Uint8Array(stride);
+    let pos=0;
+    for(let y=0;y<H;y++){
+      const ft=raw[pos++];
+      const line=raw.subarray(pos,pos+stride); pos+=stride;
+      const cur=new Uint8Array(stride);
+      for(let i=0;i<stride;i++){
+        const a=i>=channels?cur[i-channels]:0;
+        const bb=prev[i];
+        const c=i>=channels?prev[i-channels]:0;
+        let x=line[i];
+        if(ft===0){/*None*/}
+        else if(ft===1) x=(x+a)&255;                 // Sub
+        else if(ft===2) x=(x+bb)&255;                // Up
+        else if(ft===3) x=(x+((a+bb)>>1))&255;       // Average
+        else if(ft===4){                              // Paeth
+          const p=a+bb-c, pa=Math.abs(p-a), pb=Math.abs(p-bb), pc=Math.abs(p-c);
+          x=(x+(pa<=pb&&pa<=pc?a:(pb<=pc?bb:c)))&255;
+        } else throw new Error('未知滤波类型');
+        cur[i]=x;
+      }
+      out.set(cur,y*stride); prev.set(cur);
+    }
+    return {W,H,channels,px:out};
+  });
+}
+
+// 解压 zlib(PNG IDAT)：优先用浏览器原生接口，不支持/失败则用纯 JS 解压器
+// （手机 QQ 浏览器等旧内核没有 DecompressionStream，纯 JS 兜底保证能取图）
+function inflateZlib(data){
+  if(typeof DecompressionStream!=='undefined'){
+    try{
+      return new Blob([data]).stream()
+        .pipeThrough(new DecompressionStream('deflate'))
+        .arrayBuffer()
+        .then(ab=>new Uint8Array(ab))
+        .catch(()=>Promise.resolve(inflateJS(data)));
+    }catch(e){ /* 回退纯 JS */ }
+  }
+  return Promise.resolve(inflateJS(data));
+}
+
+// 纯 JS 的 zlib(deflate) 解压实现，不依赖任何浏览器 API
+(function(){
+  const LENG_BASE=[3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258];
+  const LENG_EXTRA=[0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0];
+  const DIST_BASE=[1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577];
+  const DIST_EXTRA=[0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13];
+  const CL_ORDER=[16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15];
+  const fixedLen=(function(){
+    const a=new Array(288);
+    for(let i=0;i<=143;i++)a[i]=8;
+    for(let i=144;i<=255;i++)a[i]=9;
+    for(let i=256;i<=279;i++)a[i]=7;
+    for(let i=280;i<=287;i++)a[i]=8;
+    return a;
+  })();
+  const fixedDist=new Array(30).fill(5);
+  let fixedL=null, fixedD=null;
+  function buildHuff(lengths){
+    let maxLen=0;
+    for(const l of lengths) if(l>maxLen) maxLen=l;
+    const bl=new Array(maxLen+1).fill(0);
+    for(const l of lengths) if(l>0) bl[l]++;
+    const next=new Array(maxLen+1).fill(0);
+    let code=0;
+    for(let b=1;b<=maxLen;b++){ code=(code+bl[b-1])<<1; next[b]=code; }
+    const table=new Array(maxLen+1);
+    for(let b=1;b<=maxLen;b++){ table[b]=new Int32Array(1<<b); for(let i=0;i<table[b].length;i++)table[b][i]=-1; }
+    for(let n=0;n<lengths.length;n++){ const len=lengths[n]; if(len){ table[len][next[len]++]=n; } }
+    return {table,maxLen};
+  }
+  inflateJS=function(data){
+    let pos=2, bitBuf=0, bitCnt=0;
+    const out=[];
+    function readBits(n){
+      while(bitCnt<n){ bitBuf=(bitBuf|(data[pos]<<bitCnt))>>>0; bitCnt+=8; pos++; }
+      const v=bitBuf&((1<<n)-1);
+      bitBuf>>>=n; bitCnt-=n;
+      return v;
+    }
+    function decodeSym(huff){
+      let code=0;
+      for(let len=1;len<=huff.maxLen;len++){
+        code=(code<<1)|readBits(1);
+        const s=huff.table[len][code];
+        if(s>=0) return s;
+      }
+      throw new Error('Huffman解码失败');
+    }
+    let final=false;
+    while(!final){
+      final=readBits(1)===1;
+      const type=readBits(2);
+      if(type===0){
+        bitBuf=0; bitCnt=0;
+        const len=data[pos]|(data[pos+1]<<8); pos+=4;
+        for(let i=0;i<len;i++) out.push(data[pos++]);
+      }else{
+        let litHuff,distHuff;
+        if(type===1){
+          if(!fixedL){ fixedL=buildHuff(fixedLen); fixedD=buildHuff(fixedDist); }
+          litHuff=fixedL; distHuff=fixedD;
+        }else if(type===2){
+          const hlit=readBits(5)+257, hdist=readBits(5)+1, hclen=readBits(4)+4;
+          const cl=new Array(19).fill(0);
+          for(let i=0;i<hclen;i++) cl[CL_ORDER[i]]=readBits(3);
+          const clHuff=buildHuff(cl);
+          const lens=new Array(hlit+hdist); let i=0;
+          while(i<lens.length){
+            const sym=decodeSym(clHuff);
+            if(sym<16) lens[i++]=sym;
+            else if(sym===16){ const rep=readBits(2)+3; const prev=lens[i-1]; for(let k=0;k<rep;k++)lens[i++]=prev; }
+            else if(sym===17){ const rep=readBits(3)+3; for(let k=0;k<rep;k++)lens[i++]=0; }
+            else { const rep=readBits(7)+11; for(let k=0;k<rep;k++)lens[i++]=0; }
+          }
+          litHuff=buildHuff(lens.slice(0,hlit));
+          distHuff=buildHuff(lens.slice(hlit));
+        } else throw new Error('无效块类型');
+        for(;;){
+          const sym=decodeSym(litHuff);
+          if(sym===256) break;
+          if(sym<256) out.push(sym);
+          else{
+            const idx=sym-257;
+            const length=LENG_BASE[idx]+readBits(LENG_EXTRA[idx]);
+            const dsym=decodeSym(distHuff);
+            const dist=DIST_BASE[dsym]+readBits(DIST_EXTRA[dsym]);
+            const start=out.length-dist;
+            for(let k=0;k<length;k++) out.push(out[start+k]);
+          }
+        }
+      }
+    }
+    return new Uint8Array(out);
+  };
+})();
+function collectBitsFromPx(px,channels,bpc){
+  const bits=new Uint8Array(Math.floor(px.length/channels)*3*bpc);
+  let bi=0;
+  for(let i=0;i<px.length;i+=channels){
+    for(let ch=0;ch<3;ch++){
+      const v=px[i+ch];
+      for(let k=0;k<bpc;k++) bits[bi++]=(v>>k)&1;
+    }
+  }
+  return bits;
+}
+
+// 兜底：用 canvas 读像素（无原始文件 / 非标准PNG时）
+/* ===== 取图：解码 主隐写(STGO) 成品 ===== */
+/* 光棱图：从 PNG tEXt 读 PRSM 参数（格式 "0"+里图阈值 十六进制2位），按亮度阈值显形 */
+function readPngTextFromBytes(b){
+  try{
+    let off=8;
+    while(off+8<=b.length){
+      const len=((b[off]<<24)|(b[off+1]<<16)|(b[off+2]<<8)|b[off+3])>>>0;
+      const type=String.fromCharCode(b[off+4],b[off+5],b[off+6],b[off+7]);
+      if((type==='tEXt'||type==='PRSM')&&len>0){
+        const start=off+8; let kwEnd=-1;
+        for(let j=0;j<len;j++) if(b[start+j]===0){kwEnd=j;break;}
+        if(kwEnd>0){
+          let kw=''; for(let a=0;a<kwEnd;a++) kw+=String.fromCharCode(b[start+a]);
+          if(kw==='PRSM'){
+            let txt=''; for(let c=kwEnd+1;c<len;c++) txt+=String.fromCharCode(b[start+c]);
+            return txt;
+          }
+        }
+      }
+      if(type==='IEND') break;
+      off+=12+len;
+    }
+  }catch(e){}
+  return null;
+}
+/* 从 JPEG 字节读 PRSM 参数（COM 注释段，SOI 之后、SOS 之前） */
+function readJpegPrsm(u8){
+  try{
+    let i=2;
+    while(i+4<=u8.length){
+      if(u8[i]!==0xFF){ i++; continue; }
+      const m=u8[i+1];
+      if(m===0xD9||m===0xDA) break; // EOI / SOS：之后是编码数据，不再有元数据段
+      const len=((u8[i+2]<<8)|u8[i+3]);
+      if(m===0xFE&&len>=7){ // COM
+        const start=i+4;
+        if(u8[start]===80&&u8[start+1]===82&&u8[start+2]===83&&u8[start+3]===77){ // "PRSM"
+          let txt=''; for(let c=start+4;c<start+len-2;c++) txt+=String.fromCharCode(u8[c]);
+          return txt;
+        }
+      }
+      i+=2+len;
+    }
+  }catch(e){}
+  return null;
+}
+/* 把任意通道 px 转成 RGBA */
+function pxToRGBA(px,W,H,channels){
+  const rgba=new Uint8ClampedArray(W*H*4);
+  for(let i=0,n=px.length;i<n;i+=channels){
+    const p=(i/channels)*4;
+    rgba[p]=px[i];
+    rgba[p+1]=channels>1?px[i+1]:px[i];
+    rgba[p+2]=channels>2?px[i+2]:px[i];
+    rgba[p+3]=channels>3?px[i+3]:255;
+  }
+  return rgba;
+}
+/* 光棱图显形：非里图位置的背景用 左/上/左上 三邻平均插值（对应工具默认 luavg） */
+function gltFillPixel(A,d,row){
+  const n=d%row, r=(d/row)|0;
+  if(n&&r){
+    A[d]=(A[d-4]+A[d-row]+A[d-row-4])/3; A[d+1]=(A[d-3]+A[d-row+1]+A[d-row-3])/3;
+    A[d+2]=(A[d-2]+A[d-row+2]+A[d-row-2])/3; A[d+3]=(A[d-1]+A[d-row+3]+A[d-row-1])/3;
+  } else { A[d]=0;A[d+1]=0;A[d+2]=0;A[d+3]=255; }
+}
+function gltRevealRGBA(rgba,W,H,threshold,reverse){
+  const row=4*W;
+  if(reverse){
+    const e=255/(255-threshold);
+    for(let d=0;d<rgba.length;d+=4){
+      if((rgba[d]+rgba[d+1]+rgba[d+2])/3>=threshold){ rgba[d]=(rgba[d]-threshold)*e; rgba[d+1]=(rgba[d+1]-threshold)*e; rgba[d+2]=(rgba[d+2]-threshold)*e; }
+      else gltFillPixel(rgba,d,row);
+    }
+  } else {
+    const f=255/threshold;
+    for(let d=0;d<rgba.length;d+=4){
+      if((rgba[d]+rgba[d+1]+rgba[d+2])/3<=threshold){ rgba[d]*=f; rgba[d+1]*=f; rgba[d+2]*=f; }
+      else gltFillPixel(rgba,d,row);
+    }
+  }
+}
+function rgbaToDataURL(rgba,W,H){
+  const c=document.createElement('canvas'); c.width=W; c.height=H;
+  c.getContext('2d').putImageData(new ImageData(rgba,W,H),0,0);
+  return c.toDataURL('image/png');
+}
+/* 混淆图：Hilbert 逆变换（解像素打乱） */
+function deconfuseRGBA(rgba,W,H){
+  const buf=new ArrayBuffer(W*H*4);
+  new Uint8ClampedArray(buf).set(rgba);
+  const curve=hxBuildCurve(W,H);
+  const off=Math.round((Math.sqrt(5)-1)/2*W*H);
+  const out=hxDeconfuseFn(new Uint32Array(buf),curve,W*H,off);
+  return new Uint8ClampedArray(out.buffer);
+}
+/* 尝试 STGO：成功返回 {blob,type,useJpeg}；无数据返回 null；有数据但损坏返回 {error} */
+function stgoFromPx(collect){
+  const res=extractFromBits(collect);
+  if(!res) return null;
+  if(res.error) return {error:res.error};
+  return {blob:res.blob,type:res.type,useJpeg:res.useJpeg,isGif:res.isGif,isWebp:res.isWebp,isVideo:res.isVideo,meta:res.meta};
+}
+function stgoCanvasSoft(img){
+  return new Promise(resolve=>{
+    try{
+      const c=drawToCanvas(img), cw=c.width, ch=c.height;
+      const ctx=c.getContext('2d'), px=ctx.getImageData(0,0,cw,ch).data;
+      const r=stgoFromPx(bpc=>{
+        const bits=new Uint8Array(cw*ch*3*bpc); let bi=0;
+        for(let i=0;i<px.length;i+=4) for(let c2=0;c2<3;c2++){ const v=px[i+c2]; for(let k=0;k<bpc;k++) bits[bi++]=(v>>k)&1; }
+        return bits;
+      });
+      if(!r) return resolve(null);
+      if(r.error) return resolve({error:r.error});
+      if(r.meta) resolve({blob:r.blob,type:r.type,useJpeg:r.useJpeg,kind:'主隐写',meta:r.meta});
+      else if(r.isVideo){ var vu=URL.createObjectURL(r.blob); resolve({videoUrl:vu,type:r.type,useJpeg:r.useJpeg,isVideo:true,kind:'视频'}); }
+      else blobToDataURL(r.blob).then(url=>resolve({url,type:r.type,useJpeg:r.useJpeg,isGif:r.isGif,isWebp:r.isWebp,kind:r.isGif?'GIF':(r.isWebp?'WebP 动图':'主隐写')})).catch(()=>resolve(null));
+    }catch(e){ resolve(null); }
+  });
+}
+function deconfuseCanvas(img){
+  const c=drawToCanvas(img), cw=c.width, ch=c.height;
+  const rgba=c.getContext('2d').getImageData(0,0,cw,ch).data;
+  return {url:rgbaToDataURL(deconfuseRGBA(rgba,cw,ch),cw,ch), type:'image/png', useJpeg:false, kind:'混淆图'};
+}
+
+/* 没有 file（如显形测试生成的图）时，从 img 画到 canvas 转成 PNG 字节 */
+function imgToCanvasBytes(img){
+  const c=document.createElement('canvas');
+  c.width=img.naturalWidth||img.width; c.height=img.naturalHeight||img.height;
+  c.getContext('2d').drawImage(img,0,0);
+  const b64=c.toDataURL('image/png').split(',')[1];
+  const bin=atob(b64);
+  const u8=new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) u8[i]=bin.charCodeAt(i);
+  return u8;
+}
+
+function extractOne(item){
+  // item: {img, file}
+  const file=item && item.file;
+  // 取字节：优先 file.arrayBuffer，无 file 则从 img 画到 canvas 转 PNG
+  const bytesPromise=(file && file.arrayBuffer) ? file.arrayBuffer() : Promise.resolve(imgToCanvasBytes(item.img));
+  // PNG：直读字节解主隐写（STGO）
+  return bytesPromise.then(buf=>{
+    return Promise.resolve().then(()=>parsePngBytes(buf)).then(parsed=>{
+      const W=parsed.W, H=parsed.H, channels=parsed.channels, px=parsed.px;
+      const stgo=stgoFromPx(bpc=>collectBitsFromPx(px,channels,bpc));
+      if(stgo){
+        if(stgo.error) throw new Error(stgo.error);
+        if(stgo.meta) return mmgSliceMosaic(stgo.blob,stgo.meta)
+          .then(urls=>({urls,type:stgo.type,useJpeg:stgo.useJpeg,kind:'多小图'}));
+        if(stgo.isVideo){ var vu=URL.createObjectURL(stgo.blob); return {videoUrl:vu,type:'video/mp4',useJpeg:false,isVideo:true,kind:'视频'}; }
+        return blobToDataURL(stgo.blob).then(url=>({url,type:stgo.type,useJpeg:stgo.useJpeg,isGif:stgo.isGif,isWebp:stgo.isWebp,kind:stgo.isGif?'GIF':(stgo.isWebp?'WebP 动图':'主隐写')}));
+      }
+      throw new Error('没有藏东西，不是本工具的成品');
+    }).catch(err=>{
+      // 非标准 PNG 字节解析失败：退回 canvas 尝试 STGO
+      return stgoCanvasSoft(item.img).then(r=>{
+        if(r){
+          if(r.meta) return mmgSliceMosaic(r.blob,r.meta)
+            .then(urls=>({urls,type:r.type,useJpeg:r.useJpeg,kind:'多小图'}));
+          return r;
+        }
+        throw new Error('没有藏东西，不是本工具的成品');
+      });
+    });
+  });
+}
+
+/* 主取图没解出时，把这张图交还给对应工具去显形/解混淆，并滚动到该工具 */
+function sendTo(i,kind){
+  const item=window._extractItems&&window._extractItems[i];
+  if(!item||!item.file){ alert('图片数据不可用，请重新选择'); return; }
+  if(kind==='光棱图'){
+    const d=document.getElementById('glt-app-details'); d.open=true;
+    if(window.gltLoadStego){ window.gltLoadStego(item.file); }
+    else alert('光棱图工具未就绪');
+    d.scrollIntoView({behavior:'smooth',block:'start'});
+  } else {
+    const d=document.getElementById('hx-app'); d.open=true;
+    hxLoad(item.file, hxDeconfuse);
+    d.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
+function egScroll(el){
+  var nav=el.parentNode.nextElementSibling;
+  if(!nav||!nav.classList.contains('eg-nav')) return;
+  var total=el.children.length||1;
+  var i=Math.min(total-1,Math.max(0,Math.round(el.scrollLeft/el.clientWidth)));
+  el.dataset.idx=i;
+  nav.innerHTML='当前 '+(i+1)+' / '+total+' · 点箭头或左右滑动查看下一张';
+}
+function egGo(btn,dir){
+  var wrap=btn.parentNode, el=wrap.querySelector('.extract-gallery');
+  if(!el||!el.children.length) return;
+  var total=el.children.length;
+  var cur=parseInt(el.dataset.idx||'0',10);
+  if(isNaN(cur)) cur=0;
+  var next=Math.min(total-1,Math.max(0,cur+dir));
+  el.dataset.idx=next;
+  el.scrollLeft=next*el.clientWidth;
+  egScroll(el);
+}
+async function doExtract(){
+  const list=stegoQueue.slice();
+  window._extractItems=list;
+  if(!list.length){ setHint('extractHint','还没选成品图','err'); return; }
+  document.getElementById('extractList').innerHTML='';
+  document.getElementById('extractResult').classList.add('show');
+  setHint('extractHint','正在剥出 '+list.length+' 张…','');
+  let ok=0, fail=0;
+  for(let i=0;i<list.length;i++){
+    const item=document.createElement('div');
+    item.className='box';
+    item.innerHTML='<div class="cap">第 '+(i+1)+' / '+list.length+' 张：处理中…</div>';
+    document.getElementById('extractList').appendChild(item);
+    try{
+      const r=await extractOne(list[i]);
+      ok++;
+      if(r.urls){
+        let h2='<div class="cap">第 '+(i+1)+' 张 ✓ 已剥出（多小图，共 '+r.urls.length+' 张）</div>';
+        h2+='<div class="eg-wrap"><div class="extract-gallery" onscroll="egScroll(this)">';
+        for(let gi=0;gi<r.urls.length;gi++){
+          h2+='<div class="eg-slide"><img src="'+r.urls[gi]+'" alt="小图'+(gi+1)+'" onclick="zoomOpen(this.src)">'
+            +'<div class="save-tip">长按图片保存</div>'
+            +'<a class="btn btn-primary" href="'+r.urls[gi]+'" download="小图'+(gi+1)+'.png">保存小图'+(gi+1)+'</a></div>';
+        }
+        h2+='</div>'
+          +'<button class="eg-arrow eg-left" onclick="egGo(this,-1)" aria-label="上一张">‹</button>'
+          +'<button class="eg-arrow eg-right" onclick="egGo(this,1)" aria-label="下一张">›</button></div>';
+        h2+='<div class="eg-nav">当前 1 / '+r.urls.length+' · 点箭头或左右滑动查看下一张</div>';
+        item.innerHTML=h2;
+      } else if(r.isVideo){
+        item.innerHTML='<video src="'+r.videoUrl+'" controls style="max-width:100%;max-height:60vh;border-radius:8px"></video>'
+          +'<div class="cap">第 '+(i+1)+' 张 ✓ 已剥出（视频）</div>'
+          +'<a class="btn btn-primary" href="'+r.videoUrl+'" download="原图'+(i+1)+'.mp4">保存视频'+(i+1)+'</a>';
+      } else {
+        item.innerHTML='<img src="'+r.url+'" alt="还原'+(i+1)+'" onclick="zoomOpen(this.src)" style="cursor:zoom-in">'
+          +'<div class="cap">第 '+(i+1)+' 张 ✓ 已剥出'+(r.kind?'（'+r.kind+'）':'')+'</div>'
+          +'<div class="save-tip">长按图片保存</div>'
+          +'<a class="btn btn-primary" href="'+r.url+'" download="原图'+(i+1)+(r.type==='image/gif'?'.gif':(r.type==='image/webp'?'.webp':(r.useJpeg?'.jpg':'.png')))+'">保存第'+(i+1)+'张</a>';
+      }
+    }catch(err){
+      fail++;
+      item.innerHTML='<div class="cap" style="color:#e06c5b">第 '+(i+1)+' 张 ✗ '+err.message+'</div>';
+      if(err.message==='没有藏东西，不是本工具的成品'){
+        item.innerHTML+='<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">'
+          +'<button class="btn btn-ghost" style="flex:1" onclick="sendTo('+i+',\'光棱图\')">当作光棱图显形</button>'
+          +'<button class="btn btn-ghost" style="flex:1" onclick="sendTo('+i+',\'混淆图\')">当作混淆图处理</button>'
+          +'</div>';
+      }
+    }
+  }
+  setHint('extractHint','完成：成功 '+ok+' 张'+(fail?'，失败 '+fail+' 张':''),'ok');
+}
+
+/* 下载本工具：把当前页面 HTML 存成文件 */
+function downloadSelf(){
+  const doctype='<!DOCTYPE html>\n';
+  const html=document.documentElement.outerHTML;
+  const blob=new Blob([doctype+html],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download='作战实验室.html';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},100);
+}
+
+/* ============ 像素混淆工具 ============ */
+let hxW=0,hxH=0,hxCurve=null,hxOffset=0,hxOriginal=null,hxCurrent=null;
+function hxBuildCurve(w,h){
+  const curve=new Array(w*h); let idx=0;
+  const sgn=x=>(x<0?-1:(x>0?1:0));
+  function gen(x,y,ax,ay,bx,by){
+    const w_=Math.abs(ax+ay), h_=Math.abs(bx+by);
+    const dax=sgn(ax),day=sgn(ay),dbx=sgn(bx),dby=sgn(by);
+    if(h_===1){for(let i=0;i<w_;i++){curve[idx++]=y*w+x;x+=dax;y+=day;}return;}
+    if(w_===1){for(let i=0;i<h_;i++){curve[idx++]=y*w+x;x+=dbx;y+=dby;}return;}
+    let ax2=Math.floor(ax/2),ay2=Math.floor(ay/2),bx2=Math.floor(bx/2),by2=Math.floor(by/2);
+    const w2=Math.abs(ax2+ay2),h2=Math.abs(bx2+by2);
+    if(2*w_>3*h_){
+      if((w2%2)&&w_>2){ax2+=dax;ay2+=day;}
+      gen(x,y,ax2,ay2,bx,by); gen(x+ax2,y+ay2,ax-ax2,ay-ay2,bx,by);
+    }else{
+      if((h2%2)&&h_>2){bx2+=dbx;by2+=dby;}
+      gen(x,y,bx2,by2,ax2,ay2);
+      gen(x+bx2,y+by2,ax,ay,bx-bx2,by-by2);
+      gen(x+(ax-dax)+(bx2-dbx),y+(ay-day)+(by2-dby),-bx2,-by2,-(ax-ax2),-(ay-ay2));
+    }
+  }
+  if(w>=h) gen(0,0,w,0,0,h); else gen(0,0,0,h,w,0);
+  return curve;
+}
+function hxConfuseFn(in32,curve,n,off){
+  const out=new Uint32Array(n);
+  for(let k=0;k<n;k++) out[curve[k]]=in32[curve[(k-off+n)%n]];
+  return out;
+}
+function hxDeconfuseFn(in32,curve,n,off){
+  const out=new Uint32Array(n);
+  for(let k=0;k<n;k++) out[curve[k]]=in32[curve[(k+off)%n]];
+  return out;
+}
+function hxLoad(blob,onLoad){
+  const url=URL.createObjectURL(blob);
+  const img=new Image();
+  img.onload=()=>{
+    const MAX_PX=8000000,MAX_SIDE=4000;
+    const w0=img.naturalWidth||img.width, h0=img.naturalHeight||img.height;
+    let w=w0,h=h0;
+    if(w0*h0>MAX_PX||w0>MAX_SIDE||h0>MAX_SIDE){
+      const s=Math.min(Math.sqrt(MAX_PX/(w0*h0)),MAX_SIDE/w0,MAX_SIDE/h0,1);
+      w=Math.max(1,Math.round(w0*s)); h=Math.max(1,Math.round(h0*s));
+    }
+    const c=document.createElement('canvas'); c.width=w; c.height=h;
+    const ctx=c.getContext('2d'); ctx.drawImage(img,0,0,w,h);
+    const d=ctx.getImageData(0,0,w,h).data;
+    hxW=w; hxH=h;
+    const buf=new ArrayBuffer(w*h*4); new Uint8ClampedArray(buf).set(d);
+    hxCurrent=new Uint32Array(buf); hxOriginal=new Uint32Array(hxCurrent);
+    hxCurve=hxBuildCurve(w,h);
+    hxOffset=Math.round((Math.sqrt(5)-1)/2*w*h);
+    URL.revokeObjectURL(url);
+    document.getElementById('hx_status').textContent='已加载 '+w+'×'+h+'，可混淆';
+    hxShow(hxCurrent,'原图');
+    if(onLoad) onLoad();
+  };
+  img.onerror=()=>{document.getElementById('hx_status').textContent='图片读取失败';};
+  img.src=url;
+}
+function hxApply(fn){
+  if(!hxCurrent){document.getElementById('hx_status').textContent='请先选择图片';return;}
+  hxCurrent=fn(hxCurrent,hxCurve,hxW*hxH,hxOffset);
+}
+function hxConfuse(){hxApply(hxConfuseFn);hxShow(hxCurrent,'已混淆');document.getElementById('hx_status').textContent='已混淆（像素打乱）';}
+function hxDeconfuse(){hxApply(hxDeconfuseFn);hxShow(hxCurrent,'已解混淆');document.getElementById('hx_status').textContent='已解混淆（逆回一步）';}
+function hxRestore(){
+  if(!hxOriginal) return;
+  hxCurrent=new Uint32Array(hxOriginal);
+  hxShow(hxCurrent,'已还原');
+  document.getElementById('hx_status').textContent='已还原到最初原图';
+}
+function hxShow(u32,label){
+  const buf=u32.buffer.slice(0);
+  const imgData=new ImageData(new Uint8ClampedArray(buf),hxW,hxH);
+  const c=document.createElement('canvas'); c.width=hxW; c.height=hxH;
+  c.getContext('2d').putImageData(imgData,0,0);
+  const url=c.toDataURL('image/png');
+  document.getElementById('hx_preview').innerHTML='<img src="'+url+'" alt="" style="cursor:zoom-in" onclick="zoomOpen(this.src)"><div class="cap">'+label+'</div>';
+  document.getElementById('hx_result').style.display='block';
+  document.getElementById('hx_dl').innerHTML='<a class="btn btn-primary" style="display:block;margin-top:10px" href="'+url+'" download="'+(label==='原图'?'original':'mixed')+'.png">下载结果 PNG</a>';
+}
+document.getElementById('hx_file').addEventListener('change',e=>{
+  const f=e.target.files[0]; if(f) hxLoad(f); e.target.value='';
+});
+(function(){
+  const drop=document.getElementById('hx_drop');
+  drop.addEventListener('dragover',e=>{e.preventDefault();drop.classList.add('drag-over');});
+  drop.addEventListener('dragleave',()=>drop.classList.remove('drag-over'));
+  drop.addEventListener('drop',e=>{
+    e.preventDefault();drop.classList.remove('drag-over');
+    const f=e.dataTransfer.files[0]; if(f) hxLoad(f);
+  });
+  document.addEventListener('paste',e=>{
+    const items=(e.clipboardData||{}).items; if(!items) return;
+    for(const it of items) if(it.type&&it.type.indexOf('image')===0){hxLoad(it.getAsFile());return;}
+  });
+})();
+</script>
+
+<!-- ============ 光棱图制作解密工具 脚本（IIFE 隔离） ============ -->
+<script id="glt-script">
+
+(function(){
+'use strict';
+/* =====================================================================
+   光棱坦克 · 精简版  ——  全部逻辑放在 IIFE 内，不污染宿主全局
+   算法忠实于原版：亮度压缩 + 稀疏采样藏图；阈值拉伸显形。
+   ===================================================================== */
+var root=document.getElementById('glt-app');
+if(!root) return;
+
+var state={ innerImg:null, coverImg:null, stegoImg:null, currentPick:null, lastEmbedURL:null, lastExtractURL:null };
+function el(id){ return document.getElementById(id); }
+
+/* ---------- 标签页 ---------- */
+var tabs=document.querySelectorAll('.glt-tab');
+for(var i=0;i<tabs.length;i++){
+  (function(btn){
+    btn.addEventListener('click',function(){
+      var target=btn.getAttribute('data-glttab');
+      for(var j=0;j<tabs.length;j++) tabs[j].classList.remove('active');
+      btn.classList.add('active');
+      var panes=['gltPaneEmbed','gltPaneExtract'];
+      for(var k=0;k<panes.length;k++) el(panes[k]).classList.toggle('active',panes[k]===target);
+    });
+  })(tabs[i]);
+}
+
+/* ---------- 选图 ---------- */
+var fileInput=el('gltFile');
+function pick(target){ state.currentPick=target; fileInput.value=''; fileInput.click(); }
+function bindDrop(dropId,target){
+  var d=el(dropId);
+  d.addEventListener('click',function(){ pick(target); });
+  d.addEventListener('dragover',function(e){ e.preventDefault(); d.classList.add('drag-over'); });
+  d.addEventListener('dragleave',function(){ d.classList.remove('drag-over'); });
+  d.addEventListener('drop',function(e){
+    e.preventDefault(); d.classList.remove('drag-over');
+    var fs=e.dataTransfer&&e.dataTransfer.files; if(!fs||!fs.length) return;
+    for(var k=0;k<fs.length;k++) loadFile(fs[k],target);
+  });
+}
+bindDrop('gltDropInner','inner');
+bindDrop('gltDropCover','cover');
+bindDrop('gltDropStego','stego');
+
+fileInput.addEventListener('change',function(){
+  var fs=fileInput.files; if(!fs||!fs.length) return;
+  for(var i=0;i<fs.length;i++) loadFile(fs[i],state.currentPick);
+});
+
+function loadFile(file,target){
+  var isPng = file.type==='image/png' || /\.png$/i.test(file.name||'');
+  if(target==='stego' && el('gltAutoRead').checked && isPng){
+    var fr=new FileReader();
+    fr.onload=function(){
+      var meta=readPngText(fr.result);
+      gltPendingMeta=meta||null;
+      loadImage(file,target);
+    };
+    fr.readAsDataURL(file);
+  } else {
+    loadImage(file,target);
+  }
+}
+function loadImage(file,target){
+  var url=URL.createObjectURL(file);
+  var img=new Image();
+  img.onload=function(){
+    if(target==='inner'){ state.innerImg=img; renderDrop('gltDropInner',img); requestEncode(); }
+    else if(target==='cover'){ state.coverImg=img; renderDrop('gltDropCover',img); requestEncode(); }
+    else if(target==='stego'){ addGltItem(file,img); }
+    URL.revokeObjectURL(url);
+  };
+  img.onerror=function(){ setHint(target==='stego'?'gltExtractHint':'gltEmbedHint','这不是有效的图片文件','err'); URL.revokeObjectURL(url); };
+  img.src=url;
+}
+function renderDrop(dropId,img){
+  var d=el(dropId);
+  d.classList.add('has-img');
+  var prev=d.querySelector('img'); if(prev) prev.remove();
+  var label=d.querySelector('.label');
+  var im=document.createElement('img'); im.src=img.src;
+  d.insertBefore(im,label);
+  if(label) label.textContent='已选：'+img.width+' × '+img.height;
+}
+function setHint(id,text,type){
+  var h=el(id); h.textContent=text; h.className='glt-hint'+(type?' '+type:'');
+}
+/* ---------- 藏图（编码）：里图+表图就绪即自动生成；参数变化实时重算 ---------- */
+
+/* ---------- 阈值联动 ---------- */
+function syncRange(rangeId,inputId,max){
+  var r=el(rangeId), num=el(inputId);
+  r.addEventListener('input',function(){ num.value=r.value; });
+  num.addEventListener('input',function(){
+    var v=parseInt(num.value,10); if(isNaN(v)) return;
+    if(v<0) v=0; if(v>max) v=max;
+    r.value=v; num.value=v;
+  });
+}
+syncRange('gltInnerThR','gltInnerThI',128);
+syncRange('gltCoverThR','gltCoverThI',128);
+
+/* ---------- 采样方式 ---------- */
+var METHOD={
+  chess:function(x,y){ return (x+y)%2===0; },        /* 1/2 棋盘 */
+  gap_2:function(x,y){ return (x+y)%3===0; },        /* 1/3 */
+  gap_3:function(x,y){ return (x+y)%4===0; },        /* 1/4 */
+  gap_5:function(x,y){ return (x+y)%6===0; },        /* 1/6 */
+  col_1:function(x,y){ return x%2===0; },            /* 1/2 隔列 */
+  row_1:function(x,y){ return y%2===0; },            /* 1/2 隔行 */
+  col_2:function(x,y){ return x%3===0; },            /* 1/3 隔二列 */
+  row_2:function(x,y){ return y%3===0; },            /* 1/3 隔二行 */
+  chess_2:function(x,y){ return (x+y)%4===0; },      /* 1/4 疏棋盘 */
+  diag:function(x,y){ return (x-y)%4===0; },         /* 1/4 斜向条纹 */
+  block_22:function(x,y){ return x%2===0&&y%2===0; },/* 1/4 2x2取左上角 */
+  block_33:function(x,y){ return x%3===1&&y%3===1; },/* 1/9 3x3取中心 */
+  gap_7:function(x,y){ return (x+y)%8===0; },        /* 1/8 稀疏 */
+  random:function(x,y){ return hashXY(x,y)===0; }    /* 1/6 伪随机散点 */
+};
+/* 确定性整数散列：同一(x,y)永远返回同一值，编码稳定 */
+function hashXY(x,y){
+  var h=(x*374761393 + y*668265263)|0;
+  h=((h^(h>>>13))*1274126177)|0;
+  h^=h>>>16;
+  return (h>>>0)%6;
+}
+function toHex(n,len){ var s=n.toString(16).toUpperCase(); while(s.length<len) s='0'+s; return s; }
+
+/* ---------- PNG 元数据：tEXt/PRSM 块 + CRC32 ---------- */
+var crcTable=(function(){
+  var t=new Array(256);
+  for(var n=0;n<256;n++){ var c=n; for(var k=0;k<8;k++) c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1); t[n]=c>>>0; }
+  return t;
+})();
+function crc32(bytes){ var c=0xFFFFFFFF; for(var i=0;i<bytes.length;i++) c=(c>>>8)^crcTable[(c^bytes[i])&0xFF]; return (c^0xFFFFFFFF)>>>0; }
+function base64ToU8(dataURL){
+  var b64=dataURL.split(',')[1]; var bin=atob(b64); var out=new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++) out[i]=bin.charCodeAt(i);
+  return out;
+}
+function u8ToDataURL(u8){ var bin=''; for(var i=0;i<u8.length;i++) bin+=String.fromCharCode(u8[i]); return 'data:image/png;base64,'+btoa(bin); }
+/* JPEG 写入 PRSM 参数（COM 注释段，紧跟在 SOI 之后），保证 JPEG 光棱图成品也能被统一取图自动识别 */
+function injectJpegPrsm(jpegURL,text){
+  var u8=base64ToU8(jpegURL);
+  var payload='PRSM'+text;
+  var com=new Uint8Array(4+payload.length);
+  com[0]=0xFF; com[1]=0xFE;
+  var segLen=payload.length+2;
+  com[2]=(segLen>>>8)&255; com[3]=segLen&255;
+  for(var i=0;i<payload.length;i++) com[4+i]=payload.charCodeAt(i);
+  var out=new Uint8Array(u8.length+com.length);
+  out.set(u8.subarray(0,2),0);              // SOI FFD8
+  out.set(com,2);                           // COM 注释段
+  out.set(u8.subarray(2),2+com.length);     // 其余段
+  var bin=''; for(var j=0;j<out.length;j++) bin+=String.fromCharCode(out[j]);
+  return 'data:image/jpeg;base64,'+btoa(bin);
+}
+function pngChunks(u8){
+  var off=8, list=[];
+  while(off+8<=u8.length){
+    var len=((u8[off]<<24)|(u8[off+1]<<16)|(u8[off+2]<<8)|u8[off+3])>>>0;
+    var type=String.fromCharCode(u8[off+4],u8[off+5],u8[off+6],u8[off+7]);
+    list.push({type:type,start:off,len:len});
+    if(type==='IEND') break;
+    off+=12+len;
+  }
+  return list;
+}
+function chunkBytes(typeStr,data){
+  var type=[]; for(var i=0;i<4;i++) type.push(typeStr.charCodeAt(i));
+  var len=[(data.length>>>24)&255,(data.length>>>16)&255,(data.length>>>8)&255,data.length&255];
+  var crcBuf=new Uint8Array(4+data.length); crcBuf.set(type,0); crcBuf.set(data,4);
+  var crc=crc32(crcBuf);
+  var out=new Uint8Array(12+data.length);
+  out.set(len,0); out.set(type,4); out.set(data,8);
+  out[8+data.length]=(crc>>>24)&255; out[9+data.length]=(crc>>>16)&255; out[10+data.length]=(crc>>>8)&255; out[11+data.length]=crc&255;
+  return out;
+}
+function injectPngText(dataURL,keyword,text){
+  var u8=base64ToU8(dataURL);
+  var sig=u8.subarray(0,8);
+  var chunks=pngChunks(u8);
+  var head=[], iend=null;
+  for(var i=0;i<chunks.length;i++){
+    var c=chunks[i];
+    if(c.type==='IEND') iend=u8.subarray(c.start,c.start+12+c.len);
+    else head.push(u8.subarray(c.start,c.start+12+c.len));
+  }
+  var tData=new Uint8Array(keyword.length+1+text.length);
+  for(var k=0;k<keyword.length;k++) tData[k]=keyword.charCodeAt(k);
+  tData[keyword.length]=0;
+  for(var t=0;t<text.length;t++) tData[keyword.length+1+t]=text.charCodeAt(t);
+  var tChunk=chunkBytes('tEXt',tData);
+  var total=8; for(var h=0;h<head.length;h++) total+=head[h].length; total+=tChunk.length; if(iend) total+=iend.length;
+  var out=new Uint8Array(total); var pos=0;
+  out.set(sig,pos); pos+=8;
+  for(var j=0;j<head.length;j++){ out.set(head[j],pos); pos+=head[j].length; }
+  out.set(tChunk,pos); pos+=tChunk.length;
+  if(iend){ out.set(iend,pos); pos+=iend.length; }
+  return u8ToDataURL(out);
+}
+function readPngText(dataURL){
+  if(dataURL.indexOf('data:image/png')!==0) return null;
+  try{
+    var u8=base64ToU8(dataURL);
+    var chunks=pngChunks(u8);
+    for(var i=0;i<chunks.length;i++){
+      var c=chunks[i];
+      if(c.type!=='tEXt'&&c.type!=='PRSM') continue;
+      var start=c.start+8, kwEnd=-1;
+      for(var j=0;j<c.len;j++) if(u8[start+j]===0){ kwEnd=j; break; }
+      if(kwEnd<0) continue;
+      var kw=''; for(var a=0;a<kwEnd;a++) kw+=String.fromCharCode(u8[start+a]);
+      if(kw!=='PRSM') continue;
+      var txt=''; for(var b=kwEnd+1;b<c.len;b++) txt+=String.fromCharCode(u8[start+b]);
+      return txt;
+    }
+  }catch(e){ return null; }
+  return null;
+}
+function applyMeta(meta){
+  if(!meta || meta.length<3) return;
+  var rev=meta[0]==='1';
+  var th=parseInt(meta.slice(1,3),16);
+  if(isNaN(th)) return;
+  el('gltDecReverse').checked=rev;
+  var t=rev? (255-th) : th;
+  if(t<1) t=1; if(t>255) t=255;
+  el('gltThR').value=t; el('gltThI').value=t;
+}
+
+/* ---------- 藏图（编码） ---------- */
+var encodeLast=0, encodeTimer=null;
+function requestEncode(){
+  if(!state.innerImg||!state.coverImg) return;
+  var now=Date.now();
+  if(now-encodeLast>=100){ encodeLast=now; doEncode(); }
+  else { clearTimeout(encodeTimer); encodeTimer=setTimeout(function(){ encodeLast=Date.now(); doEncode(); },100); }
+}
+function doEncode(){
+  var o={
+    method:el('gltMethod').value,
+    innerTh:parseInt(el('gltInnerThR').value,10),
+    coverTh:parseInt(el('gltCoverThR').value,10)
+  };
+  setHint('gltEmbedHint','正在生成…');
+  try{
+    var w0=state.innerImg.naturalWidth||state.innerImg.width;
+    var h0=state.innerImg.naturalHeight||state.innerImg.height;
+    var MAX=2200, scale=Math.min(1, MAX/Math.max(w0,h0));
+    var W=Math.max(1,Math.round(w0*scale)), H=Math.max(1,Math.round(h0*scale));
+
+    var ic=document.createElement('canvas'); ic.width=W; ic.height=H;
+    var ictx=ic.getContext('2d'); ictx.drawImage(state.innerImg,0,0,W,H);
+    var inner=ictx.getImageData(0,0,W,H).data;
+
+    var cc=document.createElement('canvas'); cc.width=W; cc.height=H;
+    var cctx=cc.getContext('2d'); cctx.drawImage(state.coverImg,0,0,W,H);
+    var cover=cctx.getImageData(0,0,W,H).data;
+
+    var c=o.innerTh/255, u=1-o.coverTh/255, isInner=METHOD[o.method];
+    var out=new Uint8ClampedArray(inner.length);
+    var l=0;
+    for(var d=0;d<inner.length;d+=4,l++){
+      var x=l%W, y=(l/W)|0;
+      var A=inner[d+3], cA=cover[d+3];
+      if(isInner(x,y)){
+        out[d]=Math.floor(inner[d]*c); out[d+1]=Math.floor(inner[d+1]*c); out[d+2]=Math.floor(inner[d+2]*c); out[d+3]=A;
+      } else {
+        out[d]=Math.floor(cover[d]*u+o.coverTh); out[d+1]=Math.floor(cover[d+1]*u+o.coverTh); out[d+2]=Math.floor(cover[d+2]*u+o.coverTh); out[d+3]=cA;
+      }
+    }
+    /* 实时预览直接画到结果画布，不做 PNG 编码，拖动阈值不卡 */
+    var pv=el('gltEmbedCanvas'); pv.width=W; pv.height=H;
+    pv.getContext('2d').putImageData(new ImageData(out,W,H),0,0);
+    el('gltEmbedResult').classList.add('show');
+    setHint('gltEmbedHint','完成！成品 '+W+'×'+H,'ok');
+  }catch(err){ setHint('gltEmbedHint','出错了：'+err.message,'err'); }
+}
+/* 保存成品：点按时才做 PNG/JPEG 编码并写入参数 */
+el('gltSaveEmbed').addEventListener('click',function(){
+  try{
+    var pv=el('gltEmbedCanvas');
+    var fmt=el('gltFormat').value;
+    var url;
+    if(fmt==='png'){
+      var th=parseInt(el('gltInnerThR').value,10);
+      url=injectPngText(pv.toDataURL('image/png'),'PRSM','0'+toHex(th,2));
+    } else {
+      var th=parseInt(el('gltInnerThR').value,10);
+      url=injectJpegPrsm(pv.toDataURL('image/jpeg',0.92),'0'+toHex(th,2));
+    }
+    triggerDownload(url,'成品.'+(fmt==='png'?'png':'jpg'));
+  }catch(err){ alert('保存失败：'+err.message); }
+});
+
+/* ---------- 显形测试（一次性编码成品并自动还原验证） ---------- */
+el('gltTestReveal').addEventListener('click',function(){
+  try{
+    var dataURL=el('gltEmbedCanvas').toDataURL('image/png');
+    var img=new Image();
+    img.onload=function(){
+      for(var i=0;i<tabs.length;i++) tabs[i].classList.remove('active');
+      el('gltTabExtract').classList.add('active');
+      el('gltPaneEmbed').classList.remove('active'); el('gltPaneExtract').classList.add('active');
+      el('gltAutoRead').checked=false;
+      gltPendingMeta=null;
+      addGltItem(null,img);
+    };
+    img.onerror=function(){ alert('测试失败：成品数据损坏'); };
+    img.src=dataURL;
+  }catch(err){ alert('显形测试失败：'+err.message); }
+});
+
+/* ---------- 参数变化即触发实时重算 ---------- */
+el('gltMethod').addEventListener('change',function(){ requestEncode(); });
+el('gltInnerThR').addEventListener('input',function(){ requestEncode(); });
+el('gltInnerThI').addEventListener('input',function(){ requestEncode(); });
+el('gltCoverThR').addEventListener('input',function(){ requestEncode(); });
+el('gltCoverThI').addEventListener('input',function(){ requestEncode(); });
+
+/* ---------- 显形（解码） ---------- */
+function coverFill(A,d,row,method){
+  var n=d%row, r=(d/row)|0;
+  function black(){ A[d]=0;A[d+1]=0;A[d+2]=0;A[d+3]=255; }
+  switch(method){
+    case 'luavg':
+      if(n&&r){ A[d]=(A[d-4]+A[d-row]+A[d-row-4])/3; A[d+1]=(A[d-3]+A[d-row+1]+A[d-row-3])/3; A[d+2]=(A[d-2]+A[d-row+2]+A[d-row-2])/3; A[d+3]=(A[d-1]+A[d-row+3]+A[d-row-1])/3; }
+      else black();
+      break;
+    case 'laavg':
+      if(n&&r){ A[d]=(A[d-4]+A[d-row])/2; A[d+1]=(A[d-3]+A[d-row+1])/2; A[d+2]=(A[d-2]+A[d-row+2])/2; A[d+3]=(A[d-1]+A[d-row+3])/2; }
+      else black();
+      break;
+    case 'blur3': {
+      var W=row/4, x=(d%row)/4, s0=0,s1=0,s2=0,s3=0,cnt=0;
+      if(n){ s0+=A[d-4];s1+=A[d-3];s2+=A[d-2];s3+=A[d-1];cnt++; }
+      if(r){ s0+=A[d-row];s1+=A[d-row+1];s2+=A[d-row+2];s3+=A[d-row+3];cnt++; }
+      if(n&&r){ s0+=A[d-row-4];s1+=A[d-row-3];s2+=A[d-row-2];s3+=A[d-row-1];cnt++; }
+      if(r&&x<W-1){ s0+=A[d-row+4];s1+=A[d-row+5];s2+=A[d-row+6];s3+=A[d-row+7];cnt++; }
+      if(cnt){ A[d]=s0/cnt;A[d+1]=s1/cnt;A[d+2]=s2/cnt;A[d+3]=s3/cnt; }
+      else black();
+      break;
+    }
+    case 'lcopy':
+      if(n){ A[d]=A[d-4];A[d+1]=A[d-3];A[d+2]=A[d-2];A[d+3]=A[d-1]; }
+      else black();
+      break;
+    case 'ucopy':
+      if(r){ A[d]=A[d-row];A[d+1]=A[d-row+1];A[d+2]=A[d-row+2];A[d+3]=A[d-row+3]; }
+      else black();
+      break;
+    case 'trans':
+      A[d+3]=0;
+      break;
+    case 'black': black(); break;
+    case 'white': A[d]=255;A[d+1]=255;A[d+2]=255;A[d+3]=255; break;
+  }
+}
+/* ============ 多张显形：每张可独立调阈值 ============ */
+state.gltItems=[];
+var gltPendingMeta=null; // 最近一张 PNG 读到的参数
+function addGltItem(file,img){
+  var item={ file:file, img:img, th:24, wrap:null, canvas:null, range:null, num:null };
+  if(gltPendingMeta){
+    if(gltPendingMeta.threshold!=null){ item.th=Math.min(Math.max(parseInt(gltPendingMeta.threshold,10),1),255); }
+    if(gltPendingMeta.reverse!=null) el('gltDecReverse').checked=!!gltPendingMeta.reverse;
+    gltPendingMeta=null;
+  }
+  state.gltItems.push(item);
+  buildGltItem(item);
+  renderGltItem(item);
+  setHint('gltExtractHint','完成！共还原 '+state.gltItems.length+' 张','ok');
+}
+function buildGltItem(item){
+  var wrap=document.createElement('div'); wrap.className='glt-item';
+  var idx=state.gltItems.indexOf(item);
+  wrap.innerHTML=
+    '<canvas class="glt-item-canvas"></canvas>'
+    +'<div class="glt-item-row"><label>阈值</label><input type="range" class="glt-item-thr" min="1" max="255" step="1" value="'+item.th+'"><input type="number" class="glt-item-thi" min="1" max="255" value="'+item.th+'"></div>'
+    +'<div class="glt-item-actions"><button type="button" class="glt-btn glt-btn-ghost glt-item-save">保存</button><button type="button" class="glt-btn glt-btn-ghost glt-item-del">删除</button></div>';
+  item.wrap=wrap; item.canvas=wrap.querySelector('.glt-item-canvas');
+  item.canvas.style.cursor='zoom-in';
+  item.canvas.addEventListener('click',function(){ try{ zoomOpen(item.canvas.toDataURL('image/png')); }catch(e){} });
+  item.range=wrap.querySelector('.glt-item-thr'); item.num=wrap.querySelector('.glt-item-thi');
+  item.range.addEventListener('input',function(){ item.num.value=item.range.value; item.th=parseInt(item.range.value,10); renderGltItem(item); });
+  item.num.addEventListener('input',function(){ var v=parseInt(item.num.value,10); if(isNaN(v))return; if(v<1)v=1; if(v>255)v=255; item.range.value=v; item.num.value=v; item.th=v; renderGltItem(item); });
+  wrap.querySelector('.glt-item-save').addEventListener('click',function(){
+    try{ triggerDownload(item.canvas.toDataURL('image/png'),'里图_'+(idx+1)+'.png'); }
+    catch(err){ alert('保存失败：'+err.message); }
+  });
+  wrap.querySelector('.glt-item-del').addEventListener('click',function(){
+    var i=state.gltItems.indexOf(item); if(i>=0) state.gltItems.splice(i,1);
+    if(item.wrap&&item.wrap.parentNode) item.wrap.parentNode.removeChild(item.wrap);
+    setHint('gltExtractHint','当前 '+state.gltItems.length+' 张','ok');
+  });
+  el('gltMultiList').appendChild(wrap);
+}
+function renderGltItem(item){
+  var o={ threshold:item.th, reverse:el('gltDecReverse').checked, fill:el('gltFill').value };
+  var W=item.img.naturalWidth||item.img.width, H=item.img.naturalHeight||item.img.height;
+  var c=document.createElement('canvas'); c.width=W; c.height=H;
+  var ctx=c.getContext('2d'); ctx.drawImage(item.img,0,0);
+  var src=ctx.getImageData(0,0,W,H);
+  var out=ctx.createImageData(W,H); out.data.set(src.data);
+  var A=out.data, row=4*W;
+  if(o.reverse){
+    var e=255/(255-o.threshold);
+    for(var d=0;d<A.length;d+=4){
+      if((A[d]+A[d+1]+A[d+2])/3>=o.threshold){ A[d]=(A[d]-o.threshold)*e; A[d+1]=(A[d+1]-o.threshold)*e; A[d+2]=(A[d+2]-o.threshold)*e; }
+      else coverFill(A,d,row,o.fill);
+    }
+  } else {
+    var f=255/o.threshold;
+    for(var dd=0;dd<A.length;dd+=4){
+      if((A[dd]+A[dd+1]+A[dd+2])/3<=o.threshold){ A[dd]*=f; A[dd+1]*=f; A[dd+2]*=f; }
+      else coverFill(A,dd,row,o.fill);
+    }
+  }
+  item.canvas.width=W; item.canvas.height=H;
+  item.canvas.getContext('2d').putImageData(out,0,0);
+}
+/* 全局参数（反转/背景填充）变化 → 重算所有张 */
+function reextractAll(){
+  if(!state.gltItems.length) return;
+  for(var i=0;i<state.gltItems.length;i++) renderGltItem(state.gltItems[i]);
+  setHint('gltExtractHint','完成！共还原 '+state.gltItems.length+' 张','ok');
+}
+el('gltDecReverse').addEventListener('change',reextractAll);
+el('gltFill').addEventListener('change',reextractAll);
+el('gltAddMore').addEventListener('click',function(){ pick('stego'); });
+/* ---------- 保存：点按时才做 PNG 编码（一次性动作，不在拖动路径上） ---------- */
+function triggerDownload(url,name){
+  var a=document.createElement('a'); a.href=url; a.download=name;
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ document.body.removeChild(a); },100);
+}
+
+/* 外部注入：把成品图直接送进光棱图「显形」页，自动读参并还原（供主取图跳转用） */
+window.gltLoadStego=function(file){
+  state.currentPick='stego';
+  loadFile(file,'stego');
+  for(var i=0;i<tabs.length;i++) tabs[i].classList.remove('active');
+  el('gltTabExtract').classList.add('active');
+  el('gltPaneEmbed').classList.remove('active'); el('gltPaneExtract').classList.add('active');
+};
+})();
+
+</script>
+<div id="zoomView" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:9999;overflow:hidden;touch-action:none">
+  <img id="zoomImg" alt="" style="position:absolute;top:0;left:0;transform-origin:0 0;user-select:none;-webkit-user-drag:none;max-width:none;width:auto;height:auto">
+  <div id="zoomClose" style="position:absolute;top:14px;right:18px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;font-size:22px;line-height:34px;text-align:center;cursor:pointer;z-index:10">×</div>
+  <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center;color:rgba(255,255,255,.7);font-size:13px;z-index:10">双指捏合缩放 · 单指拖动 · 滚轮缩放 · 双击复位</div>
+</div>
+<script>
+(function(){
+  var z=document.getElementById('zoomView'), img=document.getElementById('zoomImg');
+  var S={s:1,tx:0,ty:0,vw:0,vh:0,w:0,h:0,base:0,d0:0,fit:0};
+  function apply(){ var cx=S.vw/2+S.tx, cy=S.vh/2+S.ty; img.style.transform='translate('+(cx-S.w*S.s/2)+'px,'+(cy-S.h*S.s/2)+'px) scale('+S.s+')'; }
+  function fit(){ S.tx=0; S.ty=0; var f=Math.min(S.vw/S.w,S.vh/S.h); S.s=Math.min(f,1); S.fit=S.s; apply(); }
+  function open(src){ img.onload=function(){ S.w=img.naturalWidth; S.h=img.naturalHeight; fit(); }; img.src=src; if(img.complete&&img.naturalWidth){ S.w=img.naturalWidth; S.h=img.naturalHeight; fit(); } z.style.display='block'; document.body.style.overflow='hidden'; }
+  function close(){ z.style.display='none'; document.body.style.overflow=''; }
+  document.getElementById('zoomClose').onclick=close;
+  z.addEventListener('click',function(e){ if(e.target===z) close(); });
+  z.addEventListener('wheel',function(e){ e.preventDefault(); var f=e.deltaY<0?1.18:1/1.18; S.s=Math.max(0.2,Math.min(10,S.s*f)); apply(); },{passive:false});
+  var t0=null, d0=0, base=0;
+  z.addEventListener('touchstart',function(e){ e.preventDefault(); t0=e.touches; if(e.touches.length===2){ d0=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY); base=S.s; } },{passive:false});
+  z.addEventListener('touchmove',function(e){ e.preventDefault(); if(e.touches.length===2){ var d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY); S.s=Math.max(0.2,Math.min(10,base*(d/d0))); apply(); } else if(e.touches.length===1&&t0&&t0.length===1){ S.tx+=e.touches[0].clientX-t0[0].clientX; S.ty+=e.touches[0].clientY-t0[0].clientY; apply(); } t0=e.touches; },{passive:false});
+  z.addEventListener('touchend',function(e){ t0=e.touches; },{passive:false});
+  img.addEventListener('dblclick',fit);
+  var mDown=false,mX=0,mY=0;
+  z.addEventListener('mousedown',function(e){ if(S.s<=S.fit) return; if(e.target===z||e.target===img){ mDown=true; mX=e.clientX; mY=e.clientY; e.preventDefault(); } });
+  window.addEventListener('mousemove',function(e){ if(!mDown) return; S.tx+=e.clientX-mX; S.ty+=e.clientY-mY; mX=e.clientX; mY=e.clientY; apply(); });
+  window.addEventListener('mouseup',function(){ mDown=false; });
+  function up(){ S.vw=window.innerWidth; S.vh=window.innerHeight; }
+  window.addEventListener('resize',up); up();
+  window.zoomOpen=function(src){ if(S.vw!==window.innerWidth||S.vh!==window.innerHeight) up(); open(src); };
+})();</script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function (e) {
+          console.warn("SW register failed", e);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
