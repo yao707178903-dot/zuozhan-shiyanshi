@@ -135,8 +135,9 @@
     display:flex;align-items:center;justify-content:center;cursor:pointer;
     box-shadow:none;transition:filter .15s;touch-action:none}
   .theme-toggle{left:10px}
-  .refresh-toggle{right:10px;background:var(--card);color:var(--text);border:1px solid var(--border)}
+  .refresh-toggle{left:10px;top:34px;width:30px;height:30px;background:var(--card);color:var(--text);border:1px solid var(--border)}
   .float-btn svg{width:8px;height:8px}
+  .refresh-toggle svg{width:16px;height:16px}
   .float-btn:hover{filter:brightness(1.12)}
   .theme-panel{position:fixed;top:60px;left:12px;z-index:9998;background:var(--card);
     border:1px solid var(--border);border-radius:14px;padding:8px;box-shadow:0 6px 20px rgba(0,0,0,.18);
@@ -242,6 +243,10 @@
   .mmg-drop .s{font-size:12px;color:var(--muted);margin-top:4px}
   .mmg-btn{padding:9px 16px;border-radius:8px;border:0;cursor:pointer;font-size:14px;text-decoration:none}
   .mmg-btn-primary{background:var(--accent);color:#14233c;font-weight:600}
+  .mmg-progress{height:6px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:8px}
+  .mmg-progress>.bar{height:100%;width:0;background:linear-gradient(90deg,#5bd08a,#8ee3a0)}
+  .mmg-progress.indet>.bar{width:100%;background:repeating-linear-gradient(90deg,#5bd08a 0 24px,#8ee3a0 24px 48px);background-size:48px 100%;animation:mmgslide 0.9s linear infinite}
+  @keyframes mmgslide{from{background-position:0 0}to{background-position:48px 0}}
   .mmg-btn-ghost{background:var(--card2);color:var(--text);border:1px solid var(--border)}
   .mmg-btn:disabled{opacity:.5;cursor:not-allowed}
   .mmg-hint{font-size:13px;color:var(--muted);min-height:18px}
@@ -365,16 +370,30 @@ makeDraggable(document.getElementById('refreshToggle'), function(){ location.rel
     </div>
   </details>
 
+  <div id="mmgSegCtl" style="display:none;margin-top:8px;padding:9px 11px;border:1px solid var(--border);border-radius:8px;background:var(--card2)">
+    <label style="font-size:12px;display:flex;align-items:center;gap:6px;cursor:pointer">
+      <input type="checkbox" id="mmgSegOn"> 视频过大时分割藏入多张照片
+    </label>
+    <div style="display:flex;gap:8px;align-items:center;margin-top:7px;font-size:12px;color:var(--muted)">
+      每段约
+      <input type="number" id="mmgSegMin" value="0" min="0" max="59" style="width:54px;padding:5px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--text)"> 分
+      <input type="number" id="mmgSegSec" value="10" min="1" max="59" style="width:54px;padding:5px;border-radius:6px;border:1px solid var(--border);background:var(--card);color:var(--text)"> 秒
+      <span style="font-size:11px">（按时长比例切分，取图时全选会自动拼回完整视频）</span>
+    </div>
+  </div>
+
   <div class="hint" id="mmgHint" style="margin-top:8px"></div>
   <button type="button" class="mmg-btn mmg-btn-primary" id="mmgEmbedBtn" style="margin-top:10px;width:100%" disabled>生成成品</button>
+  <div class="mmg-progress" id="mmgEmbedProg" style="display:none"><div class="bar"></div></div>
 
   <div class="result" id="mmgResult" style="display:none;margin-top:12px">
     <div class="box">
       <img id="mmgPreview" alt="成品预览" style="max-width:100%;border-radius:8px;display:block">
       <div class="cap">这就是成品，外观和表图一模一样，内含多张小图</div>
     </div>
+    <div id="mmgSegList" style="display:none;gap:10px;margin-top:10px;flex-wrap:wrap"></div>
     <div class="save-tip">如果下面按钮点了没反应，就<b>长按上面这张图</b>，选「保存图片 / 存储到相册」</div>
-    <div style="display:flex;gap:8px;margin-top:10px">
+    <div style="display:flex;gap:8px;margin-top:10px" id="mmgDlRow">
       <a class="mmg-btn mmg-btn-primary" id="mmgDownload" href="#" download="成品.png" style="flex:1;display:inline-flex;align-items:center;justify-content:center">保存成品 PNG（优先长按保存）</a>
       <a class="mmg-btn" id="mmgDownloadJpg" href="#" download="成品.jpg" onclick="mmgSaveJpg()" style="flex:1;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.09);color:var(--text)">保存为 JPG</a>
     </div>
@@ -395,7 +414,7 @@ makeDraggable(document.getElementById('refreshToggle'), function(){ location.rel
       <span style="font-size:11px;color:var(--muted)">先选效果与强度，点「表图光棱化」应用，再点一次取消；每次只用一种，不叠加</span>
     </div>
   </div>
-  <input type="file" id="mmgFile" accept="image/*" multiple hidden>
+  <input type="file" id="mmgFile" accept="image/*,video/*,.gif,.webp,.mp4" multiple hidden>
 </div>
 
 <!-- ============ 取图 ============ -->
@@ -406,6 +425,7 @@ makeDraggable(document.getElementById('refreshToggle'), function(){ location.rel
   </div>
   <div class="hint" id="extractHint"></div>
   <button class="btn btn-primary" id="btnExtract" disabled onclick="doExtract()">批量剥出原图</button>
+  <div class="mmg-progress" id="mmgExtractProg" style="display:none"><div class="bar"></div></div>
 
   <div class="result" id="extractResult">
     <div id="extractList"></div>
@@ -757,6 +777,10 @@ makeDraggable(document.getElementById('refreshToggle'), function(){ location.rel
 /* ============ 多小图隐藏工具（前缀 mmg_，独立于主隐写） ============ */
 var mmgSt={cover:null,secrets:[],curPick:null,append:false,quality:'jpeg',scale:1};
 function mmgEl(id){ return document.getElementById(id); }
+function mmgShowProg(id){ var e=document.getElementById(id); if(e){ e.classList.remove('indet'); e.style.display='block'; var bar=e.querySelector('.bar'); if(bar) bar.style.width='2%'; } }
+function mmgSetProg(id,frac){ var e=document.getElementById(id); if(e){ e.classList.remove('indet'); var bar=e.querySelector('.bar'); if(bar){ var p=Math.max(2,Math.min(100,Math.round(frac*100))); bar.style.width=p+'%'; } } }
+function mmgWriteBits(px,bits,bpc,id,done){ var bi=0,total=bits.length,pxLen=px.length,j=0,step=3000; var fr=function(){ var cnt=0; while(j<pxLen&&cnt<step){ for(var c2=0;c2<3;c2++){ if(bi>=total)break; var low=0; for(var k=0;k<bpc;k++){ if(bi<total)low|=bits[bi++]<<k; } px[j+c2]=(px[j+c2]&(0xFF<<bpc))|low; } j+=4; cnt++; } mmgSetProg(id,total?bi/total:1); if(bi<total){ setTimeout(fr,0); } else { done(); } }; fr(); }
+function mmgHideProg(id){ var e=document.getElementById(id); if(e){ e.style.display='none'; e.classList.remove('indet'); } }
 function mmgSetMode(m){
   if(mmgEl('mmgTabEmbed')) mmgEl('mmgTabEmbed').classList.add('active');
   if(mmgEl('mmgPaneEmbed')) mmgEl('mmgPaneEmbed').style.display='block';
@@ -786,7 +810,11 @@ function mmgSetQuality(mode){
 }
 function mmgPick(t,append){ mmgSt.curPick=t; mmgSt.append=!!append; var f=mmgEl('mmgFile'); f.value=''; f.click(); }
 function mmgHint(id,text,type){ var e=mmgEl(id); e.textContent=text; e.className='mmg-hint'+(type?' '+type:''); }
-function mmgUpd(){ mmgEl('mmgEmbedBtn').disabled=!(mmgSt.cover&&mmgSt.secrets.length>0); }
+function mmgUpd(){
+  mmgEl('mmgEmbedBtn').disabled=!(mmgSt.cover&&mmgSt.secrets.length>0);
+  var seg=mmgEl('mmgSegCtl');
+  if(seg) seg.style.display=(mmgSt.secrets.length===1 && isVideoSecret(mmgSt.secrets[0]))?'block':'none';
+}
 function mmgRenderDrop(id,img){
   var e=mmgEl(id); e.classList.add('has-img');
   e.innerHTML='<img src="'+img.src+'" alt="" style="max-width:100%;max-height:170px;border-radius:8px;display:block;margin:0 auto"><div class="t">已选：'+img.width+'×'+img.height+'</div>';
@@ -930,8 +958,19 @@ function mmgSingleFileHint(cv, sec, kind){
   }
   return '<span style="color:var(--ok)">'+kind+' 将整份嵌入（'+(need?need+' 字节，当前 '+sc+'× 可装下，容量约 '+avail+' 字节':'容量以生成时校验为准')+'）；自定义倍率可再增大</span>';
 }
+function mmgProbeDuration(src){
+  return new Promise(function(res){
+    try{
+      var v=document.createElement('video'); v.preload='metadata'; v.muted=true;
+      v.onloadedmetadata=function(){ res(v.duration&&isFinite(v.duration)?v.duration:0); v.removeAttribute('src'); v.load(); };
+      v.onerror=function(){ res(0); };
+      v.src=src;
+    }catch(e){ res(0); }
+  });
+}
 async function mmgEmbedVideo(){
   mmgHint('mmgHint','正在嵌入视频…','');
+  mmgShowProg('mmgEmbedProg');
   try{
     var vsrc=mmgSt.secrets[0].src;
     var vbuf=await fetch(vsrc).then(function(r){return r.arrayBuffer();});
@@ -939,28 +978,77 @@ async function mmgEmbedVideo(){
     var raw=drawToCanvas(mmgSt.cover); var cw0=raw.width,ch0=raw.height;
     var scale=mmgSt.scale||1;
     var reloaded=await new Promise(function(res){ raw.toBlob(function(b){var im=new Image();im.onload=function(){res(im);};im.src=URL.createObjectURL(b);},'image/png'); });
-    // 容量不足自动放大到精确倍率（如 1.5×、2.6×），无需用户手动选
-    var needScale=Math.sqrt((vBytes.length+9)*8/(cw0*ch0*6));
-    if(needScale>scale){ scale=Math.ceil(needScale*10)/10; mmgSetScale(scale); }
+    // 视频不强制放大表图去装下整段，而是按当前表图容量分段、自动复制表图生成多张成品
     var canvas=document.createElement('canvas'); canvas.width=Math.max(1,Math.round(cw0*scale)); canvas.height=Math.max(1,Math.round(ch0*scale));
     var ctx=canvas.getContext('2d'); ctx.drawImage(reloaded,0,0,canvas.width,canvas.height);
     var cw=canvas.width,ch=canvas.height;
     var data=ctx.getImageData(0,0,cw,ch); var px=data.data;
-    var capBits=cw*ch*3*2, availBytes=Math.floor(capBits/8)-9;
-    if(vBytes.length>availBytes){ mmgHint('mmgHint','视频太大（'+vBytes.length+' 字节），表图自动放大到 '+scale+'× 后仍不够，请换更大的表图或压缩视频。','err'); return; }
-    var flags=(1)|16; // bpc2 + 视频标记
-    var header=new Uint8Array(9); header.set(MAGIC,0); header[4]=flags;
-    header[5]=(vBytes.length>>>24)&0xFF; header[6]=(vBytes.length>>>16)&0xFF; header[7]=(vBytes.length>>>8)&0xFF; header[8]=vBytes.length&0xFF;
-    var payload=new Uint8Array(9+vBytes.length);
-    payload.set(header,0); payload.set(vBytes,9);
-    var bits=bytesToBits(payload,2); var bi=0;
-    for(var j=0;j<px.length;j+=4){ for(var c2=0;c2<3;c2++){ if(bi>=bits.length)break; var low=0; for(var k=0;k<2;k++){ if(bi<bits.length)low|=bits[bi++]<<k; } px[j+c2]=(px[j+c2]&(0xFF<<2))|low; } }
-    ctx.putImageData(data,0,0);
-    canvas.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ var url=fr.result; _rawResult=url; _rawImg=null; _glowApplied=false; var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化'; mmgEl('mmgPreview').src=url; mmgEl('mmgDownload').href=url; mmgEl('mmgResult').style.display='block'; mmgHint('mmgHint','完成！视频已整份嵌入，成品 '+cw+'×'+ch+'；用取图剥出可播放视频。','ok'); }; fr.readAsDataURL(blob); },'image/png');
-  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); }
+    var capBits=cw*ch*3*2, perAvail=Math.floor(capBits/8)-11; // 预留最长分片头 11 字节
+    // 用户是否手动选择分段
+    var segOn=mmgEl('mmgSegOn')&&mmgEl('mmgSegOn').checked;
+    var manualSeg=false, segCountByTime=1;
+    if(segOn){
+      var mn=parseInt(mmgEl('mmgSegMin').value||'0',10); var sc=parseInt(mmgEl('mmgSegSec').value||'10',10);
+      if(isNaN(mn)) mn=0; if(isNaN(sc)) sc=10;
+      var segDur=mn*60+sc;
+      if(segDur>=1){
+        var dur=await mmgProbeDuration(vsrc);
+        if(dur>0){ manualSeg=true; segCountByTime=Math.max(1,Math.ceil(dur/segDur)); }
+      }
+    }
+    var capSegs=Math.max(1,Math.ceil(vBytes.length/perAvail));
+    var segCount=manualSeg?Math.max(segCountByTime,capSegs):capSegs;
+    var segHdr=segCount>1?11:9; // 分片头 11 字节（含 segIdx/segTotal），普通视频头 9 字节
+    var flags=(1)|16|(segCount>1?32:0); // bpc2 + 视频 + 分段标记
+    var urls=[];
+    for(var s=0;s<segCount;s++){
+      var st=Math.floor(vBytes.length*s/segCount), en=(s===segCount-1)?vBytes.length:Math.floor(vBytes.length*(s+1)/segCount);
+      var seg=vBytes.subarray(st,en);
+      var header=new Uint8Array(segHdr); header.set(MAGIC,0); header[4]=flags;
+      header[5]=(seg.length>>>24)&0xFF; header[6]=(seg.length>>>16)&0xFF; header[7]=(seg.length>>>8)&0xFF; header[8]=seg.length&0xFF;
+      if(segCount>1){ header[9]=s; header[10]=segCount; }
+      var payload=new Uint8Array(segHdr+seg.length); payload.set(header,0); payload.set(seg,segHdr);
+      var bits=bytesToBits(payload,2);
+      // 每段用一张独立的表图副本（复制表图）
+      var c2=document.createElement('canvas'); c2.width=cw; c2.height=ch;
+      var cx2=c2.getContext('2d'); cx2.drawImage(reloaded,0,0,cw,ch);
+      var d2=cx2.getImageData(0,0,cw,ch); var px2=d2.data;
+      await new Promise(function(done){ mmgWriteBits(px2,bits,2,'mmgEmbedProg',done); });
+      cx2.putImageData(d2,0,0);
+      var url=await new Promise(function(res){ c2.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ res(fr.result); }; fr.readAsDataURL(blob); },'image/png'); });
+      urls.push({url:url,idx:s});
+    }
+    // 展示成品
+    _rawResult=urls[0].url; _rawImg=null; _glowApplied=false;
+    var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化';
+    var resEl=mmgEl('mmgResult'); resEl.style.display='block';
+    var dlRow=document.getElementById('mmgDlRow'); if(dlRow) dlRow.style.display=segCount>1?'none':'flex';
+    var segList=mmgEl('mmgSegList');
+    if(segCount>1){
+      segList.style.display='flex';
+      segList.innerHTML='<div class="cap" style="width:100%">视频已分割为 '+segCount+' 段，自动复制表图生成 '+segCount+' 张成品；请把全部成品都选上，到取图页一起剥出即可自动拼接回完整视频。</div>';
+      urls.forEach(function(u){
+        var card=document.createElement('div'); card.className='box';
+        card.style.cssText='flex:1 1 46%;min-width:150px;max-width:240px;box-sizing:border-box';
+        card.innerHTML='<img src="'+u.url+'" alt="分片'+(u.idx+1)+'" style="width:100%;border-radius:8px;display:block">'
+          +'<div class="cap">第 '+(u.idx+1)+' / '+segCount+' 段</div>'
+          +'<div class="save-tip">长按图片保存</div>'
+          +'<a class="mmg-btn mmg-btn-primary" href="'+u.url+'" download="视频分片'+(u.idx+1)+'.png" style="display:flex;align-items:center;justify-content:center">保存第'+(u.idx+1)+'段</a>';
+        segList.appendChild(card);
+      });
+      mmgHint('mmgHint','完成！视频已分段嵌入 '+segCount+' 张成品，取图时一次选全部成品会自动拼回完整视频。','ok');
+    } else {
+      segList.style.display='none';
+      mmgEl('mmgPreview').src=urls[0].url;
+      mmgEl('mmgDownload').href=urls[0].url;
+      mmgHint('mmgHint','完成！视频已整份嵌入，成品 '+cw+'×'+ch+'；用取图剥出可播放视频。','ok');
+    }
+    mmgHideProg('mmgEmbedProg');
+  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); mmgHideProg('mmgEmbedProg'); }
 }
 async function mmgEmbedGif(){
   mmgHint('mmgHint','正在嵌入动图…','');
+  mmgShowProg('mmgEmbedProg');
   try{
     var gifSrc=mmgSt.secrets[0].src;
     var gifBuf=await fetch(gifSrc).then(function(r){return r.arrayBuffer();});
@@ -983,11 +1071,11 @@ async function mmgEmbedGif(){
     header[5]=(gifBytes.length>>>24)&0xFF; header[6]=(gifBytes.length>>>16)&0xFF; header[7]=(gifBytes.length>>>8)&0xFF; header[8]=gifBytes.length&0xFF;
     var payload=new Uint8Array(9+gifBytes.length);
     payload.set(header,0); payload.set(gifBytes,9);
-    var bits=bytesToBits(payload,2); var bi=0;
-    for(var j=0;j<px.length;j+=4){ for(var c2=0;c2<3;c2++){ if(bi>=bits.length)break; var low=0; for(var k=0;k<2;k++){ if(bi<bits.length)low|=bits[bi++]<<k; } px[j+c2]=(px[j+c2]&(0xFF<<2))|low; } }
+    var bits=bytesToBits(payload,2);
+    await new Promise(function(done){ mmgWriteBits(px,bits,2,'mmgEmbedProg',done); });
     ctx.putImageData(data,0,0);
-    canvas.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ var url=fr.result; _rawResult=url; _rawImg=null; _glowApplied=false; var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化'; mmgEl('mmgPreview').src=url; mmgEl('mmgDownload').href=url; mmgEl('mmgResult').style.display='block'; mmgHint('mmgHint','完成！动图已整份嵌入，成品 '+cw+'×'+ch+'；用取图剥出可还原成动画（GIF/WebP）。','ok'); }; fr.readAsDataURL(blob); },'image/png');
-  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); }
+    canvas.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ var url=fr.result; _rawResult=url; _rawImg=null; _glowApplied=false; var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化'; mmgEl('mmgPreview').src=url; mmgEl('mmgDownload').href=url; mmgEl('mmgResult').style.display='block'; mmgHint('mmgHint','完成！动图已整份嵌入，成品 '+cw+'×'+ch+'；用取图剥出可还原成动画（GIF/WebP）。','ok'); mmgHideProg('mmgEmbedProg'); }; fr.readAsDataURL(blob); },'image/png');
+  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); mmgHideProg('mmgEmbedProg'); }
 }
 var _rawResult=null;
 var _rawImg=null;
@@ -1054,6 +1142,7 @@ function glowProcess(img,mode,amt){
 function glowTable(){ applyGlow(); }
 async function mmgEmbed(){
   mmgHint('mmgHint','正在处理…','');
+  mmgShowProg('mmgEmbedProg');
   try{
     if(mmgSt.secrets.length>1 && mmgSt.secrets.some(isVideoSecret)){ mmgHint('mmgHint','视频请单独一张一张藏（当前多张里有视频）','err'); return; }
     if(mmgSt.secrets.length===1 && (isGifSecret(mmgSt.secrets[0])||isWebpSecret(mmgSt.secrets[0]))) return await mmgEmbedGif();
@@ -1101,11 +1190,11 @@ async function mmgEmbed(){
     for(var w2=0;w2<n;w2++){ header[12+2*w2]=(mws[w2]>>>8)&0xFF; header[13+2*w2]=mws[w2]&0xFF; }
     var payload=new Uint8Array(hlen+secretBytes.length);
     payload.set(header,0); payload.set(secretBytes,hlen);
-    var bits=bytesToBits(payload,bpc); var bi=0;
-    for(var i=0;i<px.length;i+=4){ for(var c2=0;c2<3;c2++){ if(bi>=bits.length)break; var low=0; for(var k=0;k<bpc;k++){ if(bi<bits.length)low|=bits[bi++]<<k; } px[i+c2]=(px[i+c2]&(0xFF<<bpc))|low; } }
+    var bits=bytesToBits(payload,bpc);
+    await new Promise(function(done){ mmgWriteBits(px,bits,bpc,'mmgEmbedProg',done); });
     ctx.putImageData(data,0,0);
-    canvas.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ var url=fr.result; _rawResult=url; _rawImg=null; _glowApplied=false; var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化'; mmgEl('mmgPreview').src=url; mmgEl('mmgDownload').href=url; mmgEl('mmgResult').style.display='block'; mmgHint('mmgHint','完成！成品 '+cw+'×'+ch+'，内含 '+n+' 张小图（'+(mmgSt.quality==='png'?'PNG':'JPEG')+'·小图约 '+S+'px）。','ok'); if(_gb){ _gb.dataset.on='1'; _gb.textContent='取消光棱化'; } _glowApplied=true; applyGlow(); }; fr.readAsDataURL(blob); },'image/png');
-  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); }
+    canvas.toBlob(function(blob){ var fr=new FileReader(); fr.onload=function(){ var url=fr.result; _rawResult=url; _rawImg=null; _glowApplied=false; var _gb=document.getElementById('glowBtn'); if(_gb) _gb.textContent='表图光棱化'; mmgEl('mmgPreview').src=url; mmgEl('mmgDownload').href=url; mmgEl('mmgResult').style.display='block'; mmgHint('mmgHint','完成！成品 '+cw+'×'+ch+'，内含 '+n+' 张小图（'+(mmgSt.quality==='png'?'PNG':'JPEG')+'·小图约 '+S+'px）。','ok'); mmgHideProg('mmgEmbedProg'); if(_gb){ _gb.dataset.on='1'; _gb.textContent='取消光棱化'; } _glowApplied=true; applyGlow(); }; fr.readAsDataURL(blob); },'image/png');
+  }catch(e){ mmgHint('mmgHint','出错了：'+e.message,'err'); mmgHideProg('mmgEmbedProg'); }
 }
 // 多小图还原统一走主取图页（主取图已识别多小图成品并自动切分）
 mmgEl('mmgEmbedBtn').addEventListener('click',mmgEmbed);
@@ -1583,7 +1672,8 @@ function extractFromBits(collect){
   const multi=(flags&4)===4;
   const gifMode=(flags&8)===8;
   const videoMode=(flags&16)===16;
-  let hlen=multi?12:HEADER_LEN;
+  const segmented=(flags&32)===32;
+  let hlen=multi?12:(segmented?11:HEADER_LEN);
   if(multi){
     if(header.length<12) header=bitsToBytes(bits.slice(0,12*8));
     hlen=12+2*header[11];
@@ -1604,7 +1694,7 @@ function extractFromBits(collect){
     for(let i=0;i<n;i++) ws.push((header[12+2*i]<<8)|header[13+2*i]);
     meta={n, h:(header[9]<<8)|header[10], ws};
   }
-  return {blob:new Blob([secretBytes],{type}), type, useJpeg, isGif:gifMode&&!isWebp, isWebp:isWebp, isVideo:videoMode, meta: (gifMode||videoMode)?null:meta};
+  return {blob:new Blob([secretBytes],{type}), type, useJpeg, isGif:gifMode&&!isWebp, isWebp:isWebp, isVideo:videoMode, isSeg:segmented, segIdx:segmented?header[9]:0, segTotal:segmented?header[10]:0, meta:(gifMode||videoMode)?null:meta};
 }
 function blobToDataURL(blob){
   return new Promise((res,rej)=>{
@@ -1897,7 +1987,7 @@ function stgoFromPx(collect){
   const res=extractFromBits(collect);
   if(!res) return null;
   if(res.error) return {error:res.error};
-  return {blob:res.blob,type:res.type,useJpeg:res.useJpeg,isGif:res.isGif,isWebp:res.isWebp,isVideo:res.isVideo,meta:res.meta};
+  return {blob:res.blob,type:res.type,useJpeg:res.useJpeg,isGif:res.isGif,isWebp:res.isWebp,isVideo:res.isVideo,isSeg:res.isSeg,segIdx:res.segIdx,segTotal:res.segTotal,meta:res.meta};
 }
 function stgoCanvasSoft(img){
   return new Promise(resolve=>{
@@ -1912,7 +2002,7 @@ function stgoCanvasSoft(img){
       if(!r) return resolve(null);
       if(r.error) return resolve({error:r.error});
       if(r.meta) resolve({blob:r.blob,type:r.type,useJpeg:r.useJpeg,kind:'主隐写',meta:r.meta});
-      else if(r.isVideo){ var vu=URL.createObjectURL(r.blob); resolve({videoUrl:vu,type:r.type,useJpeg:r.useJpeg,isVideo:true,kind:'视频'}); }
+      else if(r.isVideo){ if(r.isSeg) return resolve({segBytes:r.blob,segIdx:r.segIdx,segTotal:r.segTotal,isSeg:true,kind:'视频分片'}); var vu=URL.createObjectURL(r.blob); resolve({videoUrl:vu,type:r.type,useJpeg:r.useJpeg,isVideo:true,kind:'视频'}); }
       else blobToDataURL(r.blob).then(url=>resolve({url,type:r.type,useJpeg:r.useJpeg,isGif:r.isGif,isWebp:r.isWebp,kind:r.isGif?'GIF':(r.isWebp?'WebP 动图':'主隐写')})).catch(()=>resolve(null));
     }catch(e){ resolve(null); }
   });
@@ -1949,7 +2039,10 @@ function extractOne(item){
         if(stgo.error) throw new Error(stgo.error);
         if(stgo.meta) return mmgSliceMosaic(stgo.blob,stgo.meta)
           .then(urls=>({urls,type:stgo.type,useJpeg:stgo.useJpeg,kind:'多小图'}));
-        if(stgo.isVideo){ var vu=URL.createObjectURL(stgo.blob); return {videoUrl:vu,type:'video/mp4',useJpeg:false,isVideo:true,kind:'视频'}; }
+        if(stgo.isVideo){
+          if(stgo.isSeg) return {segBytes:stgo.blob, segIdx:stgo.segIdx, segTotal:stgo.segTotal, isSeg:true, kind:'视频分片'};
+          var vu=URL.createObjectURL(stgo.blob); return {videoUrl:vu,type:'video/mp4',useJpeg:false,isVideo:true,kind:'视频'};
+        }
         return blobToDataURL(stgo.blob).then(url=>({url,type:stgo.type,useJpeg:stgo.useJpeg,isGif:stgo.isGif,isWebp:stgo.isWebp,kind:stgo.isGif?'GIF':(stgo.isWebp?'WebP 动图':'主隐写')}));
       }
       throw new Error('没有藏东西，不是本工具的成品');
@@ -2008,7 +2101,9 @@ async function doExtract(){
   document.getElementById('extractList').innerHTML='';
   document.getElementById('extractResult').classList.add('show');
   setHint('extractHint','正在剥出 '+list.length+' 张…','');
+  mmgShowProg('mmgExtractProg');
   let ok=0, fail=0;
+  const segParts=[];
   for(let i=0;i<list.length;i++){
     const item=document.createElement('div');
     item.className='box';
@@ -2017,6 +2112,11 @@ async function doExtract(){
     try{
       const r=await extractOne(list[i]);
       ok++;
+      if(r.isSeg){
+        segParts.push({idx:r.segIdx, bytes:r.segBytes, total:r.segTotal});
+        item.innerHTML='<div class="cap">第 '+(i+1)+' 张 ✓ 已收集视频分片（第 '+((r.segIdx||0)+1)+' / '+r.segTotal+' 段）</div>';
+        continue;
+      }
       if(r.urls){
         if(!window._zoomGals) window._zoomGals=[];
         var galIdx=window._zoomGals.length; window._zoomGals.push(r.urls);
@@ -2051,9 +2151,35 @@ async function doExtract(){
           +'<button class="btn btn-ghost" style="flex:1" onclick="sendTo('+i+',\'混淆图\')">当作混淆图处理</button>'
           +'</div>';
       }
+      mmgSetProg('mmgExtractProg',(i+1)/list.length);
     }
   }
-  setHint('extractHint','完成：成功 '+ok+' 张'+(fail?'，失败 '+fail+' 张':''),'ok');
+  if(segParts.length){
+    const total=segParts[0].total;
+    const byIdx={}; let complete=segParts.length>=total;
+    for(const p of segParts){ byIdx[p.idx]=p.bytes; }
+    for(let t=0;t<total;t++){ if(!byIdx[t]){ complete=false; break; } }
+    const box=document.createElement('div'); box.className='box';
+    if(complete){
+      let n=0; const seq=[];
+      for(let t=0;t<total;t++){ const b=byIdx[t]; seq.push(b); n+=b.size; }
+      const u8=new Uint8Array(n); let k=0;
+      for(const b of seq){ const ab=await b.arrayBuffer(); u8.set(new Uint8Array(ab),k); k+=ab.byteLength; }
+      const vu=URL.createObjectURL(new Blob([u8],{type:'video/mp4'}));
+      box.innerHTML='<video src="'+vu+'" controls style="max-width:100%;max-height:60vh;border-radius:8px"></video>'
+        +'<div class="cap">已自动拼接完整视频（共 '+total+' 段分片）</div>'
+        +'<a class="btn btn-primary" href="'+vu+'" download="完整视频.mp4">保存完整视频</a>';
+      setHint('extractHint','完成：'+total+' 段分片已全部集齐并自动拼成完整视频','ok');
+    } else {
+      const got=Object.keys(byIdx).length;
+      box.innerHTML='<div class="cap" style="color:#e0c06b">视频被分成 '+total+' 段，目前只选到 '+got+' 段（第 '+(Object.keys(byIdx).map(x=>Number(x)+1).sort((a,b)=>a-b).join('、'))+' 段）；请把其余分片成品也一起选上，再点剥出。</div>';
+      setHint('extractHint','已收集 '+got+' / '+total+' 段，请把全部成品一起选上再点剥出','');
+    }
+    document.getElementById('extractList').appendChild(box);
+  } else {
+    setHint('extractHint','完成：成功 '+ok+' 张'+(fail?'，失败 '+fail+' 张':''),'ok');
+  }
+  mmgHideProg('mmgExtractProg');
 }
 
 /* 保存为 JPG：主藏图靠 LSB 存数据，必须无损；故保存当前成品（PNG 内容）命名 .jpg，像素不动、LSB 完好，主取图照常剥出 */
