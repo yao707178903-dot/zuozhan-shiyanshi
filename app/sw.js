@@ -1,4 +1,4 @@
-const CACHE = 'zzs-pwa-v2';
+const CACHE = 'zzs-pwa-v3';
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon192.png', './icon512.png'];
 
 self.addEventListener('install', (e) => {
