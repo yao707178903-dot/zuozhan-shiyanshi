@@ -356,7 +356,7 @@ makeDraggable(document.getElementById('refreshToggle'), function(){ location.rel
       <div class="t">① 选表图</div><div class="s">点这里选，或拖入</div>
     </div>
     <div class="mmg-drop" id="mmgDropSecrets" onclick="mmgPick('secrets',true)" style="flex:1">
-      <div class="t">② 选里图（多张）</div><div class="s">可一次多选，也可再点这里追加</div>
+      <div class="t">② 选里图（多张）</div><div class="s">可一次多选，也可再点这里追加；可藏入图片、动图、视频</div>
     </div>
   </div>
   <div id="mmgSecretList" style="margin-top:8px"></div>
@@ -372,21 +372,8 @@ makeDraggable(document.getElementById('refreshToggle'), function(){ location.rel
     </div>
   </details>
 
-  <div class="opt">
-    <div class="t">表图分辨率（放大可增加容量）</div>
-    <div class="row" style="flex-wrap:wrap;gap:6px;align-items:center">
-      <button id="mmgS1" class="active" onclick="mmgSetScale(1)">原始</button>
-      <button id="mmgS2" onclick="mmgSetScale(2)">2×</button>
-      <button id="mmgS3" onclick="mmgSetScale(3)">3×</button>
-      <button id="mmgS5" onclick="mmgSetScale(5)">5×</button>
-      <input id="mmgScaleInput" type="number" min="1" step="0.5" placeholder="自定义倍率" value="1" style="flex:1;min-width:100px;padding:7px 8px;border-radius:6px;border:1px solid var(--border);background:var(--card2);color:var(--text);text-align:center">
-      <button id="mmgScaleApply" onclick="mmgApplyScaleInput()">设为倍率</button>
-    </div>
-    <div class="note" id="mmgScaleNote">原始最清晰；放大后成品尺寸变大，可用容量按面积成倍增加，里图可保持更大。</div>
-  </div>
-
-  <div class="hint" id="mmgHint" style="margin-top:8px">选好表图和多张原图后点下方生成；多张会自动缩成小图拼入一张表图</div>
-  <button type="button" class="mmg-btn mmg-btn-primary" id="mmgEmbedBtn" style="margin-top:10px" disabled>生成成品</button>
+  <div class="hint" id="mmgHint" style="margin-top:8px"></div>
+  <button type="button" class="mmg-btn mmg-btn-primary" id="mmgEmbedBtn" style="margin-top:10px;width:100%" disabled>生成成品</button>
 
   <div class="result" id="mmgResult" style="display:none;margin-top:12px">
     <div class="box">
@@ -814,7 +801,7 @@ function mmgRenderDrop(id,img){
 function mmgRenderSecrets(){
   var box=mmgEl('mmgSecretList');
   if(!mmgSt.secrets.length){ box.innerHTML=''; return; }
-  var h='<div style="font-size:13px;color:var(--muted)">已选 '+mmgSt.secrets.length+' 张，将自动缩小拼入：</div>';
+  var h='<div style="font-size:13px;color:var(--muted)">已选 '+mmgSt.secrets.length+' 张：</div>';
   var cap=mmgCapacityHint();
   if(cap) h+='<div style="font-size:12px;margin-top:5px;line-height:1.4">'+cap+'</div>';
   h+='<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px">';
@@ -845,7 +832,7 @@ function mmgCapacityHint(){
   cw=Math.round(cw*scale); ch=Math.round(ch*scale);
   var availBytes=Math.floor(cw*ch*3*2/8)-12;
   if(availBytes<=0) return '表图容量不足，请换更大的表图';
-  var kv=mmgSt.quality==='png'?0.6:0.25;
+  var kv=mmgSt.quality==='png'?0.6:0.08; // 预览估算：JPEG 按照片实际压缩比，提示倍率更贴近实际
   var sumRatio=0, maxH=0;
   for(var i=0;i<cn;i++){
     var s=mmgSt.secrets[i];
@@ -853,18 +840,21 @@ function mmgCapacityHint(){
     if(!iw||!ih) return '正在读取图片尺寸…';
     sumRatio+=iw/ih; if(ih>maxH) maxH=ih;
   }
-  var capS=Math.floor(Math.sqrt(availBytes/(sumRatio*kv)));
-  var S=Math.max(24,Math.min(maxH,capS));
-  // 需求占用 = 保持原高所需容量 / 表图容量（实时，可超100%，电量持续变化）
+  var S=Math.max(24,maxH); // 里图保持原图最高高度，不再自动缩小
+  // 需求占用 = 保持原高所需容量 / 表图容量（实时，可超100%）
   var need=(maxH*maxH*sumRatio)*kv;
   var needPct=Math.round(need/availBytes*100);
-  // 电量填充：充足按占用动态；达上限/超限满格
+  // 电量填充：充足按占用动态；不足满格
   var fh=Math.round(Math.min(1,need/availBytes)*18); if(fh<2&&need>0) fh=2;
-  // 颜色三档：充足=常绿 / 已达上限=橙色 / 严重超限看不清=红色
+  // 充足=常绿 / 不足=橙色（生成时自动放大表图）
   var col, txt;
-  if(capS>=maxH){ col='#5bd08a'; txt='<span style="color:var(--muted)">容量充足：'+cn+' 张保持原图高度（'+S+'px，占用 '+needPct+'%）</span>'; }
-  else if(S>=maxH*0.55){ col='#e8a34a'; txt='<span style="color:#e8a34a">已达容量上限：将自动缩小到约 '+S+'px（原图最高 '+maxH+'px，需求 '+needPct+'%）</span>'; }
-  else { col='#e06c5b'; txt='<span style="color:#e06c5b">容量严重不足：将缩小到约 '+S+'px，已明显模糊（原图最高 '+maxH+'px，需求 '+needPct+'%）</span>'; }
+  if(need<=availBytes){ col='#5bd08a'; txt='<span style="color:var(--muted)">容量充足：'+cn+' 张保持原图高度（'+S+'px，占用 '+needPct+'%）</span>'; }
+  else {
+    var ns=scale*Math.sqrt(need/availBytes);
+    var needScale=Math.ceil(ns*10)/10;
+    col='#e8a34a';
+    txt='<span style="color:#e8a34a">容量不足：生成时将自动放大表图至 '+needScale+'×</span>';
+  }
   var batt='<svg width="16" height="26" viewBox="0 0 16 26" style="flex:none">'
     +'<rect x="2" y="1.5" width="11" height="22" rx="2.5" fill="none" stroke="'+col+'" stroke-width="1.3"/>'
     +'<rect x="5.4" y="0" width="4.2" height="2.2" rx="1" fill="'+col+'"/>'
@@ -956,15 +946,15 @@ async function mmgEmbedVideo(){
     var raw=drawToCanvas(mmgSt.cover); var cw0=raw.width,ch0=raw.height;
     var scale=mmgSt.scale||1;
     var reloaded=await new Promise(function(res){ raw.toBlob(function(b){var im=new Image();im.onload=function(){res(im);};im.src=URL.createObjectURL(b);},'image/png'); });
+    // 容量不足自动放大到精确倍率（如 1.5×、2.6×），无需用户手动选
+    var needScale=Math.sqrt((vBytes.length+9)*8/(cw0*ch0*6));
+    if(needScale>scale){ scale=Math.ceil(needScale*10)/10; mmgSetScale(scale); }
     var canvas=document.createElement('canvas'); canvas.width=Math.max(1,Math.round(cw0*scale)); canvas.height=Math.max(1,Math.round(ch0*scale));
     var ctx=canvas.getContext('2d'); ctx.drawImage(reloaded,0,0,canvas.width,canvas.height);
     var cw=canvas.width,ch=canvas.height;
     var data=ctx.getImageData(0,0,cw,ch); var px=data.data;
     var capBits=cw*ch*3*2, availBytes=Math.floor(capBits/8)-9;
-    if(vBytes.length>availBytes){
-      mmgHint('mmgHint','视频太大（'+vBytes.length+' 字节），表图只能容纳 '+availBytes+' 字节（约 '+(availBytes/1048576).toFixed(1)+' MB）。请放大表图分辨率或换更大的表图、或压缩视频。','err');
-      return;
-    }
+    if(vBytes.length>availBytes){ mmgHint('mmgHint','视频太大（'+vBytes.length+' 字节），表图自动放大到 '+scale+'× 后仍不够，请换更大的表图或压缩视频。','err'); return; }
     var flags=(1)|16; // bpc2 + 视频标记
     var header=new Uint8Array(9); header.set(MAGIC,0); header[4]=flags;
     header[5]=(vBytes.length>>>24)&0xFF; header[6]=(vBytes.length>>>16)&0xFF; header[7]=(vBytes.length>>>8)&0xFF; header[8]=vBytes.length&0xFF;
@@ -985,15 +975,15 @@ async function mmgEmbedGif(){
     var raw=drawToCanvas(mmgSt.cover); var cw0=raw.width,ch0=raw.height;
     var scale=mmgSt.scale||1;
     var reloaded=await new Promise(function(res){ raw.toBlob(function(b){var im=new Image();im.onload=function(){res(im);};im.src=URL.createObjectURL(b);},'image/png'); });
+    // 容量不足自动放大到精确倍率（如 1.5×、2.6×），无需用户手动选
+    var needScale=Math.sqrt((gifBytes.length+9)*8/(cw0*ch0*6));
+    if(needScale>scale){ scale=Math.ceil(needScale*10)/10; mmgSetScale(scale); }
     var canvas=document.createElement('canvas'); canvas.width=Math.max(1,Math.round(cw0*scale)); canvas.height=Math.max(1,Math.round(ch0*scale));
     var ctx=canvas.getContext('2d'); ctx.drawImage(reloaded,0,0,canvas.width,canvas.height);
     var cw=canvas.width,ch=canvas.height;
     var data=ctx.getImageData(0,0,cw,ch); var px=data.data;
     var capBits=cw*ch*3*2, availBytes=Math.floor(capBits/8)-9;
-    if(gifBytes.length>availBytes){
-      mmgHint('mmgHint','动图太大（'+gifBytes.length+' 字节），表图只能容纳 '+availBytes+' 字节。请在倍率框放大表图或换更大的表图。','err');
-      return;
-    }
+    if(gifBytes.length>availBytes){ mmgHint('mmgHint','动图太大（'+gifBytes.length+' 字节），表图自动放大到 '+scale+'× 后仍不够，请换更大的表图或压缩动图。','err'); return; }
     var flags=(1)|8; // bpc2 + GIF 标记
     var header=new Uint8Array(9);
     header.set(MAGIC,0); header[4]=flags;
@@ -1088,18 +1078,27 @@ async function mmgEmbed(){
     var kv=mmgSt.quality==='png'?0.6:0.25;
     // 里图按原图画质设定（JPEG省空间/PNG无损）；每张按原比例横排拼接（统一高度 S、宽按比例，无白边非方形）
     var sumRatio=0; for(var k0=0;k0<n;k0++){ var s0=mmgSt.secrets[k0]; sumRatio+=(s0.naturalWidth||s0.width)/(s0.naturalHeight||s0.height); }
-    // 上限 = 原图最大高度（不放大超过原图，保持清晰）；去掉 2048 硬顶，实际由容量决定
+    // 里图保持原图最高高度（不再自动缩小）；容量不够时自动放大表图
     var maxH=0; for(var k2=0;k2<n;k2++){ var s2=mmgSt.secrets[k2]; var hh=s2.naturalHeight||s2.height; if(hh>maxH) maxH=hh; }
-    var S=Math.max(24,Math.min(maxH,Math.floor(Math.sqrt(availBytes/(sumRatio*kv)))));
-    // 实际编码校验：超容量就逐步缩小，保证一定放得下
+    var S=Math.max(24,maxH);
+    // 实际编码校验：容量不够就自动放大表图到精确倍率（保持里图原高）
     var secretBytes=null, mws=null;
-    for(var tries=0;tries<8;tries++){
+    for(var tries=0;tries<16;tries++){
       var mb=mmgBuildRow(mmgSt.secrets,S);
       var sb=await imgToBytes(mb.canvas,mmgSt.quality==='png'?'png':'jpeg');
       if(sb.length<=availBytes){ secretBytes=sb; mws=mb.ws; break; }
-      S=Math.max(24,Math.floor(S*0.85));
+      // 容量不够：自动放大表图（里图保持原高）
+      var ns=scale*Math.sqrt((sb.length+12+2*n)/availBytes);
+      if(ns>scale){
+        scale=Math.ceil(ns*10)/10; mmgSetScale(scale);
+        canvas.width=Math.max(1,Math.round(cw0*scale)); canvas.height=Math.max(1,Math.round(ch0*scale));
+        ctx=canvas.getContext('2d'); ctx.drawImage(reloaded,0,0,canvas.width,canvas.height);
+        cw=canvas.width; ch=canvas.height;
+        data=ctx.getImageData(0,0,cw,ch); px=data.data;
+        capBits=cw*ch*3*bpc; availBytes=Math.floor(capBits/8)-12;
+      } else { break; }
     }
-    if(!secretBytes){ mmgHint('mmgHint','容量不够：表图太小或图太多。换更大的表图/少放几张。','err'); return; }
+    if(!secretBytes){ mmgHint('mmgHint','容量不够：表图自动放大后仍放不下。减少里图数量或换更大表图。','err'); return; }
     var flags=(bpc===2?1:0)|4|(mmgSt.quality==='png'?0:2);
     var hlen=12+2*n;
     var header=new Uint8Array(hlen);
