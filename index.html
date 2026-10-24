@@ -354,7 +354,7 @@ makeDraggable(document.getElementById('refreshToggle'), function(){ location.rel
       <div class="t">① 选表图</div><div class="s">点这里选，或拖入</div>
     </div>
     <div class="mmg-drop" id="mmgDropSecrets" onclick="mmgPick('secrets',true)" style="flex:1">
-      <div class="t">② 选里图（多张）</div><div class="s">可一次多选，也可再点这里追加；可藏入图片、动图，或多个视频（视频须单独多个一起藏，不能与图片/动图混放）</div>
+      <div class="t">② 选里图（多张）</div><div class="s">可一次多选，也可再点这里追加；可藏入图片、动图，或一个视频（视频只能放一个，不能多个视频一起放入）</div>
     </div>
   </div>
   <div id="mmgSecretList" style="margin-top:8px"></div>
@@ -385,7 +385,7 @@ makeDraggable(document.getElementById('refreshToggle'), function(){ location.rel
         <span>×</span>
         <button id="mmgScaleBtn" class="btn" style="padding:5px 10px" onclick="mmgApplyScaleInput()">应用</button>
       </div>
-      <div class="note" id="mmgScaleNote">原始最清晰；放大后成品尺寸变大，可用容量按面积成倍增加，里图可保持更大。</div>
+      <div class="note" id="mmgScaleNote">单张表图容量可放大至多少作为上限（手机用 50000000 个字符作为上限）（电脑以 150000000 个字节作为上限），超过可能会导致崩溃。</div>
     </div>
   </details>
 
@@ -836,6 +836,9 @@ function mmgSetMode(m){
   if(mmgEl('mmgTabEmbed')) mmgEl('mmgTabEmbed').classList.add('active');
   if(mmgEl('mmgPaneEmbed')) mmgEl('mmgPaneEmbed').style.display='block';
 }
+function mmgIsMobile(){
+  return /Mobi|Android|iPhone|iPad|iPod|Phone|Opera Mini/i.test(navigator.userAgent) || (navigator.maxTouchPoints&&navigator.maxTouchPoints>1&&window.innerWidth<768);
+}
 function mmgSetScale(s){
   mmgSt.scale=s;
   [['mmgS1',1],['mmgS2',2],['mmgS3',3],['mmgS5',5]].forEach(function(p){
@@ -843,7 +846,18 @@ function mmgSetScale(s){
   });
   var inp=mmgEl('mmgScaleInput'); if(inp) inp.value=s;
   var note=mmgEl('mmgScaleNote');
-  if(note) note.textContent=(s===1)?'原始最清晰；放大后成品尺寸变大，可用容量按面积成倍增加，里图可保持更大。':'表图已放大 '+s+'×（尺寸约 '+(s*100)+'%），容量按面积增加，里图可保持更大；成品文件也会更大。';
+  var isMobile=mmgIsMobile();
+  var cap=isMobile?50000000:150000000;
+  var capMsg='单张表图容量有上限：手机约 50000000 字符，电脑约 150000000 字节，超过可能导致崩溃。';
+  if(mmgSt.cover){
+    var cw0=mmgSt.cover.naturalWidth||mmgSt.cover.width||0, ch0=mmgSt.cover.naturalHeight||mmgSt.cover.height||0;
+    if(cw0&&ch0){
+      var memCap=Math.floor(cw0*ch0*s*s*6/8);
+      var capMB=Math.round(memCap/1000000);
+      capMsg+='（当前约 '+capMB+'MB，上限'+(isMobile?'手机 50MB':'电脑 150MB')+'）'+(memCap>cap?('，已超过上限，可能导致崩溃'):'');
+    }
+  }
+  if(note) note.textContent=capMsg;
   if(mmgSt.secrets.length) mmgRenderSecrets();
   mmgUpd();
 }
@@ -1056,6 +1070,7 @@ async function mmgFit30Scale(cw0,ch0,reloaded,builder){
 }
 function mmgLoad(file){
   if(file.type.indexOf('video/')===0){
+    if(mmgSt.curPick==='secrets'&&mmgSt.secrets.some(function(s){return s._isVideo;})){ mmgHint('mmgHint','里图只能放入一个视频，不能多个视频一起放入','err'); return; }
     var uv=URL.createObjectURL(file);
     var vo={src:uv,_isVideo:true,_name:file.name,_size:file.size};
     if(mmgSt.curPick==='secrets'){ mmgSt.secrets.push(vo); mmgRenderSecrets(); mmgUpd(); }
@@ -1073,13 +1088,17 @@ function mmgLoad(file){
 mmgEl('mmgFile').addEventListener('change',function(){
   var fs=this.files; if(!fs||!fs.length)return;
   if(mmgSt.curPick==='secrets'){
-    // 混合校验：视频不能与图片/动图混藏（一次只可添加多个视频，或只添加图片/动图）
+    // 混合校验：视频不能与图片/动图混藏（视频只能放一个，不能多个视频一起放入）
     var curVid=mmgSt.secrets.some(function(s){return s._isVideo;});
     var curImg=mmgSt.secrets.some(function(s){return !s._isVideo;});
-    var newVid=false,newImg=false;
-    for(var i=0;i<fs.length;i++){ if(fs[i].type.indexOf('video/')===0) newVid=true; else newImg=true; }
+    var newVid=false,newImg=false,vidCount=0;
+    for(var i=0;i<fs.length;i++){ if(fs[i].type.indexOf('video/')===0){ newVid=true; vidCount++; } else newImg=true; }
     if((curVid&&newImg)||(curImg&&newVid)||(newVid&&newImg)){
-      mmgHint('mmgHint','视频不能与图片/动图混藏：一次只可添加多个视频，或只添加图片/动图','err');
+      mmgHint('mmgHint','视频不能与图片/动图混藏：一次只可添加视频，或只添加图片/动图','err');
+      this.value=''; return;
+    }
+    if(newVid&&(curVid||vidCount>1)){
+      mmgHint('mmgHint','里图只能放入一个视频，不能多个视频一起放入','err');
       this.value=''; return;
     }
   }
@@ -1134,9 +1153,9 @@ function mmgSingleFileHint(cv, sec, kind){
   var need=sec&&sec._size?sec._size:0;
   if(need&&need>avail){
     var cw0=cv.naturalWidth||cv.width, ch0=cv.naturalHeight||cv.height;
-    var k=Math.ceil(Math.sqrt((need+9)*8/(cw0*ch0*6)));
+    var k=Math.ceil(Math.sqrt((need+9)*8/(cw0*ch0*6))*10)/10;
     if(k<sc)k=sc;
-    return '<span style="color:#e8a34a">'+kind+' 需 '+need+' 字节，当前 '+sc+'× 只容纳 '+avail+' 字节，将自动放大表图到约 '+k+'×（视频过大也会自动分割藏入多张照片）</span>';
+    return '<span style="color:#e8a34a">'+kind+' 需 '+need+' 字节，当前 '+sc+'× 只容纳 '+avail+' 字节。请放大表图到约 '+k+'× 后再生成，或在下方勾选"视频过大时分割藏入多张照片"后生成。</span>';
   }
   return '<span style="color:var(--ok)">'+kind+' 将整份嵌入（'+(need?need+' 字节，当前 '+sc+'× 可装下，容量约 '+avail+' 字节':'容量以生成时校验为准')+'）；自定义倍率可再增大</span>';
 }
@@ -1235,7 +1254,13 @@ var f30=await mmgFit30Scale(cw0,ch0,reloaded,function(cwT,chT){
       }
     }
     var capSegs=Math.max(1,Math.ceil(vBytes.length/perAvail));
-    // 视频过长、且未手动指定分段时：默认全部嵌入（自动分割多张成品），不再弹窗询问
+    // 视频过大、且未勾选"分割藏入多张"、也未勾选"单张≤30MB"时：不自动分割，提示放大表图或勾选分割
+    if(capSegs>1 && !manualSeg && !mmgCap30Enabled()){
+      var needScale=Math.ceil(Math.sqrt((vBytes.length+9)*8/(cw0*ch0*6))*10)/10;
+      mmgHint('mmgHint','视频过大（需 '+vBytes.length+' 字节，当前 '+scale+'× 表图只能容纳 '+perAvail+' 字节）。请将表图放大到约 '+needScale+'× 后再生成，或在下方勾选"视频过大时分割藏入多张照片"后生成。','err');
+      mmgHideProg('mmgEmbedProg');
+      return;
+    }
     var segCount=manualSeg?Math.max(segCountByTime,capSegs):capSegs;
     var segHdr=segCount>1?11:9; // 分片头 11 字节（含 segIdx/segTotal），普通视频头 9 字节
     var flags=(1)|16|(segCount>1?32:0); // bpc2 + 视频 + 分段标记
